@@ -25,9 +25,9 @@ public abstract class ItemCtrl : MonoBehaviour
 
 
     //마우스 클릭의 아이템 사용 처리
-    public abstract void UseCall(I_RootCtrl rootCtrl, UseState useState);
+    public abstract void UseCall(RootCtrl rootCtrl, UseState useState);
     //들기 놓기 처리
-    public abstract void GrabToggle(I_RootCtrl rootCtrl, bool isGrab);
+    public abstract void GrabToggle(RootCtrl rootCtrl, bool isGrab);
     public abstract bool checkUse(ItemCtrl nowItem);
 
 

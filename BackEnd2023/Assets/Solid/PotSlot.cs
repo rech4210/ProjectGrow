@@ -15,11 +15,11 @@ public class PotSlot : ItemCtrl
         return false;
     }
 
-    public override void GrabToggle(I_RootCtrl rootCtrl, bool isGrab)
+    public override void GrabToggle(RootCtrl rootCtrl, bool isGrab)
     {
     }
 
-    public override void UseCall(I_RootCtrl rootCtrl, UseState useState)
+    public override void UseCall(RootCtrl rootCtrl, UseState useState)
     {
     }
 }
