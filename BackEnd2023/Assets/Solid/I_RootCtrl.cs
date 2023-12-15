@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface I_RootCtrl
 {
-
+    public Transform transform => null;
 }
