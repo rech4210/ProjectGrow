@@ -46,7 +46,9 @@ public class RootCtrl : MonoBehaviour
         AnimationCtrl = gameObject.GetComponent<AnimationCtrl>();
         AnimationCtrl.initiallize();
         
-        interaction = gameObject.GetComponent <I_Interaction>();
+
+        // 이부분은 구현된 개체를 자동으로 가져온다.
+        interaction = gameObject.GetComponent<I_Interaction>();
 
     }
  
