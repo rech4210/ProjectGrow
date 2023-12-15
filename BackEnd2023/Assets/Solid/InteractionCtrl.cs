@@ -3,10 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InteractionCtrl : MonoBehaviour
+public class InteractionCtrl : MonoBehaviour, I_Interaction
 {
 
-    public I_RootCtrl rootCtrl;
+    public RootCtrl rootCtrl;
 
     public static ItemCtrl selectItemCtrl(Transform pivotTran, Func<ItemCtrl, bool> checkUse)
     {
@@ -36,6 +36,10 @@ public class InteractionCtrl : MonoBehaviour
         }
         return hitCtrl;
     }
+    public void initiallize()
+    {
+        rootCtrl = GetComponentInParent<RootCtrl>();
+    }
     public void InteractionEnter()
     {
 
@@ -48,9 +52,9 @@ public class InteractionCtrl : MonoBehaviour
     {
 
     }
-    public void InteractionGrab()
+
+
+    public void interactionGrap()
     {
-
     }
-
 }
