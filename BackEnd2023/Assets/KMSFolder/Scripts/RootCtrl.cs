@@ -1,0 +1,81 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public struct Status
+{
+    public float speed;
+    public Status(float speed)
+    {
+        this.speed= speed;
+    }
+}
+
+public class RootCtrl : MonoBehaviour
+{
+    public Status status;
+
+    public InputCtrl inputCtrl;
+    public MoveCtrl moveCtrl;
+    public StateCtrl stateCtrl;
+    public HpCtrl hpCtrl;
+    public WeaponCtrl WeaponCtrl;
+    public AnimationCtrl AnimationCtrl;
+    //public InteracionCtrl InteracionCtrl;
+
+    public I_Interaction interaction;
+
+    private void Awake()
+    {
+        status = new Status(5f);
+        inputCtrl = gameObject.GetComponent<InputCtrl>();
+        inputCtrl.initiallize();
+
+        moveCtrl = gameObject.GetComponent<MoveCtrl>();
+        moveCtrl.initiallize();
+
+        stateCtrl = gameObject.GetComponent<StateCtrl>();
+        stateCtrl.initiallize();
+
+        hpCtrl = gameObject.GetComponent<HpCtrl>();
+        hpCtrl.initiallize();
+
+        WeaponCtrl = gameObject.GetComponent<WeaponCtrl>();
+        WeaponCtrl.initiallize();
+
+        AnimationCtrl = gameObject.GetComponent<AnimationCtrl>();
+        AnimationCtrl.initiallize();
+        
+        interaction = gameObject.GetComponent <I_Interaction>();
+
+    }
+ 
+    // 입력관리, 상태머신, 조작, 컨트롤간 제어
+
+
+    //#region input
+
+    //#endregion
+
+
+    //#region move
+
+    //#endregion
+
+    //#region state // 애니메이션 상태머신 요청
+
+    //#endregion
+
+    //#region hp
+
+    //#endregion
+
+    //#region weapon
+
+    //#endregion
+
+    //#region animation
+
+    //#endregion
+
+}
