@@ -12,6 +12,7 @@ public class InputCtrl : MonoBehaviour, InitiallizeInterface
 
     public BtnState attackState;
 
+
     protected RootCtrl rootCtrl;
     public Status status;
 

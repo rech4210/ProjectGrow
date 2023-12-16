@@ -10,7 +10,7 @@ public struct Status
     }
 }
 
-public class RootCtrl : MonoBehaviour,I_Attacker
+public class RootCtrl : MonoBehaviour,I_Attacker, I_Pool
 {
     public Action lifeAction;
     public Action deadAction;
@@ -59,9 +59,24 @@ public class RootCtrl : MonoBehaviour,I_Attacker
         // 이부분은 구현된 개체를 자동으로 가져온다.
         interaction = gameObject.GetComponent<I_Interaction>();
         interaction.initiallize();
-
     }
- 
+
+
+    /// <RootCtrl 플레이어용>
+    protected Action<I_Pool> disableAction;
+    public void SetPoolEvent(Action<I_Pool> poolevent)
+    {
+        disableAction += poolevent;
+    }
+    public virtual void disable()
+    {
+        //풀링 회수 
+        disableAction?.Invoke(this);
+    }
+    /// </summary>
+    /// 
+
+
     // 입력관리, 상태머신, 조작, 컨트롤간 제어
 
 
