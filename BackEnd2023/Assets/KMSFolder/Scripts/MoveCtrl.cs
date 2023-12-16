@@ -8,8 +8,6 @@ public class MoveCtrl : MonoBehaviour, InitiallizeInterface
     // 이동 처리, 플립 관리
     Vector3 pos;
 
-   
-
     //스프라이트 반전 scale -1
     //SpriteRenderer playerRenderer;
     public Transform modelTran = null;
@@ -31,27 +29,14 @@ public class MoveCtrl : MonoBehaviour, InitiallizeInterface
         if ((rootCtrl.stateCtrl.IsCanAction(rootCtrl.stateCtrl.stateEnum)) || Input.GetAxis("Horizontal") != 0)
         {
             pos.x = rootCtrl.inputCtrl.horizontal * Time.deltaTime * rootCtrl.scriptableMonster.MoveSpeed;
-            if(rootCtrl.gameObject.CompareTag("Player"))
+            
+            if ((rootCtrl.targetTran.position.x - transform.position.x) > 0f)
             {
-                if ((rootCtrl.inputCtrl.horizontal > 0f))
-                {
-                    modelTran.localScale = new Vector3(-1, 1, 1);
-                }
-                else if (rootCtrl.inputCtrl.horizontal < 0f)
-                {
-                    modelTran.localScale = new Vector3(1, 1, 1);
-                }
+                modelTran.localScale = new Vector3(-1, 1, 1);
             }
-            else
+            else if (rootCtrl.targetTran.position.x - transform.position.x < 0f)
             {
-                if ((rootCtrl.targetTran.position.x - transform.position.x) > 0f)
-                {
-                    modelTran.localScale = new Vector3(-1, 1, 1);
-                }
-                else if (rootCtrl.targetTran.position.x - transform.position.x < 0f)
-                {
-                    modelTran.localScale = new Vector3(1, 1, 1);
-                }
+                modelTran.localScale = new Vector3(1, 1, 1);
             }
             
             rootCtrl.stateCtrl.WalkState(rootCtrl.inputCtrl.horizontal, rootCtrl.inputCtrl.vertical);
