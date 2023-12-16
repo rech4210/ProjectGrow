@@ -60,18 +60,20 @@ public class InputCtrl : MonoBehaviour, InitiallizeInterface
         rootCtrl = gameObject.GetComponent<RootCtrl>();
         status = rootCtrl.status;
     }
-    private void OnCollisionEnter(Collision collision)
-    {
-        if(collision.gameObject.CompareTag("아군"))
-        {
-            //collision.gameObject.GetComponent<Player>().enabled = false;
+
+    // OverLapsCircle
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    if(collision.gameObject.CompareTag("아군"))
+    //    {
+    //        //collision.gameObject.GetComponent<Player>().enabled = false;
             
-            //collision.gameObject.transform.SetParent(transform, false);
-            //아군 터렛의 경우 옮기기와 내려놓기를 호출
-        }
-        else if(collision.gameObject.CompareTag("적"))
-        {
-            //collision.gameObject.GetComponent<Enemy>().enabled = false;
-        }
-    }
+    //        //collision.gameObject.transform.SetParent(transform, false);
+    //        //아군 터렛의 경우 옮기기와 내려놓기를 호출
+    //    }
+    //    else if(collision.gameObject.CompareTag("적"))
+    //    {
+    //        //collision.gameObject.GetComponent<Enemy>().enabled = false;
+    //    }
+    //}
 }

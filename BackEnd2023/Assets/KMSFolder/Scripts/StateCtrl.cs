@@ -51,6 +51,11 @@ public class StateCtrl : MonoBehaviour, InitiallizeInterface
         }
     }
 
+    private void Update()
+    {
+        //스턴 체크
+    }
+
     #region 상태이상 변경
     public void StunState()
     {
@@ -59,6 +64,7 @@ public class StateCtrl : MonoBehaviour, InitiallizeInterface
             StateChange(stateEnum.Stunned);
             rootCtrl.AnimationCtrl.StunningAnimation();
         }
+        //스턴 제어 (시간 추가)
     }
 
     public void DeadState()

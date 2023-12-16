@@ -12,6 +12,7 @@ public class MoveCtrl : MonoBehaviour, InitiallizeInterface
 
     Vector3 pos;
 
+    //스프라이트 반전 scale -1
     SpriteRenderer playerRenderer;
 
 
@@ -33,15 +34,12 @@ public class MoveCtrl : MonoBehaviour, InitiallizeInterface
             if(rootCtrl.inputCtrl.horizontal > 0)
             {
                 playerRenderer.flipX = false;
-                rootCtrl.stateCtrl.WalkState(rootCtrl.inputCtrl.horizontal, rootCtrl.inputCtrl.vertical);
-
             }
-            else
+            else if(rootCtrl.inputCtrl.horizontal < 0)
             {
                 playerRenderer.flipX = true;
-                rootCtrl.stateCtrl.WalkState(rootCtrl.inputCtrl.horizontal, rootCtrl.inputCtrl.vertical);
-
             }
+            rootCtrl.stateCtrl.WalkState(rootCtrl.inputCtrl.horizontal, rootCtrl.inputCtrl.vertical);
         }
         else
         {
