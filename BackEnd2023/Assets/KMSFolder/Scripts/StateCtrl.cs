@@ -9,7 +9,8 @@ public enum stateEnum
     Grap,
     Use,
     Throw,
-    hited
+    hited,
+    Attack
 }
 
 public class StateCtrl : MonoBehaviour, InitiallizeInterface
@@ -68,7 +69,7 @@ public class StateCtrl : MonoBehaviour, InitiallizeInterface
         if (IsCanAction(stateEnum))
         {
             StateChange(stateEnum.hited);
-            rootCtrl.AnimationCtrl.HiteAnimation();
+            rootCtrl.AnimationCtrl.HitedAnimation();
             stunnedTime = time;
         }
     }
@@ -151,5 +152,15 @@ public class StateCtrl : MonoBehaviour, InitiallizeInterface
             return true;
         }
         return false;
+    }
+
+
+    public void AttackState()
+    {
+        if (IsCanAction(stateEnum))
+        {
+            stateEnum = stateEnum.Attack;
+            rootCtrl.AnimationCtrl.ThrowAniamtion();
+        }
     }
 }

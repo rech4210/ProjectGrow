@@ -6,25 +6,22 @@ public struct Status
     public float speed;
     public Status(float speed)
     {
-        this.speed = speed;
+        this.speed= speed;
     }
 }
 
-public class RootCtrl : MonoBehaviour, I_Attacker, I_Pool
+public class RootCtrl : MonoBehaviour,I_Attacker , I_Pool, I_Faction
 {
     public Action lifeAction;
     public Action deadAction;
     public Action<I_Attacker> aggroAction;
 
-
-
     //??? 프로퍼티 축약.
-    public Transform MyTran => this.transform;
+    public Transform myTransform => this.transform;
     public Status status;
-
+    
     public Faction faction;
     public Transform targetTran;
-
 
     public InputCtrl inputCtrl;
     public MoveCtrl moveCtrl;
@@ -35,6 +32,7 @@ public class RootCtrl : MonoBehaviour, I_Attacker, I_Pool
     //public InteracionCtrl InteracionCtrl;
 
     public I_Interaction interaction;
+
 
     private void Awake()
     {
@@ -56,8 +54,7 @@ public class RootCtrl : MonoBehaviour, I_Attacker, I_Pool
 
         AnimationCtrl = gameObject.GetComponent<AnimationCtrl>();
         AnimationCtrl.initiallize();
-
-
+        
         // 이부분은 구현된 개체를 자동으로 가져온다.
         interaction = gameObject.GetComponent<I_Interaction>();
         interaction.initiallize();
@@ -78,7 +75,14 @@ public class RootCtrl : MonoBehaviour, I_Attacker, I_Pool
     /// </summary>
     /// 
 
-
+    // enemy 어그로 재조정 함수
+    public void DeadEvent(I_Faction i_Faction) 
+    {
+        if (targetTran == i_Faction.myTransform)
+        {
+            targetTran = null;
+        }
+    }
     // 입력관리, 상태머신, 조작, 컨트롤간 제어
 
 

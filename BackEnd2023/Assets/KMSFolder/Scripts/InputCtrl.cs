@@ -26,6 +26,7 @@ public class InputCtrl : MonoBehaviour, InitiallizeInterface
         status = rootCtrl.status;
     }
 
+
     // OverLapsCircle
     //private void OnCollisionEnter(Collision collision)
     //{

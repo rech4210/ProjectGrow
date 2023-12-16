@@ -21,6 +21,7 @@ public class HpCtrl : MonoBehaviour, InitiallizeInterface
         //rootCtrl.stateCtrl.
         if(hp <= 0)
         {
+            attacker.DeadEvent(rootCtrl);
             rootCtrl.deadAction.Invoke();
             //기절 후 회복 로직
         }
