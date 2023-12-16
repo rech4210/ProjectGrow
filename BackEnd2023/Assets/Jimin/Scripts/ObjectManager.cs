@@ -59,7 +59,7 @@ public class ObjectManager : MonoBehaviour
 
         for (int i = 0; i < mobList.Count; i++)
         {
-            spawndelay[mobList[i].name] = 0f;
+            spawndelay[mobList[i].Name] = 0f;
         }
 
         StartSpawn();

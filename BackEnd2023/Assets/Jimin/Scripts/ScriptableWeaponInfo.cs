@@ -8,15 +8,19 @@ public class ScriptableWeaponInfo : ScriptableObject, I_Scriptable
     [System.Serializable]
     public class PrefabInfo : ScriptableInfo
     {
+<<<<<<< HEAD
         public SeedKind name;
+=======
+        public string Name;
+>>>>>>> origin/ljm_Branch
         public TypeEnum Type;
         public EnergyTypeEnum EnergyType;
         public int BulletCount;
-        public float GaugeTime;
-        public float HP;
-        public float AttackPoint;
-        public float AttackSpeed;
-        public float AttackDistance;
+        public int GaugeTime;
+        public int HP;
+        public int AttackPoint;
+        public int AttackSpeed;
+        public int AttackDistance;
         public bool SpecialOption;
         public AbilityObjectEnum AbilityObject;
         public AbilityEnum Ability;
@@ -33,7 +37,11 @@ public class ScriptableWeaponInfo : ScriptableObject, I_Scriptable
     {
         foreach (var tmp in prefabInfo)
         {
+<<<<<<< HEAD
             if (tmp.name.ToString() == prefabs)
+=======
+            if (tmp.Name == prefabs)
+>>>>>>> origin/ljm_Branch
             {
                 return tmp as T;
             }
