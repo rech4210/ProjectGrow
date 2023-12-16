@@ -10,7 +10,7 @@ public class Item_Seed : ItemCtrl
     public float nowWeight;
     public float maxWeight;
 
-    public WeaponKind WeaponKind;
+    public SeedKind seedKind;
 
     public override bool checkUse(ItemCtrl nowItem)
     {
@@ -49,9 +49,9 @@ public class Item_Seed : ItemCtrl
         }
     }
 
-    public override void GrabToggle(RootCtrl rootCtrl, bool isGrab)
+    public override ItemCtrl GrabToggle(RootCtrl rootCtrl, bool isGrab)
     {
-
+        return this;
     }
 
     public override void UseCall(RootCtrl rootCtrl, UseState useState)

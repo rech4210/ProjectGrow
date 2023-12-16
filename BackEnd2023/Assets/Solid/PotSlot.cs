@@ -15,8 +15,9 @@ public class PotSlot : ItemCtrl
         return false;
     }
 
-    public override void GrabToggle(RootCtrl rootCtrl, bool isGrab)
+    public override ItemCtrl GrabToggle(RootCtrl rootCtrl, bool isGrab)
     {
+        return null;
     }
 
     public override void UseCall(RootCtrl rootCtrl, UseState useState)

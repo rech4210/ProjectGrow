@@ -590,6 +590,10 @@ PrefabInstance:
       propertyPath: scriptableManager
       value: 
       objectReference: {fileID: 437419401}
+    - target: {fileID: 559114850445002549, guid: bbfd4cada39f34fe6a42a8d0a1319d60, type: 3}
+      propertyPath: MonsterList.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bbfd4cada39f34fe6a42a8d0a1319d60, type: 3}
 --- !u!1001 &1383113053436151059
@@ -652,6 +656,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4175000356333099610, guid: 5c751946b3eb3498084cb4037d02e81d, type: 3}
     - target: {fileID: 3863733480436599616, guid: 29461ff0e2e104326b43b991390bb6ec, type: 3}
+      propertyPath: wildboar
+      value: 
+      objectReference: {fileID: 1233092227696262016, guid: 9ef1bf3d7dbcb4547a8479c0bf879807, type: 3}
+    - target: {fileID: 3863733480436599616, guid: 29461ff0e2e104326b43b991390bb6ec, type: 3}
+      propertyPath: MonsterList.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3863733480436599616, guid: 29461ff0e2e104326b43b991390bb6ec, type: 3}
       propertyPath: RandomVector.Array.size
       value: 9
       objectReference: {fileID: 0}
@@ -710,6 +722,58 @@ PrefabInstance:
     - target: {fileID: 3863733480436599616, guid: 29461ff0e2e104326b43b991390bb6ec, type: 3}
       propertyPath: RandomVector.Array.data[8].y
       value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3863733480436599616, guid: 29461ff0e2e104326b43b991390bb6ec, type: 3}
+      propertyPath: MonsterList.Array.data[0].roundtimer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3863733480436599616, guid: 29461ff0e2e104326b43b991390bb6ec, type: 3}
+      propertyPath: MonsterList.Array.data[1].roundtimer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3863733480436599616, guid: 29461ff0e2e104326b43b991390bb6ec, type: 3}
+      propertyPath: MonsterList.Array.data[2].roundtimer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3863733480436599616, guid: 29461ff0e2e104326b43b991390bb6ec, type: 3}
+      propertyPath: MonsterList.Array.data[3].roundtimer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 3863733480436599616, guid: 29461ff0e2e104326b43b991390bb6ec, type: 3}
+      propertyPath: MonsterList.Array.data[4].roundtimer
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 3863733480436599616, guid: 29461ff0e2e104326b43b991390bb6ec, type: 3}
+      propertyPath: MonsterList.Array.data[0].monsterinfo.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3863733480436599616, guid: 29461ff0e2e104326b43b991390bb6ec, type: 3}
+      propertyPath: MonsterList.Array.data[1].monsterinfo.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3863733480436599616, guid: 29461ff0e2e104326b43b991390bb6ec, type: 3}
+      propertyPath: MonsterList.Array.data[2].monsterinfo.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3863733480436599616, guid: 29461ff0e2e104326b43b991390bb6ec, type: 3}
+      propertyPath: MonsterList.Array.data[3].monsterinfo.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3863733480436599616, guid: 29461ff0e2e104326b43b991390bb6ec, type: 3}
+      propertyPath: MonsterList.Array.data[4].monsterinfo.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3863733480436599616, guid: 29461ff0e2e104326b43b991390bb6ec, type: 3}
+      propertyPath: MonsterList.Array.data[0].monsterinfo.Array.data[0].monsterinfo.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3863733480436599616, guid: 29461ff0e2e104326b43b991390bb6ec, type: 3}
+      propertyPath: MonsterList.Array.data[0].monsterinfo.Array.data[0].monsterinfo.Array.data[0].monsterinfo.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3863733480436599616, guid: 29461ff0e2e104326b43b991390bb6ec, type: 3}
+      propertyPath: MonsterList.Array.data[0].monsterinfo.Array.data[0].monsterinfo.Array.data[0].monsterinfo.Array.data[0].monsterinfo.Array.size
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 29461ff0e2e104326b43b991390bb6ec, type: 3}

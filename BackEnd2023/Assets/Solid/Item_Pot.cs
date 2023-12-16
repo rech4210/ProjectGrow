@@ -7,9 +7,15 @@ public class Item_Pot : ItemCtrl
 
     public override ItemKind itemKind => ItemKind.Pot;
 
+    public override bool IsGrabLock => base.IsGrabLock && (nowSeed.seedKind == SeedKind.Tower && weapon != null) == false;
+
     public Item_Seed nowSeed;
     public float waterValue;
     public bool isWood;//나무가 됐돠
+
+
+    public Item_Weapon weapon;//타워일경우 들고있는 무기
+    public int weaponUseCount;//무기 사용횟수
 
 
     public override bool checkUse(ItemCtrl nowItem)
@@ -32,13 +38,13 @@ public class Item_Pot : ItemCtrl
                 if (seed != null && nowSeed == null)
                 {
                     //화분에 리소스 설정
-                    switch (nowSeed.WeaponKind)
+                    switch (nowSeed.seedKind)
                     {
-                        case WeaponKind.None:
-                        case WeaponKind.Revolver:
-                        case WeaponKind.Minigun:
-                        case WeaponKind.Firebat:
-                        case WeaponKind.Electric:
+                        case SeedKind.None:
+                        case SeedKind.Revolver:
+                        case SeedKind.Minigun:
+                        case SeedKind.Firebat:
+                        case SeedKind.Electric:
                             return true;
                     }
                 }
@@ -69,6 +75,30 @@ public class Item_Pot : ItemCtrl
         }
 
     }
+    public void setWeapon(Item_Weapon weapon)
+    {
+        if (nowSeed.seedKind == SeedKind.Tower)
+        {
+            this.weapon = weapon;
+            switch (weapon.weaponKind)
+            {
+                case SeedKind.None:
+                    break;
+                case SeedKind.Revolver:
+                    break;
+                case SeedKind.Minigun:
+                    break;
+                case SeedKind.Firebat:
+                    break;
+                case SeedKind.Electric:
+                    break;
+                case SeedKind.Water:
+                    break;
+                case SeedKind.Tower:
+                    break;
+            }
+        }
+    }
     public void setSeed(Item_Seed seed)
     {
         if (nowSeed == null)
@@ -79,24 +109,33 @@ public class Item_Pot : ItemCtrl
             nowSeed.transform.localPosition = Vector3.zero;
             nowSeed.gameObject.SetActive(false);//일단 꺼두자
                                                 //화분에 리소스 설정
-            switch (nowSeed.WeaponKind)
+            switch (nowSeed.seedKind)
             {
-                case WeaponKind.None:
+                case SeedKind.None:
                     break;
-                case WeaponKind.Revolver:
+                case SeedKind.Revolver:
                     break;
-                case WeaponKind.Minigun:
+                case SeedKind.Minigun:
                     break;
-                case WeaponKind.Firebat:
+                case SeedKind.Firebat:
                     break;
-                case WeaponKind.Electric:
+                case SeedKind.Electric:
                     break;
             }
         }
     }
-    public override void GrabToggle(RootCtrl rootCtrl, bool isGrab)
+    public override ItemCtrl GrabToggle(RootCtrl rootCtrl, bool isGrab)
     {
-
+        if (nowSeed.seedKind == SeedKind.Tower)
+        {
+            ItemCtrl temp = weapon;
+            weapon = null;
+            return temp;
+        }
+        else
+        {
+            return this;
+        }
     }
 
     public override void UseCall(RootCtrl rootCtrl, UseState useState)
@@ -143,7 +182,7 @@ public class Item_Pot : ItemCtrl
     {
         if (nowSeed != null)
         {
-            if (waterValue > 0f)
+            if (waterValue > 0f && isWood == false)
             {
                 waterValue -= Time.deltaTime;
                 nowSeed.addWeight(Time.deltaTime, this);
@@ -158,17 +197,21 @@ public class Item_Pot : ItemCtrl
     {
         isWood = true;
         //씨앗의 종류 별로 나무 이미지 변경
-        switch (nowSeed.WeaponKind)
+        switch (nowSeed.seedKind)
         {
-            case WeaponKind.None:
+            case SeedKind.None:
                 break;
-            case WeaponKind.Revolver:
+            case SeedKind.Revolver:
                 break;
-            case WeaponKind.Minigun:
+            case SeedKind.Minigun:
                 break;
-            case WeaponKind.Firebat:
+            case SeedKind.Firebat:
                 break;
-            case WeaponKind.Electric:
+            case SeedKind.Electric:
+                break;
+            case SeedKind.Tower:
+                //Todo PlantInfo로 변경해야함
+                weaponUseCount = ScriptableManager.instance.getTable("WeaponInfo").getPrefab<ScriptableWeaponInfo.PrefabInfo>(nowSeed.seedKind.ToString()).AbilityCount;
                 break;
         }
 

@@ -9,8 +9,9 @@ public class ScriptableMonsterInfo : ScriptableObject, I_Scriptable
     [System.Serializable]
     public class PrefabInfo : ScriptableInfo
     {
-        public string name;
+        public MonsterKind name;
         public MonsterTypeEnum Type;
+        public int HP;
         public int Atk;
         public int AttackSpeed;
         public int MoveSpeed;
@@ -23,12 +24,15 @@ public class ScriptableMonsterInfo : ScriptableObject, I_Scriptable
 
     public List<PrefabInfo> prefabInfo;
 
-
+    public List<T> Prefablist<T>() where T:class,  ScriptableInfo
+    {
+        return prefabInfo.ConvertAll((x)=>x as T);
+    }
     public T getPrefab<T>(string prefabs) where T : class, ScriptableInfo
     {
         foreach (var tmp in prefabInfo)
         {
-            if (tmp.name == prefabs)
+            if (tmp.name.ToString() == prefabs)
             {
                 return tmp as T;
             }

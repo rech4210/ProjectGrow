@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: WeaponScriptable
   m_EditorClassIdentifier: 
   prefabInfo:
-  - name: 
+  - name: 1
     Type: 0
     EnergyType: 0
     BulletCount: 0

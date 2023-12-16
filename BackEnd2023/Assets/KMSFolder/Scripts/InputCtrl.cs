@@ -1,6 +1,6 @@
 using UnityEngine;
 public enum BtnState
-{ 
+{
     None = 0,
     Down = 1,
     Stay = 2,
@@ -32,7 +32,7 @@ public class InputCtrl : MonoBehaviour, InitiallizeInterface
     //    if(collision.gameObject.CompareTag("아군"))
     //    {
     //        //collision.gameObject.GetComponent<Player>().enabled = false;
-            
+
     //        //collision.gameObject.transform.SetParent(transform, false);
     //        //아군 터렛의 경우 옮기기와 내려놓기를 호출
     //    }
