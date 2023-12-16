@@ -12,5 +12,18 @@ public class Scriptable_Object : ScriptableObject
     }
 
     public List<PrefabInfo> prefabInfo;
-    
+
+
+    public GameObject getPrefab(string prefabs)
+    {
+        foreach(var tmp in prefabInfo)
+        {
+            if(tmp.Item_Name == prefabs)
+            {
+                return tmp.Prefabs;
+            }
+        }
+
+        return null;
+    }
 }

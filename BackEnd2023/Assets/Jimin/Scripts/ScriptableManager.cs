@@ -8,16 +8,21 @@ public class ScriptableManager : MonoBehaviour
 
     public Scriptable_Object[] scriptablelist;
 
-    //public ScriptableObject GetScriptable(string name)
-    //{
-    //    ScriptableObject selectedscriptable;
+    public Scriptable_Object getTable(string name)
+    {
+        Scriptable_Object selectedscriptable;
 
-    //    foreach (var scriptable in scriptablelist)
-    //    {
-            
-    //    }
+        foreach (var scriptable in scriptablelist)
+        {
+            if(scriptable.name == "name")
+            {
+                selectedscriptable = scriptable;
+                return selectedscriptable;
+            }
 
-    //    return null;
-    //}
+        }
+
+        return null;
+    }
 
 }
