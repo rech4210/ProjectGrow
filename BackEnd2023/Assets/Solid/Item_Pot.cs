@@ -13,11 +13,17 @@ public class Item_Pot : ItemCtrl
     public float waterValue;
     public bool isWood;//나무가 됐돠
 
+    public Animator ani;
+
 
     public Item_Weapon weapon;//타워일경우 들고있는 무기
     public int weaponUseCount;//무기 사용횟수
 
 
+    public void Awake()
+    {
+        ani = GetComponentInChildren<Animator>();
+    }
     public override bool checkUse(ItemCtrl nowItem)
     {
         //화분에 입력 들어오는건 씨앗, 무기일경우 타워화분임
@@ -182,10 +188,11 @@ public class Item_Pot : ItemCtrl
     {
         if (nowSeed != null)
         {
-            if (waterValue > 0f && isWood == false)
+            if ((true || waterValue > 0f) && isWood == false)
             {
                 waterValue -= Time.deltaTime;
                 nowSeed.addWeight(Time.deltaTime, this);
+                ani.SetFloat("LeefFill", nowSeed.weightFill);
                 //게이지 표시
                 //nowSeed.nowWeight / nowSeed.maxWeight;//현재 성장율
                 //(nowSeed.nowWeight+waterValue) / nowSeed.maxWeight;//예상 성장률

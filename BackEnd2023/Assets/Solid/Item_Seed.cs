@@ -9,13 +9,37 @@ public class Item_Seed : ItemCtrl
 
     public float nowWeight;
     public float maxWeight => seedInfo.GrowTime;
+    public float weightFill => nowWeight / maxWeight;
     public ScriptablePlantInfo.PrefabInfo seedInfo;
 
     public SeedKind seedKind;
 
     private void OnEnable()
     {
-        seedInfo = ScriptableManager.instance.getTable(ScriptableManager.PlantScriptableTag).getPrefab<ScriptablePlantInfo.PrefabInfo>(seedKind.ToString());
+        switch (seedKind)
+        {
+            case SeedKind.None:
+                break;
+            case SeedKind.Revolver:
+                seedInfo = ScriptableManager.instance.getTable(ScriptableManager.PlantScriptableTag).getPrefab<ScriptablePlantInfo.PrefabInfo>(PlantNameEnum.Rovolver.ToString());
+                break;
+            case SeedKind.Minigun:
+                seedInfo = ScriptableManager.instance.getTable(ScriptableManager.PlantScriptableTag).getPrefab<ScriptablePlantInfo.PrefabInfo>(PlantNameEnum.Minigun.ToString());
+                break;
+            case SeedKind.Firebat:
+                seedInfo = ScriptableManager.instance.getTable(ScriptableManager.PlantScriptableTag).getPrefab<ScriptablePlantInfo.PrefabInfo>(PlantNameEnum.flame_thrower.ToString());
+                break;
+            case SeedKind.Electric:
+                seedInfo = ScriptableManager.instance.getTable(ScriptableManager.PlantScriptableTag).getPrefab<ScriptablePlantInfo.PrefabInfo>(PlantNameEnum.Lighting.ToString());
+                break;
+            case SeedKind.Tower:
+                seedInfo = ScriptableManager.instance.getTable(ScriptableManager.PlantScriptableTag).getPrefab<ScriptablePlantInfo.PrefabInfo>(PlantNameEnum.Dionaea.ToString());
+                break;
+            case SeedKind.Water:
+                break;
+            case SeedKind.Pot:
+                break;
+        }
     }
     public override bool checkUse(ItemCtrl nowItem)
     {

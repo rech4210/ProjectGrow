@@ -37,6 +37,9 @@ public abstract class ItemCtrl : MonoBehaviour, I_Pool
     }
     public static Dictionary<ItemKind, ObjectPooling<ItemCtrl>> poolDic = new Dictionary<ItemKind, ObjectPooling<ItemCtrl>>();
 
+
+
+
     protected Action<I_Pool> disableAction;
     public void SetPoolEvent(Action<I_Pool> poolevent)
     {

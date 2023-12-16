@@ -120,7 +120,7 @@ BlendTree:
     m_CycleOffset: 0
     m_DirectBlendParameter: HPFill
     m_Mirror: 0
-  m_BlendParameter: HPFill
+  m_BlendParameter: LeefFill
   m_BlendParameterY: HPFill
   m_MinThreshold: 0
   m_MaxThreshold: 1
