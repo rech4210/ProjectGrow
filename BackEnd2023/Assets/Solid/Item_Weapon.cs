@@ -120,6 +120,10 @@ public class Item_Weapon : ItemCtrl
                 }
                 break;
             case EnergyTypeEnum.Gauge:
+                if (weaponKind == SeedKind.Water)
+                {//물은 무제한
+                    return;
+                }
                 if (nowGuage <= 0f)
                 {
                     //모두 소모함

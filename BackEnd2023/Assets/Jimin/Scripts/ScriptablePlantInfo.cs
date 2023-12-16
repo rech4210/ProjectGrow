@@ -46,7 +46,8 @@ public enum PlantNameEnum
     Minigun,
     flame_thrower,
     Lighting,
-    Dionaea
+    Dionaea,
+    Pot
 }
 
 public enum PlantTypeEnum

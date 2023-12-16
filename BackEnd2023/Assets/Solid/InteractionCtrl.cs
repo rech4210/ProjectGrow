@@ -8,8 +8,8 @@ public class InteractionCtrl : MonoBehaviour, I_Interaction
     public Transform grabPivot;
 
 
-    //[HideInInspector]
-    //public ItemCtrl selectItemCtrl;
+    [HideInInspector]
+    public ItemCtrl selectItemCtrl;
     [HideInInspector]
     public ItemCtrl grabItemCtrl;
     public ItemCtrl GrabItemCtrl;
@@ -25,12 +25,24 @@ public class InteractionCtrl : MonoBehaviour, I_Interaction
         {
             grabItemCtrl.UseCall(rootCtrl, UseState.Start);
         }
+        else
+        {
+            selectItemCtrl = getSelectItemCtrl(rootCtrl.transform, checkUse);
+            if (selectItemCtrl != null)
+            {
+                selectItemCtrl.UseCall(rootCtrl, UseState.Start);
+            }
+        }
     }
     public void InteractionStay()
     {
         if (grabItemCtrl != null)
         {
             grabItemCtrl.UseCall(rootCtrl, UseState.Ing);
+        }
+        else if (selectItemCtrl != null)
+        {
+            selectItemCtrl.UseCall(rootCtrl, UseState.Ing);
         }
     }
     public void InteractionExit()
@@ -39,6 +51,11 @@ public class InteractionCtrl : MonoBehaviour, I_Interaction
         {
             grabItemCtrl.UseCall(rootCtrl, UseState.End);
         }
+        else if (selectItemCtrl != null)
+        {
+            selectItemCtrl.UseCall(rootCtrl, UseState.End);
+        }
+        selectItemCtrl = null;
     }
 
 
@@ -116,7 +133,7 @@ public class InteractionCtrl : MonoBehaviour, I_Interaction
 
     public void interactionGrabOff()
     {
-        grabItemCtrl.GrabToggle(rootCtrl, false);
+        grabItemCtrl?.GrabToggle(rootCtrl, false);
 
         grabItemCtrl = null;
     }
