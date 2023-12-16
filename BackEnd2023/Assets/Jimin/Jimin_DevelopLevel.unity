@@ -220,8 +220,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 492a22f1bfded405e9c843c6e8d94992, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scriptablelist:
-  - {fileID: 11400000, guid: 3d7a3c5573c574bb29a76e67ee2f7495, type: 2}
+  scriptableobjedctlist: []
 --- !u!4 &437419402
 Transform:
   m_ObjectHideFlags: 0
@@ -576,6 +575,10 @@ PrefabInstance:
       propertyPath: objectManager
       value: 
       objectReference: {fileID: 1383113053436151060}
+    - target: {fileID: 559114850445002549, guid: bbfd4cada39f34fe6a42a8d0a1319d60, type: 3}
+      propertyPath: scriptableManager
+      value: 
+      objectReference: {fileID: 437419401}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bbfd4cada39f34fe6a42a8d0a1319d60, type: 3}
 --- !u!1001 &1383113053436151059

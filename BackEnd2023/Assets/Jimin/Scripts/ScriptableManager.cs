@@ -17,9 +17,7 @@ public class ScriptableManager : MonoBehaviour
 {
     public static ScriptableManager instance;
 
-    public List<I_Scriptable> scriptablelist;
-
-    public List<ScriptableObject> scriptableobjedctlist;
+    public List<I_Scriptable> scriptablelist = new List<I_Scriptable>();
 
     public void Initalize()
     {
