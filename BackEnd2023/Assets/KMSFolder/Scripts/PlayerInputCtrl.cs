@@ -6,8 +6,18 @@ public class PlayerInputCtrl : InputCtrl
     private float reviveTime = 3f;
     private void Update()
     {
-        horizontal = Input.GetAxis("Horizontal");
-        vertical = Input.GetAxis("Vertical");
+        
+        if (rootCtrl.stateCtrl.IsCanAction(rootCtrl.stateCtrl.stateEnum))
+        {
+            horizontal = Input.GetAxis("Horizontal");
+            vertical = Input.GetAxis("Vertical");
+        }
+        else
+        {
+            horizontal = 0;
+            vertical = 0;
+        }
+
         //Add 4 keys
 
 

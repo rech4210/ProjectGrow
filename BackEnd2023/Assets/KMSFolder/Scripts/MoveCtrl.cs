@@ -63,7 +63,7 @@ public class MoveCtrl : MonoBehaviour, InitiallizeInterface
 
         if ((rootCtrl.stateCtrl.IsCanAction(rootCtrl.stateCtrl.stateEnum)))
         {
-            pos.y = rootCtrl.inputCtrl.vertical * Time.deltaTime * speed;
+            pos.y = rootCtrl.inputCtrl.vertical * Time.deltaTime * rootCtrl.scriptableMonster.MoveSpeed;
             rootCtrl.stateCtrl.WalkState(rootCtrl.inputCtrl.horizontal, rootCtrl.inputCtrl.vertical);
             transform.position += pos;
 
