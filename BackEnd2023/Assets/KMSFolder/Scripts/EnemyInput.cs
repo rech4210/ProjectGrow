@@ -4,7 +4,7 @@ using UnityEngine;
 public class EnemyInput : InputCtrl
 {
     bool isAttack = false;
-    public List<SeedKind> seedKindsList = new List<SeedKind>();
+    public List<PlantNameEnum> seedKindsList;
     private void Update()
     {
         //transform.position = targetPlayer.position;
@@ -96,11 +96,16 @@ public class EnemyInput : InputCtrl
     IEnumerator ExcuteDeadAction()
     {
         yield return new WaitForSeconds(0.5f);
-        ItemCtrl.newItem(ItemKind.Seed,GetRandomSeed().ToString());
+        var item =  ItemCtrl.newItem(ItemKind.Seed,GetRandomSeed().ToString());
+        item.gameObject.SetActive(true);
+        item.gameObject.transform.position = this.gameObject.transform.position;
+        var obj =  ScriptableManager.instance.getTable(ScriptableManager.ScriptableTag).getPrefab<Scriptable_Object.PrefabInfo>("Drop Effect").Prefabs;
+        Instantiate(obj,this.transform.position,Quaternion.identity);
+
         rootCtrl.disable();
     }
 
-    private SeedKind GetRandomSeed()
+    private PlantNameEnum GetRandomSeed()
     {
         var rd = Random.Range(0,seedKindsList.Count-1);
         return seedKindsList[rd];

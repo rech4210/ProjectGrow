@@ -590,7 +590,7 @@ MonoBehaviour:
   attackState: 0
   horizontal: 0
   vertical: 0
-  seedKindsList: 0100000002000000030000000700000006000000
+  seedKindsList: 000000000100000002000000030000000400000005000000
 --- !u!114 &1100556421001116619
 MonoBehaviour:
   m_ObjectHideFlags: 0

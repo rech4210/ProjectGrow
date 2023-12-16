@@ -23,3 +23,5 @@ MonoBehaviour:
     Prefabs: {fileID: 1818909879952143244, guid: 56b7fb95d36ad4809a71ed2237c792e3, type: 3}
   - Item_Name: effect_stun
     Prefabs: {fileID: 7307226144820963394, guid: 3385dcb20d8934debb289267121a063c, type: 3}
+  - Item_Name: Drop Effect
+    Prefabs: {fileID: 7991721652625559881, guid: 1ed958e02ab2b442ca035a0088061370, type: 3}
