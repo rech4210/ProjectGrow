@@ -21,7 +21,7 @@ public class EnemyInput : InputCtrl
         //Hp Ctrl aggro reference use
         rootCtrl.aggroAction += (attacker) =>
         {
-            rootCtrl.WeaponCtrl.targetTran = attacker.transform;
+            rootCtrl.WeaponCtrl.targetTran = attacker.MyTran;
         };
 
         //

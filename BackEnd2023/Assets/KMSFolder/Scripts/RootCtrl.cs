@@ -6,22 +6,22 @@ public struct Status
     public float speed;
     public Status(float speed)
     {
-        this.speed= speed;
+        this.speed = speed;
     }
 }
 
-public class RootCtrl : MonoBehaviour,I_Attacker, I_Pool
+public class RootCtrl : MonoBehaviour, I_Attacker, I_Pool
 {
     public Action lifeAction;
     public Action deadAction;
     public Action<I_Attacker> aggroAction;
-    
-    
-    
+
+
+
     //??? 프로퍼티 축약.
-    public Transform transform => this.transform;
+    public Transform MyTran => this.transform;
     public Status status;
-    
+
     public Faction faction;
     public Transform targetTran;
 
@@ -56,7 +56,7 @@ public class RootCtrl : MonoBehaviour,I_Attacker, I_Pool
 
         AnimationCtrl = gameObject.GetComponent<AnimationCtrl>();
         AnimationCtrl.initiallize();
-        
+
 
         // 이부분은 구현된 개체를 자동으로 가져온다.
         interaction = gameObject.GetComponent<I_Interaction>();

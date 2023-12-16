@@ -43,17 +43,25 @@ public class Item_Seed : ItemCtrl
             case ItemKind.None:
                 break;
             case ItemKind.Slot:
-                PotSlot slot = nowItem as PotSlot;
-                if (slot != null && slot.nowPot == null)
+                if (seedKind == SeedKind.Pot)
                 {
-                    ItemCtrl.newItem(ItemKind.Pot, "Pot");
+                    PotSlot slot = nowItem as PotSlot;
+                    if (slot != null && slot.nowPot == null)
+                    {
+                        Item_Pot newPot = ItemCtrl.newItem(ItemKind.Pot, "Pot") as Item_Pot;
+                        FieldCtrl.Instance.setSlot(newPot, slot);
+                        this.disable();
+                    }
                 }
                 break;
             case ItemKind.Pot:
-                Item_Pot pot = nowItem as Item_Pot;
-                if (pot != null && pot.nowSeed == null)
+                if (seedKind != SeedKind.Pot)
                 {
-                    pot.setSeed(this);
+                    Item_Pot pot = nowItem as Item_Pot;
+                    if (pot != null && pot.nowSeed == null)
+                    {
+                        pot.setSeed(this);
+                    }
                 }
                 break;
         }

@@ -7,6 +7,25 @@ using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
+    private static Transform _poolParent;
+    public static Transform poolParent
+    {
+        get
+        {
+            if (_poolParent == null)
+            {
+                if (instance == null)
+                {
+                    _poolParent = new GameObject().transform;
+                }
+                else
+                {
+                    _poolParent = instance.transform;
+                }
+            }
+            return _poolParent;
+        }
+    }
     public static GameManager instance = null;
 
     [SerializeField]

@@ -56,7 +56,7 @@ public class ScriptableManager : MonoBehaviour
 
         foreach (var scriptable in scriptablelist)
         {
-            if (scriptable != null && scriptable.Name == "name")
+            if (scriptable != null && scriptable.Name == name)
             {
                 selectedscriptable = scriptable;
                 return selectedscriptable;
