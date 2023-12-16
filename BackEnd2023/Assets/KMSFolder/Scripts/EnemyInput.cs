@@ -1,8 +1,5 @@
 using System.Collections;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
-using UnityEngine.TestTools;
-
 public class EnemyInput : InputCtrl
 {
     bool isAttack = false;
@@ -33,9 +30,10 @@ public class EnemyInput : InputCtrl
     IEnumerator DelayAttack()
     {
 
-        if (Vector2.Distance(rootCtrl.targetTran.position, transform.position) < 0.3f && isAttack == false)
+        if (Vector2.Distance(rootCtrl.targetTran.position, transform.position) < 0.3f)
         {
             isAttack = true;
+            rootCtrl.stateCtrl.AttackState();
 
             Collider2D[] hits = Physics2D.OverlapCircleAll(this.transform.position, 0.5f, LayerManager.Instance.HitZone);
 
@@ -55,9 +53,7 @@ public class EnemyInput : InputCtrl
                     }
                 }
             }
-
             yield return new WaitForSeconds(2f);
-            rootCtrl.stateCtrl.AttackState();
             isAttack = false;
         }
     }
