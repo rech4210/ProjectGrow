@@ -18,6 +18,8 @@ public class Item_Pot : ItemCtrl, I_Faction
 
     public Animator ani;
 
+    public Sprite[] gunIcons;
+    public SpriteRenderer[] gunIconSprites;
 
     public Item_Weapon weapon;//타워일경우 들고있는 무기
     public int weaponUseCount;//무기 사용횟수
@@ -118,27 +120,48 @@ public class Item_Pot : ItemCtrl, I_Faction
             nowSeed.transform.SetParent(this.transform);
             nowSeed.transform.localPosition = Vector3.zero;
             nowSeed.gameObject.SetActive(false);//일단 꺼두자
-                                                //화분에 리소스 설정
+
+            for (int i = 0; i < gunIconSprites.Length; i++)
+            {
+                gunIconSprites[i].transform.parent.gameObject.SetActive(false);
+            }                               //화분에 리소스 설정
             switch (nowSeed.seedKind)
             {
                 case SeedKind.None:
                     break;
                 case SeedKind.Revolver:
                     ani.SetInteger("LeefType", 1);
+                    for (int i = 0; i < gunIconSprites.Length; i++)
+                    {
+                        gunIconSprites[i].sprite = gunIcons[0];
+                    }
                     break;
                 case SeedKind.Minigun:
                     ani.SetInteger("LeefType", 2);
+                    for (int i = 0; i < gunIconSprites.Length; i++)
+                    {
+                        gunIconSprites[i].sprite = gunIcons[1];
+                    }
                     break;
                 case SeedKind.Firebat:
                     ani.SetInteger("LeefType", 3);
+                    for (int i = 0; i < gunIconSprites.Length; i++)
+                    {
+                        gunIconSprites[i].sprite = gunIcons[2];
+                    }
                     break;
                 case SeedKind.Electric:
                     ani.SetInteger("LeefType", 4);
+                    for (int i = 0; i < gunIconSprites.Length; i++)
+                    {
+                        gunIconSprites[i].sprite = gunIcons[3];
+                    }
                     break;
                 case SeedKind.Water:
                     break;
                 case SeedKind.Tower:
                     ani.SetInteger("LeefType", 5);
+
                     break;
                 case SeedKind.Pot:
                     break;
@@ -224,15 +247,21 @@ public class Item_Pot : ItemCtrl, I_Faction
             case SeedKind.None:
                 break;
             case SeedKind.Revolver:
-                break;
             case SeedKind.Minigun:
-                break;
             case SeedKind.Firebat:
-                break;
             case SeedKind.Electric:
+                for (int i = 0; i < gunIconSprites.Length; i++)
+                {
+                    gunIconSprites[i].transform.parent.gameObject.SetActive(true);
+                }
                 break;
+
             case SeedKind.Tower:
                 //Todo PlantInfo로 변경해야함
+                for (int i = 0; i < gunIconSprites.Length; i++)
+                {
+                    gunIconSprites[i].transform.parent.gameObject.SetActive(false);
+                }
                 weaponUseCount = ScriptableManager.instance.getTable(ScriptableManager.PlantScriptableTag).getPrefab<ScriptablePlantInfo.PrefabInfo>(nowSeed.seedKind.ToString()).Reusecount;
                 break;
         }
