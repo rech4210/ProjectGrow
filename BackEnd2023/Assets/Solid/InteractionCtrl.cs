@@ -108,4 +108,8 @@ public class InteractionCtrl : MonoBehaviour, I_Interaction
         }
         return hitCtrl;
     }
+
+    public void interactionThrow()
+    {
+    }
 }
