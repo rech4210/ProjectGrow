@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerInputCtrl : InputCtrl
 {
 
-    public BtnState attackState;
 
 
     private void Update()
