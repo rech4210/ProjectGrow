@@ -263,7 +263,10 @@ GameObject:
   - component: {fileID: 1100556420393352855}
   - component: {fileID: 1100556420393352854}
   - component: {fileID: 1100556420393352853}
-  m_Layer: 0
+  - component: {fileID: 4863782262316820141}
+  - component: {fileID: 1899544409774939213}
+  - component: {fileID: 5984150010718358182}
+  m_Layer: 11
   m_Name: model_Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -320,6 +323,57 @@ SortingGroup:
   m_SortingLayerID: -492239825
   m_SortingLayer: 1
   m_SortingOrder: 0
+--- !u!114 &4863782262316820141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1100556420393352848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15e66be609e5d1742aa7cdd2e4e14f5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rootCtrl: {fileID: 0}
+  hitBox: {fileID: 0}
+--- !u!50 &1899544409774939213
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1100556420393352848}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!58 &5984150010718358182
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1100556420393352848}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &1100556420434808219
 GameObject:
   m_ObjectHideFlags: 0
@@ -421,6 +475,9 @@ GameObject:
   - component: {fileID: 1100556421001116619}
   - component: {fileID: 1100556421001116612}
   - component: {fileID: 1100556421001116613}
+  - component: {fileID: 3953784220516169701}
+  - component: {fileID: 5364554658815097806}
+  - component: {fileID: -639771694283223000}
   m_Layer: 0
   m_Name: Enemy_W
   m_TagString: Untagged
@@ -470,7 +527,7 @@ MonoBehaviour:
     ChaseTime: 0
     FirstAttack: 0
     prefab: {fileID: 0}
-  faction: 0
+  faction: 10
   targetTran: {fileID: 0}
   inputCtrl: {fileID: 0}
   moveCtrl: {fileID: 0}
@@ -575,5 +632,57 @@ MonoBehaviour:
   grabPivot: {fileID: 0}
   aimTran: {fileID: 0}
   interPivot: {fileID: 0}
+  pointPivot: {fileID: 0}
+  pointCtrl: {fileID: 0}
   selectItemCtrl: {fileID: 0}
   grabItemCtrl: {fileID: 0}
+--- !u!58 &3953784220516169701
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1100556421001116614}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
+--- !u!50 &5364554658815097806
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1100556421001116614}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!114 &-639771694283223000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1100556421001116614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7a0283d645f20c4db37fbf1c697265d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isLock: 0

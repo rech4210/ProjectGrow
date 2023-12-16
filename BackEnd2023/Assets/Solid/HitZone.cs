@@ -28,7 +28,10 @@ public class HitZone : MonoBehaviour, I_HitZone
 
     public void SetDamaged(float damage, RootCtrl attacker)
     {
-        rootCtrl.hpCtrl.SetDamaged(damage, attacker);
+        if (rootCtrl.stateCtrl.stateEnum != stateEnum.Dead && rootCtrl.stateCtrl.stateEnum != stateEnum.Stunned)
+        {
+            rootCtrl.hpCtrl.SetDamaged(damage, attacker);
+        }
     }
 
     public bool CheckHitLock(RootCtrl attacker)
@@ -40,7 +43,7 @@ public class HitZone : MonoBehaviour, I_HitZone
             case Faction.Player:
                 if (attacker.faction == Faction.Enemy)
                 {
-                    return true;
+                    return false;
                 }
                 break;
             case Faction.Pot:
@@ -48,11 +51,11 @@ public class HitZone : MonoBehaviour, I_HitZone
             case Faction.Enemy:
                 if (attacker.faction != Faction.Enemy)
                 {
-                    return true;
+                    return false;
                 }
                 break;
         }
-        return false;
+        return true;
 
     }
 }
