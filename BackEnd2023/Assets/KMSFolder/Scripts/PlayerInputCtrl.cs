@@ -48,9 +48,12 @@ public class PlayerInputCtrl : InputCtrl
     {
         base.initiallize();
         rootCtrl.deadAction += () => {
-            rootCtrl.stateCtrl.stateEnum = stateEnum.Stunned;
-            rootCtrl.stateCtrl.StunState();
-            StartCoroutine(ExecuteLifeAction());
+            if(rootCtrl.stateCtrl.IsCanAction(rootCtrl.stateCtrl.stateEnum))
+            {
+                rootCtrl.stateCtrl.stateEnum = stateEnum.Stunned;
+                rootCtrl.stateCtrl.StunState();
+                StartCoroutine(ExecuteLifeAction());
+            }
         };
 
     }
