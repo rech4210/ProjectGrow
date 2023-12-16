@@ -220,7 +220,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 492a22f1bfded405e9c843c6e8d94992, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scriptableobjedctlist: []
 --- !u!4 &437419402
 Transform:
   m_ObjectHideFlags: 0
@@ -568,9 +567,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 559114850445002549, guid: bbfd4cada39f34fe6a42a8d0a1319d60, type: 3}
+      propertyPath: SpawnTime
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 559114850445002549, guid: bbfd4cada39f34fe6a42a8d0a1319d60, type: 3}
       propertyPath: uiManager
       value: 
       objectReference: {fileID: 1233225227}
+    - target: {fileID: 559114850445002549, guid: bbfd4cada39f34fe6a42a8d0a1319d60, type: 3}
+      propertyPath: SpawnCount
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 559114850445002549, guid: bbfd4cada39f34fe6a42a8d0a1319d60, type: 3}
       propertyPath: objectManager
       value: 
@@ -640,6 +647,66 @@ PrefabInstance:
       propertyPath: zombies
       value: 
       objectReference: {fileID: 4175000356333099610, guid: 5c751946b3eb3498084cb4037d02e81d, type: 3}
+    - target: {fileID: 3863733480436599616, guid: 29461ff0e2e104326b43b991390bb6ec, type: 3}
+      propertyPath: RandomVector.Array.size
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3863733480436599616, guid: 29461ff0e2e104326b43b991390bb6ec, type: 3}
+      propertyPath: RandomVector.Array.data[0].x
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3863733480436599616, guid: 29461ff0e2e104326b43b991390bb6ec, type: 3}
+      propertyPath: RandomVector.Array.data[0].y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3863733480436599616, guid: 29461ff0e2e104326b43b991390bb6ec, type: 3}
+      propertyPath: RandomVector.Array.data[1].x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3863733480436599616, guid: 29461ff0e2e104326b43b991390bb6ec, type: 3}
+      propertyPath: RandomVector.Array.data[1].y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3863733480436599616, guid: 29461ff0e2e104326b43b991390bb6ec, type: 3}
+      propertyPath: RandomVector.Array.data[2].x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3863733480436599616, guid: 29461ff0e2e104326b43b991390bb6ec, type: 3}
+      propertyPath: RandomVector.Array.data[2].y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3863733480436599616, guid: 29461ff0e2e104326b43b991390bb6ec, type: 3}
+      propertyPath: RandomVector.Array.data[3].x
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3863733480436599616, guid: 29461ff0e2e104326b43b991390bb6ec, type: 3}
+      propertyPath: RandomVector.Array.data[5].x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3863733480436599616, guid: 29461ff0e2e104326b43b991390bb6ec, type: 3}
+      propertyPath: RandomVector.Array.data[6].x
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3863733480436599616, guid: 29461ff0e2e104326b43b991390bb6ec, type: 3}
+      propertyPath: RandomVector.Array.data[6].y
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3863733480436599616, guid: 29461ff0e2e104326b43b991390bb6ec, type: 3}
+      propertyPath: RandomVector.Array.data[7].x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3863733480436599616, guid: 29461ff0e2e104326b43b991390bb6ec, type: 3}
+      propertyPath: RandomVector.Array.data[7].y
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3863733480436599616, guid: 29461ff0e2e104326b43b991390bb6ec, type: 3}
+      propertyPath: RandomVector.Array.data[8].x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3863733480436599616, guid: 29461ff0e2e104326b43b991390bb6ec, type: 3}
+      propertyPath: RandomVector.Array.data[8].y
+      value: -1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 29461ff0e2e104326b43b991390bb6ec, type: 3}
 --- !u!114 &1383113053436151060 stripped
