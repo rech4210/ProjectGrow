@@ -5,8 +5,6 @@ using UnityEngine;
 public class PlayerInputCtrl : InputCtrl
 {
 
-
-
     private void Update()
     {
         horizontal = Input.GetAxis("Horizontal");
