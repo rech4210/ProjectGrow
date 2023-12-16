@@ -2,9 +2,6 @@ using UnityEngine;
 
 public class EnemyInput : InputCtrl
 {
-    
-
-
     private void Update()
     {
         //transform.position = targetPlayer.position;
@@ -13,10 +10,9 @@ public class EnemyInput : InputCtrl
         {
             Vector3 direction = rootCtrl.targetTran.position - transform.position;
             direction.Normalize();
-          horizontal = direction.x;
-        vertical = direction.y;
+            horizontal = direction.x;
+            vertical = direction.y;
         }
-
     }
 
     public override void initiallize()
