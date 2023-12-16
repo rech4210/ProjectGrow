@@ -23,12 +23,11 @@ public class InputCtrl : MonoBehaviour, InitiallizeInterface
     private void Update()
     {
 
-
-        //Add 4 keys
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
+        //Add 4 keys
 
-        if(Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0))
         {
             attackState = BtnState.Stay;
         }

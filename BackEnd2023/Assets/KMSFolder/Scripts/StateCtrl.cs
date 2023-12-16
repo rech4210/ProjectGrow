@@ -62,12 +62,12 @@ public class StateCtrl : MonoBehaviour, InitiallizeInterface
         }
     }
 
-    public void DeathState()
+    public void DeadState()
     {
         if (stateEnum != stateEnum.Dead)
         {
             StateChange(stateEnum.Dead);
-            rootCtrl.AnimationCtrl.DeathAnimation();
+            rootCtrl.AnimationCtrl.DeadAnimation();
         }
     }
     public void IdleState()
@@ -75,7 +75,7 @@ public class StateCtrl : MonoBehaviour, InitiallizeInterface
         if (IsCanAction(stateEnum))
         {
             stateEnum = stateEnum.Idle;
-            rootCtrl.AnimationCtrl.IdleAniamtion();
+            rootCtrl.AnimationCtrl.IdleToMoveAniamtion(0);
         }
     }
     public void WalkState()
@@ -83,7 +83,7 @@ public class StateCtrl : MonoBehaviour, InitiallizeInterface
         if (IsCanAction(stateEnum))
         {
             stateEnum = stateEnum.Move;
-            rootCtrl.AnimationCtrl.MoveAniamtion();
+            rootCtrl.AnimationCtrl.IdleToMoveAniamtion(1);
         }
     }
     public void GrapState()

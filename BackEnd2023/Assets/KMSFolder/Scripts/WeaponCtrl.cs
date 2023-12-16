@@ -18,7 +18,7 @@ public class WeaponCtrl : MonoBehaviour, InitiallizeInterface
         rootCtrl = gameObject.GetComponent<RootCtrl>();
     }
 
-    private Vector2 AttackPoint()
+    private Vector2 AimPoint()
     {
         return Input.mousePosition;
     }
