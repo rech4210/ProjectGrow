@@ -16,7 +16,6 @@ public class LayerManager : MonoBehaviour
             if (instance == null)
             {
                 instance = new GameObject().AddComponent<LayerManager>();
-
             }
             return instance;
         }

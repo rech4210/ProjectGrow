@@ -20,17 +20,17 @@ public class PotHpCtrl : MonoBehaviour, I_HitZone
         {
             switch ((attacker.interaction.GrabItemCtrl as Item_Weapon).weaponKind)
             {
-                case WeaponKind.None:
+                case SeedKind.None:
                     break;
-                case WeaponKind.Revolver:
+                case SeedKind.Revolver:
                     break;
-                case WeaponKind.Minigun:
+                case SeedKind.Minigun:
                     break;
-                case WeaponKind.Firebat:
+                case SeedKind.Firebat:
                     break;
-                case WeaponKind.Electric:
+                case SeedKind.Electric:
                     break;
-                case WeaponKind.Water:
+                case SeedKind.Water:
                     return true;
             }
         }
@@ -48,17 +48,17 @@ public class PotHpCtrl : MonoBehaviour, I_HitZone
                 {
                     switch ((attacker.interaction.GrabItemCtrl as Item_Weapon).weaponKind)
                     {
-                        case WeaponKind.None:
+                        case SeedKind.None:
                             break;
-                        case WeaponKind.Revolver:
+                        case SeedKind.Revolver:
                             break;
-                        case WeaponKind.Minigun:
+                        case SeedKind.Minigun:
                             break;
-                        case WeaponKind.Firebat:
+                        case SeedKind.Firebat:
                             break;
-                        case WeaponKind.Electric:
+                        case SeedKind.Electric:
                             break;
-                        case WeaponKind.Water:
+                        case SeedKind.Water:
                             myPot.waterValue = 5f;
                             break;
                     }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum WeaponKind
+public enum SeedKind
 {
     None = 0,
     Revolver = 1,
@@ -10,53 +10,88 @@ public enum WeaponKind
     Firebat = 3,
     Electric = 4,
     Water = 5,
+    Tower = 6,
 }
 
 public class Item_Weapon : ItemCtrl
 {
-    public static Dictionary<WeaponKind, ObjectPooling<BulletCtrl>> bulletPoolDic = new Dictionary<WeaponKind, ObjectPooling<BulletCtrl>>();
-    public BulletCtrl bullet;
+
 
     public override ItemKind itemKind => ItemKind.Weapon;
 
-    public WeaponKind weaponKind;
-    private Transform fireTran;
+    public SeedKind weaponKind;
+
+
+    public ScriptableWeaponInfo.PrefabInfo weaponInfo;
+
+    public float nowGuage;//남은 게이지
+    public int nowAmmo;//남은 탄
 
     private void Start()
     {
-        //bullet = ScriptableManager.instance.getTable("Bullet").getPrefab<WeaponInfo>(weaponKind.ToString()).GetComponent<BulletCtrl>();
+        weaponInfo = ScriptableManager.instance.getTable("Bullet").getPrefab<ScriptableWeaponInfo.PrefabInfo>(weaponKind.ToString());
     }
     public override bool checkUse(ItemCtrl nowItem)
     {//무기는 화분에 사용할경우? 놉 내려놓을때 근처에 타워식물이 있으면 자동으로 장착, 줍기로 회수 
-
-        return true;
+        switch (nowItem.itemKind)
+        {
+            case ItemKind.Pot:
+                Item_Pot pot = nowItem as Item_Pot;
+                if (pot != null)
+                {
+                    if (pot.nowSeed != null && pot.isWood && pot.nowSeed.seedKind == SeedKind.Tower)
+                    {
+                        return true;
+                    }
+                }
+                break;
+        }
+        return false;
     }
 
-    public override void GrabToggle(RootCtrl rootCtrl, bool isGrab)
+
+    public override ItemCtrl GrabToggle(RootCtrl rootCtrl, bool isGrab)
     {
         if (isGrab == false)
         {
-            //내려놯을때 주변에 타워있는지 체크해서 쥐어주기 
+            switch (weaponKind)
+            {
+                case SeedKind.None:
+                    break;
+                case SeedKind.Water:
+                    break;
+                case SeedKind.Tower:
+                    break;
+                case SeedKind.Revolver:
+                case SeedKind.Minigun:
+                case SeedKind.Firebat:
+                case SeedKind.Electric:
+                    //내려놯을때 주변에 타워있는지 체크해서 쥐어주기 
+                    ItemCtrl itemCtrl = InteractionCtrl.getSelectItemCtrl(this.transform, checkUse);
+                    if (itemCtrl != null)
+                    {
+                        Item_Pot pot = itemCtrl as Item_Pot;
+                        if (pot != null)
+                        {
+                            if (pot.nowSeed != null && pot.isWood && pot.nowSeed.seedKind == SeedKind.Tower)
+                            {
+                                pot.setWeapon(this);
+                            }
+                        }
+                    }
+                    break;
+            }
+
         }
+        return this;
     }
+
 
     public override void UseCall(RootCtrl rootCtrl, UseState useState)
     {
         //공격 모션
-        Vector2 dic = (rootCtrl.WeaponCtrl.targetTran.position - fireTran.position);
-        float dis = dic.magnitude;
-        dic = dic.normalized;
-        //탄황 생성, 해당 방향으로 발사
-        BulletCtrl newBullet = null;
-        if (bulletPoolDic.ContainsKey(weaponKind) == false)
-        {
-            bulletPoolDic[weaponKind] = new ObjectPooling<BulletCtrl>();
-            bulletPoolDic[weaponKind].Initialize(bullet, null, 10);
-        }
-        newBullet = bulletPoolDic[weaponKind].GetObject(bullet);
-        newBullet.dic = dic;
-        newBullet.range = 100f;
-        newBullet.speed = 1f;
-        newBullet.gameObject.SetActive(true);
+
+
+
     }
 }

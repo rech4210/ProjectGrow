@@ -12,11 +12,11 @@ public class ScriptableWeaponInfo : ScriptableObject, I_Scriptable
         public TypeEnum Type;
         public EnergyTypeEnum EnergyType;
         public int BulletCount;
-        public int GaugeTime;
-        public int HP;
-        public int AttackPoint;
-        public int AttackSpeed;
-        public int AttackDistance;
+        public float GaugeTime;
+        public float HP;
+        public float AttackPoint;
+        public float AttackSpeed;
+        public float AttackDistance;
         public bool SpecialOption;
         public AbilityObjectEnum AbilityObject;
         public AbilityEnum Ability;

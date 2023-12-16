@@ -10,7 +10,7 @@ public enum ItemKind
     Seed = 3,//씨앗
     Weapon = 5,//무기
 }
-public abstract class ItemCtrl : MonoBehaviour,I_Pool
+public abstract class ItemCtrl : MonoBehaviour, I_Pool
 {
     protected Action<I_Pool> disableAction;
     public void SetPoolEvent(Action<I_Pool> poolevent)
@@ -29,17 +29,23 @@ public abstract class ItemCtrl : MonoBehaviour,I_Pool
     public virtual ItemKind itemKind => ItemKind.None;
 
     //public bool isGrab;//그랩상태 필요한가?
+    [SerializeField]
     public bool isGrabLock;//그랩 가능 불가능
+    public virtual bool IsGrabLock => isGrabLock;
+    [SerializeField]
     public bool isInterLock;//인터렉션 잠금
+    public virtual bool IsInterLock => isInterLock;
 
 
     //마우스 클릭의 아이템 사용 처리
     public abstract void UseCall(RootCtrl rootCtrl, UseState useState);
     //들기 놓기 처리
-    public abstract void GrabToggle(RootCtrl rootCtrl, bool isGrab);
+    public abstract ItemCtrl GrabToggle(RootCtrl rootCtrl, bool isGrab);
+
+
     public abstract bool checkUse(ItemCtrl nowItem);
 
 
-    
+
 
 }

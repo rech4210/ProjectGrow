@@ -55,9 +55,12 @@ public class InteractionCtrl : MonoBehaviour, I_Interaction
             grabItemCtrl = getSelectItemCtrl(rootCtrl.transform, checkGrab);
             if (grabItemCtrl != null)
             {
-                grabItemCtrl.GrabToggle(rootCtrl, true);
-                grabItemCtrl.transform.SetParent(grabPivot);
-                grabItemCtrl.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+                grabItemCtrl = grabItemCtrl.GrabToggle(rootCtrl, true);
+                if (grabItemCtrl != null)
+                {
+                    grabItemCtrl.transform.SetParent(grabPivot);
+                    grabItemCtrl.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+                }
             }
         }
     }
@@ -65,11 +68,11 @@ public class InteractionCtrl : MonoBehaviour, I_Interaction
 
     public bool checkUse(ItemCtrl itemCtrl)
     {
-        return itemCtrl.isInterLock == false;
+        return itemCtrl.IsInterLock == false;
     }
     public bool checkGrab(ItemCtrl itemCtrl)
     {
-        return itemCtrl.isGrabLock == false;
+        return itemCtrl.IsGrabLock == false;
     }
 
 
