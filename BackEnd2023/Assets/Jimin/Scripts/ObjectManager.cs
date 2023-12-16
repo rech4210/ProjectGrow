@@ -29,4 +29,9 @@ public class ObjectManager : MonoBehaviour
         Zombies newzombie = zombiePool.GetObject(zombies);
         newzombie.transform.position = RandomVector[Random.Range(0, RandomVector.Length)];
     }
+
+    protected void Makeitem()
+    {
+        
+    }
 }

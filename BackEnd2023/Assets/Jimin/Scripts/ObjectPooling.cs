@@ -28,6 +28,7 @@ public class ObjectPooling<T> where T : Component, I_Pool
         newObj.GetComponent<I_Pool>().SetPoolEvent((item) => {
             itemPool.Enqueue(newObj);
             newObj.gameObject.SetActive(false);
+            newObj.gameObject.transform.SetParent(null);
         });
         newObj.gameObject.SetActive(false);
         newObj.transform.SetParent(Parent);
