@@ -7,7 +7,7 @@ public class PotSlot : ItemCtrl
 {
     public override ItemKind itemKind => ItemKind.Slot;
 
-    public ItemCtrl nowItemCtrl;
+    public ItemCtrl nowPot;
     public int index;
 
     public override bool checkUse(ItemCtrl nowItem)

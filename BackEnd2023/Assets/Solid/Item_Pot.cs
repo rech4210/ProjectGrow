@@ -28,7 +28,7 @@ public class Item_Pot : ItemCtrl
             case ItemKind.Slot:
                 //밭에 화분 배치
                 PotSlot slot = nowItem as PotSlot;
-                if (slot != null && slot.nowItemCtrl == null)
+                if (slot != null && slot.nowPot == null)
                 {
                     return true;
                 }
@@ -64,7 +64,7 @@ public class Item_Pot : ItemCtrl
             case ItemKind.Slot:
                 //밭에 화분 배치
                 PotSlot slot = nowItem as PotSlot;
-                if (slot != null && slot.nowItemCtrl == null)
+                if (slot != null && slot.nowPot == null)
                 {
                     FieldCtrl.Instance.setSlot(this, slot);
                     return;

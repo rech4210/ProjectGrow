@@ -33,7 +33,7 @@ public class FieldCtrl : MonoBehaviour
 
     public void setSlot(ItemCtrl potCtrl, PotSlot slot)
     {
-        slot.nowItemCtrl = potCtrl;
+        slot.nowPot = potCtrl;
         potCtrl.isGrabLock = true;
         potCtrl.transform.SetParent(slot.transform);
         potCtrl.transform.localPosition = Vector3.zero;
