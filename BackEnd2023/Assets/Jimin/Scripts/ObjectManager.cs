@@ -38,7 +38,7 @@ public class ObjectManager : MonoBehaviour
     public SpawnRoundInfo[] MonsterList;
 
     [SerializeField]
-    List<Vector2> RandomVector;
+    List<Transform> RandomVector;
 
 
     ObjectPooling<Zombies> zombiePool = new ObjectPooling<Zombies>();
@@ -82,13 +82,13 @@ public class ObjectManager : MonoBehaviour
     public void MakeZombie()
     {
         Zombies newzombie = zombiePool.GetObject(zombies);
-        newzombie.transform.position = RandomVector[Random.Range(0, RandomVector.Count)];
+        newzombie.transform.position = RandomVector[Random.Range(0, RandomVector.Count)].position;
     }
 
     public void MakeWildboar()
     {
         Wildboar newwildboar = wildboarPool.GetObject(wildboar);
-        newwildboar.transform.position = RandomVector[Random.Range(0, RandomVector.Count)];
+        newwildboar.transform.position = RandomVector[Random.Range(0, RandomVector.Count)].position;
     }
 
     public void Update()

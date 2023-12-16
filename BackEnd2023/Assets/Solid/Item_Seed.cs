@@ -58,10 +58,13 @@ public class Item_Seed : ItemCtrl
             case ItemKind.None:
                 break;
             case ItemKind.Slot:
-                PotSlot slot = nowItem as PotSlot;
-                if (slot != null && slot.nowPot == null)
+                if (seedKind == SeedKind.Pot)
                 {
-                    return true;
+                    PotSlot slot = nowItem as PotSlot;
+                    if (slot != null && slot.nowPot == null)
+                    {
+                        return true;
+                    }
                 }
                 break;
             case ItemKind.Pot:
@@ -107,6 +110,7 @@ public class Item_Seed : ItemCtrl
 
     public override ItemCtrl GrabToggle(RootCtrl rootCtrl, bool isGrab)
     {
+        this.isGrab = isGrab;
         return this;
     }
 
@@ -124,9 +128,40 @@ public class Item_Seed : ItemCtrl
                 openTemp -= Time.deltaTime;
                 break;
             case UseState.End:
+                Collider2D[] potList = Physics2D.OverlapCircleAll(rootCtrl.transform.position, 1f, LayerManager.Instance.ItemInterObj);
+
+                if (potList != null)
+                {
+                    float minDis = 0f;
+                    ItemCtrl hitCtrl = null;
+                    for (int i = 0; i < potList.Length; i++)
+                    {
+                        ItemCtrl item = potList[i].GetComponent<ItemCtrl>();
+                        if (item != null)
+                        {
+                            if (checkUse(item))
+                            {
+                                float dis = Vector2.Distance(rootCtrl.transform.position, item.transform.position);
+                                if (dis < minDis || hitCtrl == null)
+                                {
+                                    hitCtrl = item;
+                                    minDis = dis;
+                                }
+                            }
+                        }
+                    }
+                    if (hitCtrl != null)
+                    {
+                        useAction(hitCtrl);
+                        rootCtrl.interaction.interactionGrabOff();
+                        //Todo 장착중인 아이템 해제함
+                        //rootCtrl.weaponCtrl.ItemRemove();
+                        //this.disable();//화분 설치할때 회수가 될필요 있나?
+                    }
+                }
                 break;
         }
-        Debug.Log(openTemp);
+        //Debug.Log(openTemp);
         if (openTemp <= 0f)
         {
             Item_Weapon weapon = ItemCtrl.newItem(ItemKind.Weapon, seedKind.ToString()) as Item_Weapon;
@@ -136,37 +171,7 @@ public class Item_Seed : ItemCtrl
             return;
         }
         //주변에 Slot을 체크해서 가장 가까운 슬롯에 설치해줌
-        Collider2D[] potList = Physics2D.OverlapCircleAll(rootCtrl.transform.position, 1f, LayerManager.Instance.ItemInterObj);
 
-        if (potList != null)
-        {
-            float minDis = 0f;
-            ItemCtrl hitCtrl = null;
-            for (int i = 0; i < potList.Length; i++)
-            {
-                ItemCtrl item = potList[i].GetComponent<ItemCtrl>();
-                if (item != null)
-                {
-                    if (checkUse(item))
-                    {
-                        float dis = Vector2.Distance(rootCtrl.transform.position, item.transform.position);
-                        if (dis < minDis || hitCtrl == null)
-                        {
-                            hitCtrl = item;
-                            minDis = dis;
-                        }
-                    }
-                }
-            }
-            if (hitCtrl != null)
-            {
-                useAction(hitCtrl);
-                rootCtrl.interaction.interactionGrabOff();
-                //Todo 장착중인 아이템 해제함
-                //rootCtrl.weaponCtrl.ItemRemove();
-                //this.disable();//화분 설치할때 회수가 될필요 있나?
-            }
-        }
 
     }
     public void addWeight(float weight, Item_Pot pot)

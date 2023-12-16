@@ -27,8 +27,10 @@ public class Item_Weapon : ItemCtrl
 
     public float nowGuage;//남은 게이지
     public int nowAmmo;//남은 탄
+    public float attackDelay;
 
     public FireCtrl fireCtrl;
+
 
     private void OnEnable()
     {
@@ -70,6 +72,7 @@ public class Item_Weapon : ItemCtrl
 
     public override ItemCtrl GrabToggle(RootCtrl rootCtrl, bool isGrab)
     {
+        this.isGrab = isGrab;
         if (isGrab == false)
         {
             switch (weaponKind)
@@ -103,37 +106,47 @@ public class Item_Weapon : ItemCtrl
         }
         return this;
     }
-
+    private void Update()
+    {
+        if (attackDelay >= 0f)
+        {
+            attackDelay -= Time.deltaTime;
+        }
+    }
 
     public override void UseCall(RootCtrl rootCtrl, UseState useState)
     {
-        fireCtrl.Fire(rootCtrl);
-
-        //공격 모션
-        switch (weaponInfo.EnergyType)
+        if (attackDelay <= 0f)
         {
-            case EnergyTypeEnum.Bullet:
-                if (nowAmmo <= 0)
-                {
-                    //모두 소모함
+            attackDelay = weaponInfo.AttackSpeed;
+            fireCtrl.Fire(rootCtrl);
 
-                }
-                break;
-            case EnergyTypeEnum.Gauge:
-                if (weaponKind == SeedKind.Water)
-                {//물은 무제한
-                    return;
-                }
-                if (nowGuage <= 0f)
-                {
-                    //모두 소모함
-                }
-                break;
-            case EnergyTypeEnum.Null:
-                break;
-            default:
-                break;
+            //공격 모션
+            switch (weaponInfo.EnergyType)
+            {
+                case EnergyTypeEnum.Bullet:
+                    if (nowAmmo <= 0)
+                    {
+                        //모두 소모함
+
+                    }
+                    break;
+                case EnergyTypeEnum.Gauge:
+                    if (weaponKind == SeedKind.Water)
+                    {//물은 무제한
+                        return;
+                    }
+                    if (nowGuage <= 0f)
+                    {
+                        //모두 소모함
+                    }
+                    break;
+                case EnergyTypeEnum.Null:
+                    break;
+                default:
+                    break;
+            }
+
         }
-
     }
 }

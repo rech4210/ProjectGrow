@@ -27,13 +27,9 @@ public class PotHpCtrl : MonoBehaviour, I_HitZone
             switch ((attacker.interaction.GrabItemCtrl as Item_Weapon).weaponKind)
             {
                 case SeedKind.None:
-                    break;
                 case SeedKind.Revolver:
-                    break;
                 case SeedKind.Minigun:
-                    break;
                 case SeedKind.Firebat:
-                    break;
                 case SeedKind.Electric:
                     break;
                 case SeedKind.Water:
@@ -55,14 +51,11 @@ public class PotHpCtrl : MonoBehaviour, I_HitZone
                     switch ((attacker.interaction.GrabItemCtrl as Item_Weapon).weaponKind)
                     {
                         case SeedKind.None:
-                            break;
                         case SeedKind.Revolver:
-                            break;
                         case SeedKind.Minigun:
-                            break;
                         case SeedKind.Firebat:
-                            break;
                         case SeedKind.Electric:
+                            Debug.Log("피격은 아닌데");
                             break;
                         case SeedKind.Water:
                             myPot.waterValue = 5f;

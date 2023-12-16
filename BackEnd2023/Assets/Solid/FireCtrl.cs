@@ -10,7 +10,13 @@ public class FireCtrl : MonoBehaviour
     public static Dictionary<SeedKind, ObjectPooling<BulletCtrl>> bulletPoolDic = new Dictionary<SeedKind, ObjectPooling<BulletCtrl>>();
     public BulletCtrl bullet;
 
-
+    private void Awake()
+    {
+        if (fireTran == null)
+        {
+            fireTran = this.transform;
+        }
+    }
     public void setWeapon(Item_Weapon itemWeapon)
     {
         this.itemWeapon = itemWeapon;
@@ -31,9 +37,12 @@ public class FireCtrl : MonoBehaviour
         newBullet = bulletPoolDic[itemWeapon.weaponKind].GetObject(bullet);
         newBullet.dic = dic;
         newBullet.range = itemWeapon.weaponInfo.AttackDistance;//사거리
-        newBullet.speed = itemWeapon.weaponInfo.AttackSpeed;//속도
+        newBullet.speed = 1f;
+        //itemWeapon.weaponInfo.AttackSpeed;//초당 공격속도
         newBullet.damage = itemWeapon.weaponInfo.AttackPoint;
         newBullet.attacker = rootCtrl;
         newBullet.gameObject.SetActive(true);
+        newBullet.transform.position = fireTran.position;
+        newBullet.transform.eulerAngles = SolidUtility.getAngle2D(dic);
     }
 }

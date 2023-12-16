@@ -9,7 +9,8 @@ public class Item_Pot : ItemCtrl, I_Faction
 
     public override ItemKind itemKind => ItemKind.Pot;
 
-    public override bool IsGrabLock => base.IsGrabLock && (nowSeed != null && nowSeed.seedKind == SeedKind.Tower && weapon != null) == false;
+    public override bool IsGrabLock => isGrabLock && (nowSeed != null && nowSeed.seedKind == SeedKind.Tower && weapon != null) == false;
+    public override bool IsInterLock => isInterLock;
 
     public Item_Seed nowSeed;
     public float waterValue;
@@ -175,6 +176,7 @@ public class Item_Pot : ItemCtrl, I_Faction
     }
     public override ItemCtrl GrabToggle(RootCtrl rootCtrl, bool isGrab)
     {
+        this.isGrab = isGrab;
         if (nowSeed != null && nowSeed.seedKind == SeedKind.Tower)
         {
             ItemCtrl temp = weapon;
