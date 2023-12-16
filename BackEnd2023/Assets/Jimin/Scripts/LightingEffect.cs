@@ -9,21 +9,16 @@ public class LightingEffect : MonoBehaviour
     List<Transform> EnemyTransform = new List<Transform>();
 
     [SerializeField]
-    public LineRenderer Lighting;
+    public List<LineRenderer> Lighting;
     [SerializeField]
     public GameObject LightCircle;
-    [SerializeField]
-    public Transform[] tCircle;
 
+    LineRenderer line;
     bool bisTurnOn;
     List<Vector2> monstertransform = new List<Vector2>();
 
     List<GameObject> Circlelist = new List<GameObject>();
 
-    private void Start()
-    {
-        AttackLighting(tCircle);
-    }
 
     public void AttackLighting(Transform[] transforms)
     {
@@ -32,11 +27,11 @@ public class LightingEffect : MonoBehaviour
             monstertransform.Add(i.position);
         }
 
-        LineRenderer line = Instantiate(Lighting);
+        line = Instantiate(Lighting[Random.Range(0,Lighting.Count)]);
         line.SetWidth(0, 0);
 
         var tmp = Instantiate(LightCircle, this.gameObject.transform);
-       //tmp.SetActive(false);
+        //tmp.SetActive(false);
         Circlelist.Add(tmp);
 
         line.positionCount = monstertransform.Count + 1;
@@ -45,9 +40,16 @@ public class LightingEffect : MonoBehaviour
         for (int i = 0; i < monstertransform.Count; i++)
         {
             tmp = Instantiate(LightCircle, transforms[i]);
-            tmp.SetActive(false);
+            //tmp.SetActive(false);
             Circlelist.Add(tmp);
             line.SetPosition(i + 1, monstertransform[i]);
+        }
+
+        foreach (var cir in Circlelist)
+        {
+            Color temp = cir.GetComponent<SpriteRenderer>().color;
+            temp.a = 0f;
+            cir.GetComponent<SpriteRenderer>().color = temp;
         }
 
         StartCoroutine(LightingCoroutine(line));
@@ -58,12 +60,26 @@ public class LightingEffect : MonoBehaviour
         for (float i = 0; i < 0.05f; i += Time.deltaTime)
         {
             line.SetWidth(i, i);
-            foreach(var cir in Circlelist)
-            {
-                Color tmp = cir.GetComponent<SpriteRenderer>().color;
-                tmp.a += i;
-                cir.GetComponent<SpriteRenderer>().color = tmp;
-            }
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(0.5f);
+
+        foreach (var cir in Circlelist)
+        {
+            Color tmp = cir.GetComponent<SpriteRenderer>().color;
+            tmp.a = 1f;
+            cir.GetComponent<SpriteRenderer>().color = tmp;
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(0.1f);
+
+        foreach (var cir in Circlelist)
+        {
+            Color tmp = cir.GetComponent<SpriteRenderer>().color;
+            tmp.a = 0f;
+            cir.GetComponent<SpriteRenderer>().color = tmp;
             yield return null;
         }
 
@@ -74,7 +90,12 @@ public class LightingEffect : MonoBehaviour
             line.SetWidth(i, i);
             yield return null;
         }
+        line.SetWidth(0, 0);
+        foreach (var i in Circlelist) Destroy(i.gameObject);
 
+        Destroy(line.gameObject);
+        Circlelist.Clear();
+        monstertransform.Clear();
         //foreach (var i in Circlelist) i.SetActive(false);
     }
 
