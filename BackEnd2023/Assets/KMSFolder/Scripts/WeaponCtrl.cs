@@ -15,7 +15,7 @@ public class WeaponCtrl : MonoBehaviour, InitiallizeInterface
     public Transform targetTran;
 
 
-    //공격 호출
+    //공격 호출                                       
 
     //마우스 조준 처리
 
