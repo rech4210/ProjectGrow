@@ -812,7 +812,7 @@ BlendTree:
   m_Name: Blend Tree
   m_Childs:
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: a298718539de48f4ea2f26f78859cb7c, type: 2}
+    m_Motion: {fileID: 7400000, guid: 999a38776708c3844810aea5058c3bff, type: 2}
     m_Threshold: 0
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
@@ -820,24 +820,8 @@ BlendTree:
     m_DirectBlendParameter: HPFill
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: 8e197fc74a962a44b8b672a9aecb7cb5, type: 2}
+    m_Motion: {fileID: 7400000, guid: cb72e228484fd144e8ddb8de08dc246f, type: 2}
     m_Threshold: 0.33333334
-    m_Position: {x: 0, y: 0}
-    m_TimeScale: 1
-    m_CycleOffset: 0
-    m_DirectBlendParameter: HPFill
-    m_Mirror: 0
-  - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: 35fdcb5694e16534ea70d667a0e57e57, type: 2}
-    m_Threshold: 0.6666667
-    m_Position: {x: 0, y: 0}
-    m_TimeScale: 1
-    m_CycleOffset: 0
-    m_DirectBlendParameter: HPFill
-    m_Mirror: 0
-  - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: 218bca796d9c6da49a86afad1651511b, type: 2}
-    m_Threshold: 1
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
     m_CycleOffset: 0
@@ -846,7 +830,7 @@ BlendTree:
   m_BlendParameter: LeefFill
   m_BlendParameterY: HPFill
   m_MinThreshold: 0
-  m_MaxThreshold: 1
+  m_MaxThreshold: 0.33333334
   m_UseAutomaticThresholds: 1
   m_NormalizedBlendValues: 0
   m_BlendType: 0

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -142,7 +143,79 @@ public class Item_Weapon : ItemCtrl
             attackDelay -= Time.deltaTime;
         }
     }
+    public void UseCallAttack(I_Attacker attackCtrl, UseState useState, Action endAmmo)
+    {
+        switch (useState)
+        {
+            case UseState.None:
+                break;
+            case UseState.Start:
+                switch (weaponKind)
+                {
+                    case SeedKind.None:
+                        break;
+                    case SeedKind.Revolver:
+                        break;
+                    case SeedKind.Minigun:
+                        break;
+                    case SeedKind.Firebat:
+                        break;
+                    case SeedKind.Electric:
+                        break;
+                    case SeedKind.Water:
+                        break;
+                    case SeedKind.Tower:
+                        break;
+                    case SeedKind.Pot:
+                        break;
+                    default:
+                        break;
+                }
+                break;
+            case UseState.Ing:
+          
+                break;
+            case UseState.End:
+                break;
+        }
+        if (attackDelay <= 0f)
+        {
+            attackDelay = weaponInfo.AttackSpeed;
+            fireCtrl.Fire(attackCtrl);
 
+            //공격 모션
+            switch (weaponInfo.EnergyType)
+            {
+                case EnergyTypeEnum.Bullet:
+                    --nowAmmo;
+                    if (nowAmmo <= 0)
+                    {
+                        //모두 소모함
+                        endAmmo?.Invoke();
+                        this.disable();
+                    }
+                    break;
+                case EnergyTypeEnum.Gauge:
+                    if (weaponKind == SeedKind.Water)
+                    {//물은 무제한
+                        return;
+                    }
+                    nowGuage -= Time.deltaTime;
+                    if (nowGuage <= 0f)
+                    {
+                        //모두 소모함
+                        endAmmo?.Invoke();
+                        this.disable();
+                    }
+                    break;
+                case EnergyTypeEnum.Null:
+                    break;
+                default:
+                    break;
+            }
+
+        }
+    }
     public override void UseCall(RootCtrl rootCtrl, UseState useState)
     {
         switch (useState)

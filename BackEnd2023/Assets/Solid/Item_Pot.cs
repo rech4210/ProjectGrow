@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Item_Pot : ItemCtrl, I_Faction
+public class Item_Pot : ItemCtrl, I_Faction, I_Attacker
 {
     public Transform myTransform => this.transform;
     public bool IsTarget => hpCtrl.nowHp > 0f;
@@ -19,6 +19,7 @@ public class Item_Pot : ItemCtrl, I_Faction
 
     public Animator ani;
 
+    public GameObject toworObj;
     public Sprite[] gunIcons;
     public SpriteRenderer[] gunIconSprites;
     public Sprite[] singIcons;
@@ -28,12 +29,65 @@ public class Item_Pot : ItemCtrl, I_Faction
     public Item_Weapon weapon;//타워일경우 들고있는 무기
     public int weaponUseCount;//무기 사용횟수
 
+    public Transform weaponPivot;
+    public RootCtrl targetRoot;
+
+
+    Transform TargetTran => targetRoot.transform;
+    public Faction Faction => Faction.None;
+
+    void DeadEvent(I_Faction i_Faction)
+    {
+        targetRoot = null;
+    }
+    public void Update()
+    {
+        SeedUpdate();
+
+        if (nowSeed != null && nowSeed.seedKind == SeedKind.Tower)
+        {
+            if (targetRoot == null)
+            {
+                Collider2D[] hits = Physics2D.OverlapCircleAll(this.transform.position, 5f, LayerManager.Instance.HitZone);
+                if (hits != null)
+                {
+                    for (int i = 0; i < hits.Length; i++)
+                    {
+                        I_HitZone hitZone = hits[i].GetComponent<I_HitZone>();
+                        if (hitZone.Faction == Faction.Enemy)
+                        {
+                            targetRoot = hitZone.RootCtrl;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                weapon.UseCallAttack(this, UseState.Start, endAmmo);
+            }
+        }
+    }
+    public void SeedUpdate()
+    {
+        if (nowSeed != null)
+        {
+            if (waterValue > 0f && isWood == false)
+            {
+                waterValue -= Time.deltaTime;
+                nowSeed.addWeight(Time.deltaTime, this);
+                ani.SetFloat("LeefFill", nowSeed.weightFill);
+                //게이지 표시
+                //nowSeed.nowWeight / nowSeed.maxWeight;//현재 성장율
+                //(nowSeed.nowWeight+waterValue) / nowSeed.maxWeight;//예상 성장률
+            }
+        }
+    }
 
     public void Awake()
     {
         ani = GetComponentInChildren<Animator>(true);
         hpCtrl = GetComponentInChildren<PotHpCtrl>(true);
-
+        toworObj.SetActive(false);
         for (int i = 0; i < gunIconSprites.Length; i++)
         {
             gunIconSprites[i].transform.parent.gameObject.SetActive(false);
@@ -101,6 +155,8 @@ public class Item_Pot : ItemCtrl, I_Faction
         if (nowSeed.seedKind == SeedKind.Tower)
         {
             this.weapon = weapon;
+            weapon.transform.SetParent(weaponPivot);
+            weapon.transform.localPosition = Vector3.zero;
             switch (weapon.weaponKind)
             {
                 case SeedKind.None:
@@ -129,7 +185,9 @@ public class Item_Pot : ItemCtrl, I_Faction
             nowSeed.transform.SetParent(this.transform);
             nowSeed.transform.localPosition = Vector3.zero;
             nowSeed.gameObject.SetActive(false);//일단 꺼두자
+            sing.gameObject.SetActive(false);
 
+            toworObj.SetActive(false);
 
             for (int i = 0; i < gunIconSprites.Length; i++)
             {
@@ -140,6 +198,7 @@ public class Item_Pot : ItemCtrl, I_Faction
                 case SeedKind.None:
                     break;
                 case SeedKind.Revolver:
+                    sing.gameObject.SetActive(true);
                     sing.sprite = singIcons[0];
                     ani.SetInteger("LeefType", 1);
                     for (int i = 0; i < gunIconSprites.Length; i++)
@@ -148,6 +207,7 @@ public class Item_Pot : ItemCtrl, I_Faction
                     }
                     break;
                 case SeedKind.Minigun:
+                    sing.gameObject.SetActive(true);
                     sing.sprite = singIcons[1];
                     ani.SetInteger("LeefType", 2);
                     for (int i = 0; i < gunIconSprites.Length; i++)
@@ -156,6 +216,7 @@ public class Item_Pot : ItemCtrl, I_Faction
                     }
                     break;
                 case SeedKind.Firebat:
+                    sing.gameObject.SetActive(true);
                     sing.sprite = singIcons[2];
                     ani.SetInteger("LeefType", 3);
                     for (int i = 0; i < gunIconSprites.Length; i++)
@@ -164,6 +225,7 @@ public class Item_Pot : ItemCtrl, I_Faction
                     }
                     break;
                 case SeedKind.Electric:
+                    sing.gameObject.SetActive(true);
                     sing.sprite = singIcons[3];
                     ani.SetInteger("LeefType", 4);
                     for (int i = 0; i < gunIconSprites.Length; i++)
@@ -174,8 +236,10 @@ public class Item_Pot : ItemCtrl, I_Faction
                 case SeedKind.Water:
                     break;
                 case SeedKind.Tower:
+                    sing.gameObject.SetActive(true);
                     sing.sprite = singIcons[4];
                     ani.SetInteger("LeefType", 5);
+                    toworObj.SetActive(true);
 
                     break;
                 case SeedKind.Pot:
@@ -197,7 +261,18 @@ public class Item_Pot : ItemCtrl, I_Faction
             return this;
         }
     }
-
+    public void endAmmo()
+    {
+        --weaponUseCount;
+        weapon = null;
+        if (weaponUseCount <= 0)
+        {
+            nowSeed.disable();
+            toworObj.gameObject.SetActive(false);
+            sing.gameObject.SetActive(true);
+            isWood = false;
+        }
+    }
     public override void UseCall(RootCtrl rootCtrl, UseState useState)
     {
 
@@ -299,21 +374,6 @@ public class Item_Pot : ItemCtrl, I_Faction
         }
     }
 
-    public void Update()
-    {
-        if (nowSeed != null)
-        {
-            if (waterValue > 0f && isWood == false)
-            {
-                waterValue -= Time.deltaTime;
-                nowSeed.addWeight(Time.deltaTime, this);
-                ani.SetFloat("LeefFill", nowSeed.weightFill);
-                //게이지 표시
-                //nowSeed.nowWeight / nowSeed.maxWeight;//현재 성장율
-                //(nowSeed.nowWeight+waterValue) / nowSeed.maxWeight;//예상 성장률
-            }
-        }
-    }
 
     public void woodOn()
     {
@@ -339,7 +399,7 @@ public class Item_Pot : ItemCtrl, I_Faction
                 {
                     gunIconSprites[i].transform.parent.gameObject.SetActive(false);
                 }
-                weaponUseCount = ScriptableManager.instance.getTable(ScriptableManager.PlantScriptableTag).getPrefab<ScriptablePlantInfo.PrefabInfo>(nowSeed.seedKind.ToString()).Reusecount;
+                weaponUseCount = 3;// ScriptableManager.instance.getTable(ScriptableManager.PlantScriptableTag).getPrefab<ScriptablePlantInfo.PrefabInfo>(nowSeed.seedKind.ToString()).Reusecount;
                 break;
         }
 

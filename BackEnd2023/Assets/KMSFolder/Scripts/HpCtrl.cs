@@ -14,7 +14,7 @@ public class HpCtrl : MonoBehaviour, InitiallizeInterface
         hp = maxHp;
     }
 
-    public void SetDamaged(float damage, RootCtrl attacker)
+    public void SetDamaged(float damage, I_Attacker attacker)
     {
         hp -= damage;
         rootCtrl.aggroAction?.Invoke(attacker);

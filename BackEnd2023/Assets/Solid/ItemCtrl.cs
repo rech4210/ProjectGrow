@@ -32,7 +32,25 @@ public abstract class ItemCtrl : MonoBehaviour, I_Pool
                 return PlantNameEnum.Pot;
         }
     }
-
+    public static SeedKind ChangeSeed(PlantNameEnum seedKind)
+    {
+        switch (seedKind)
+        {
+            case PlantNameEnum.Rovolver:
+                return SeedKind.Revolver;
+            case PlantNameEnum.Minigun:
+                return SeedKind.Minigun;
+            case PlantNameEnum.flame_thrower:
+                return SeedKind.Firebat;
+            case PlantNameEnum.Lighting:
+                return SeedKind.Electric;
+            case PlantNameEnum.Dionaea:
+                return SeedKind.Tower;
+            case PlantNameEnum.Pot:
+                return SeedKind.Pot;
+        }
+        return SeedKind.None;
+    }
 
     public static ItemCtrl newItem(ItemKind itemKind, string tag)
     {

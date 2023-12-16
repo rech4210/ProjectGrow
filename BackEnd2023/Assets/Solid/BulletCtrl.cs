@@ -6,14 +6,17 @@ public interface I_HitZone
 {
     public Faction Faction => Faction.None;
     public RootCtrl RootCtrl => null;
-    public void SetDamaged(float damage, RootCtrl attacker);
-    public bool CheckHitLock(RootCtrl attacker);//true면 데미지 받지 않음
+    public void SetDamaged(float damage, I_Attacker attacker);
+    public bool CheckHitLock(I_Attacker attacker);//true면 데미지 받지 않음
 }
 public class BulletCtrl : MonoBehaviour, I_Pool
 {
-    public RootCtrl attacker;
+    public int hitCount = 1;
+    public int hitTemp;
+    public I_Attacker attacker;
     public float damage;
     public float radius = 0.1f;
+    public float offsetRange = 0f;
     public Vector3 dic;
     public float range;
     public float speed;
@@ -33,13 +36,15 @@ public class BulletCtrl : MonoBehaviour, I_Pool
     public void enable()
     {
         temp = range / speed;
+        hitTemp = hitCount;
+        this.transform.eulerAngles = Vector3.zero;
     }
 
     private void Update()
     {
         temp -= Time.deltaTime;
         float moveRange = Time.deltaTime * (range / speed);
-        RaycastHit2D[] hits = Physics2D.CircleCastAll(this.transform.position, radius, dic, moveRange, LayerManager.Instance.HitZone);
+        RaycastHit2D[] hits = Physics2D.CircleCastAll(this.transform.position, radius, dic, moveRange + offsetRange, LayerManager.Instance.HitZone);
 
         if (hits != null && hits.Length > 0)
         {
@@ -49,11 +54,15 @@ public class BulletCtrl : MonoBehaviour, I_Pool
                 I_HitZone hitZone = hit.transform.GetComponentInParent<I_HitZone>();
                 if (hitZone != null)
                 {
-                    if (attacker.faction != hitZone.Faction && hitZone.CheckHitLock(attacker) == false)
+                    if (attacker.Faction != hitZone.Faction && hitZone.CheckHitLock(attacker) == false)
                     {
                         hitZone.SetDamaged(damage, attacker);//데미지 작업해야함
-                        disable();//피격했으니까 제거 - 탄마다 다르게 처리해야함
-                        return;
+                        hitTemp--;
+                        if (hitTemp <= 0f)
+                        {
+                            disable();//피격했으니까 제거 - 탄마다 다르게 처리해야함
+                            return;
+                        }
                     }
                 }
             }
@@ -66,8 +75,8 @@ public class BulletCtrl : MonoBehaviour, I_Pool
             this.disable();
         }
     }
-    //private void OnDrawGizmos()
-    //{
-    //    Gizmos.DrawLine(this.transform.position, this.transform.position + dic);
-    //}
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawLine(this.transform.position, this.transform.position + (dic * offsetRange));
+    }
 }

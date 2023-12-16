@@ -23,7 +23,8 @@ public class RootCtrl : MonoBehaviour, I_Attacker, I_Pool, I_Faction
     public Transform myTransform => this.transform;
     public bool IsTarget => stateCtrl.stateEnum != stateEnum.Dead;//»ç¸ÁÀÌ ¾Æ´Ò¶§
     public Status status;
-
+    public Transform TargetTran => targetTran;
+    public Faction Faction => faction;
     public Faction faction;
     public Transform targetTran;
 
@@ -42,7 +43,7 @@ public class RootCtrl : MonoBehaviour, I_Attacker, I_Pool, I_Faction
     {
 
         scriptableMonster = ScriptableManager.instance.getTable(ScriptableManager.MobTableTag)
-           .getPrefab<ScriptableMonsterInfo.PrefabInfo>(kind.ToString());
+               .getPrefab<ScriptableMonsterInfo.PrefabInfo>(kind.ToString());
 
         status = new Status(3f);
         inputCtrl = gameObject.GetComponent<InputCtrl>();

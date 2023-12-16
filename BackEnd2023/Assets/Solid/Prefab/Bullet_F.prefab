@@ -46,9 +46,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebd76088a086cfc418f9288bad8584fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitCount: 5
+  hitTemp: 0
   attacker: {fileID: 0}
   damage: 0
-  radius: 0.1
+  radius: 0.3
+  offsetRange: 6
   dic: {x: 0.4, y: 0.2, z: 0}
   range: 100
   speed: 0.1
@@ -90,7 +93,7 @@ Transform:
   m_GameObject: {fileID: 565971980378234350}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.2241, y: 0.2241, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 986341277371756066}
@@ -122,14 +125,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3209521940452935731}
-  m_LocalRotation: {x: -0, y: -0, z: 0.72272813, w: 0.6911324}
-  m_LocalPosition: {x: -0.072, y: 1.606, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: 0.03759262, w: 0.99929315}
+  m_LocalPosition: {x: 4.46, y: 0.41, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 565971980378234349}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 92.56}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 4.309}
 --- !u!95 &4730345558341976192
 Animator:
   serializedVersion: 4
