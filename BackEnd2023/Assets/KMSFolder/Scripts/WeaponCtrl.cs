@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public enum Faction
@@ -36,7 +33,7 @@ public class WeaponCtrl : MonoBehaviour, InitiallizeInterface
 
     public void AttackCommand()
     {
-        switch (rootCtrl.inputCtrl.attackState)
+        switch (rootCtrl.inputCtrl.attackState) 
         {
             case BtnState.None:
                 break;
