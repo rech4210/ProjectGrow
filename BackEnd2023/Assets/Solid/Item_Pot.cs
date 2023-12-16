@@ -21,6 +21,9 @@ public class Item_Pot : ItemCtrl, I_Faction
 
     public Sprite[] gunIcons;
     public SpriteRenderer[] gunIconSprites;
+    public Sprite[] singIcons;
+    public SpriteRenderer sing;
+
 
     public Item_Weapon weapon;//타워일경우 들고있는 무기
     public int weaponUseCount;//무기 사용횟수
@@ -127,6 +130,7 @@ public class Item_Pot : ItemCtrl, I_Faction
             nowSeed.transform.localPosition = Vector3.zero;
             nowSeed.gameObject.SetActive(false);//일단 꺼두자
 
+
             for (int i = 0; i < gunIconSprites.Length; i++)
             {
                 gunIconSprites[i].transform.parent.gameObject.SetActive(false);
@@ -136,6 +140,7 @@ public class Item_Pot : ItemCtrl, I_Faction
                 case SeedKind.None:
                     break;
                 case SeedKind.Revolver:
+                    sing.sprite = singIcons[0];
                     ani.SetInteger("LeefType", 1);
                     for (int i = 0; i < gunIconSprites.Length; i++)
                     {
@@ -143,6 +148,7 @@ public class Item_Pot : ItemCtrl, I_Faction
                     }
                     break;
                 case SeedKind.Minigun:
+                    sing.sprite = singIcons[1];
                     ani.SetInteger("LeefType", 2);
                     for (int i = 0; i < gunIconSprites.Length; i++)
                     {
@@ -150,6 +156,7 @@ public class Item_Pot : ItemCtrl, I_Faction
                     }
                     break;
                 case SeedKind.Firebat:
+                    sing.sprite = singIcons[2];
                     ani.SetInteger("LeefType", 3);
                     for (int i = 0; i < gunIconSprites.Length; i++)
                     {
@@ -157,6 +164,7 @@ public class Item_Pot : ItemCtrl, I_Faction
                     }
                     break;
                 case SeedKind.Electric:
+                    sing.sprite = singIcons[3];
                     ani.SetInteger("LeefType", 4);
                     for (int i = 0; i < gunIconSprites.Length; i++)
                     {
@@ -166,6 +174,7 @@ public class Item_Pot : ItemCtrl, I_Faction
                 case SeedKind.Water:
                     break;
                 case SeedKind.Tower:
+                    sing.sprite = singIcons[4];
                     ani.SetInteger("LeefType", 5);
 
                     break;
@@ -294,7 +303,7 @@ public class Item_Pot : ItemCtrl, I_Faction
     {
         if (nowSeed != null)
         {
-            if ((true || waterValue > 0f) && isWood == false)
+            if (waterValue > 0f && isWood == false)
             {
                 waterValue -= Time.deltaTime;
                 nowSeed.addWeight(Time.deltaTime, this);

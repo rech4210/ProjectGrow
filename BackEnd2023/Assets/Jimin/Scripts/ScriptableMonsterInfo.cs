@@ -26,9 +26,9 @@ public class ScriptableMonsterInfo : ScriptableObject, I_Scriptable
 
     public List<PrefabInfo> prefabInfo;
 
-    public List<T> Prefablist<T>() where T:class,  ScriptableInfo
+    public List<T> Prefablist<T>() where T : class, ScriptableInfo
     {
-        return prefabInfo.ConvertAll((x)=>x as T);
+        return prefabInfo.ConvertAll((x) => x as T);
     }
     public T getPrefab<T>(string prefabs) where T : class, ScriptableInfo
     {

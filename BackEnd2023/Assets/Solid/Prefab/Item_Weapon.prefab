@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 6056330895356837866}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.098439, y: 0.098439, z: 0.098439}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6056330896372844180}
@@ -72,8 +72,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 922822faef682d74a9990bd1f8031835, type: 3}
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 21300000, guid: a0de869d9760191458ee57b4ae56ec2b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -133,6 +133,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a15de0f2a4d3d2f40a2cf7700f2217a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isGrab: 0
   isGrabLock: 0
   isInterLock: 0
   weaponKind: 5
@@ -151,10 +152,19 @@ MonoBehaviour:
     Ability: 0
     AbilityCondition: 0
     AbilityCount: 0
+    weaponPrefab: {fileID: 0}
     bulletprefab: {fileID: 0}
   nowGuage: 0
   nowAmmo: 0
+  attackDelay: 0
+  isAttackLock: 0
   fireCtrl: {fileID: 154378362472686232}
+  model: {fileID: 6056330895356837864}
+  gunSprites:
+  - {fileID: 21300000, guid: 930c601e9a98e2e4f992cd147b3798f3, type: 3}
+  - {fileID: 21300000, guid: 2aee89eb0acd1184c896d073d9e38801, type: 3}
+  - {fileID: 21300000, guid: 7e90f8c80c76fb94782429f223f1a0ba, type: 3}
+  - {fileID: 21300000, guid: 83f015838b022a54c8a928d49d416812, type: 3}
 --- !u!58 &6056330896372844179
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -44,5 +44,6 @@ public class FireCtrl : MonoBehaviour
         newBullet.gameObject.SetActive(true);
         newBullet.transform.position = fireTran.position;
         newBullet.transform.eulerAngles = SolidUtility.getAngle2D(dic);
+        newBullet.enable();
     }
 }

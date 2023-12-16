@@ -28,16 +28,44 @@ public class Item_Weapon : ItemCtrl
     public float nowGuage;//남은 게이지
     public int nowAmmo;//남은 탄
     public float attackDelay;
-    public bool isAttackOn;
+    public bool isAttackLock;
 
     public FireCtrl fireCtrl;
 
+    public SpriteRenderer model;
+    public Sprite[] gunSprites;
 
-    private void OnEnable()
+
+    public void OnEnable()
     {
         weaponInfo = ScriptableManager.instance.getTable(ScriptableManager.WeaponScriptableTag).getPrefab<ScriptableWeaponInfo.PrefabInfo>(weaponKind.ToString());
         fireCtrl.setWeapon(this);
 
+        switch (weaponKind)
+        {
+            case SeedKind.None:
+                break;
+            case SeedKind.Revolver:
+                model.sprite = gunSprites[0];
+                break;
+            case SeedKind.Minigun:
+                model.sprite = gunSprites[1];
+                break;
+            case SeedKind.Firebat:
+                model.sprite = gunSprites[2];
+                break;
+            case SeedKind.Electric:
+                model.sprite = gunSprites[3];
+                break;
+            case SeedKind.Water:
+                break;
+            case SeedKind.Tower:
+                break;
+            case SeedKind.Pot:
+                break;
+            default:
+                break;
+        }
         switch (weaponInfo.EnergyType)
         {
             case EnergyTypeEnum.Bullet:
@@ -117,6 +145,44 @@ public class Item_Weapon : ItemCtrl
 
     public override void UseCall(RootCtrl rootCtrl, UseState useState)
     {
+        switch (useState)
+        {
+            case UseState.None:
+                break;
+            case UseState.Start:
+                switch (weaponKind)
+                {
+                    case SeedKind.None:
+                        break;
+                    case SeedKind.Revolver:
+                        isAttackLock = true;
+                        break;
+                    case SeedKind.Minigun:
+                        break;
+                    case SeedKind.Firebat:
+                        break;
+                    case SeedKind.Electric:
+                        break;
+                    case SeedKind.Water:
+                        break;
+                    case SeedKind.Tower:
+                        break;
+                    case SeedKind.Pot:
+                        break;
+                    default:
+                        break;
+                }
+                break;
+            case UseState.Ing:
+                if (isAttackLock)
+                {
+                    return;
+                }
+                break;
+            case UseState.End:
+                isAttackLock = false;
+                break;
+        }
         if (attackDelay <= 0f)
         {
             attackDelay = weaponInfo.AttackSpeed;
@@ -126,10 +192,12 @@ public class Item_Weapon : ItemCtrl
             switch (weaponInfo.EnergyType)
             {
                 case EnergyTypeEnum.Bullet:
+                    --nowAmmo;
                     if (nowAmmo <= 0)
                     {
                         //모두 소모함
-
+                        rootCtrl.interaction.interactionGrabOff();
+                        this.disable();
                     }
                     break;
                 case EnergyTypeEnum.Gauge:
@@ -137,9 +205,12 @@ public class Item_Weapon : ItemCtrl
                     {//물은 무제한
                         return;
                     }
+                    nowGuage -= Time.deltaTime;
                     if (nowGuage <= 0f)
                     {
                         //모두 소모함
+                        rootCtrl.interaction.interactionGrabOff();
+                        this.disable();
                     }
                     break;
                 case EnergyTypeEnum.Null:

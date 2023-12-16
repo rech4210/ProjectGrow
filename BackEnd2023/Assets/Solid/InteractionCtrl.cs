@@ -8,24 +8,46 @@ public class InteractionCtrl : MonoBehaviour, I_Interaction
     public Transform grabPivot;
     public Transform aimTran;
     public Transform interPivot;
+    public Transform pointPivot;
 
-
+    public ItemCtrl pointCtrl;
     public ItemCtrl selectItemCtrl;
     public ItemCtrl grabItemCtrl;
+    public ItemCtrl GrabItemCtrl => grabItemCtrl;
 
     public void initiallize()
     {
         rootCtrl = GetComponentInParent<RootCtrl>();
         aimTran = new GameObject().transform;
         aimTran.name = "AimTran";
+        rootCtrl.faction = Faction.Player;
     }
     private void Start()
     {
         rootCtrl.WeaponCtrl.targetTran = aimTran;
+        rootCtrl.targetTran = aimTran;
     }
 
     private void Update()
     {
+        if (grabItemCtrl == null)
+        {
+            pointCtrl = getSelectItemCtrl(interPivot, checkGrab);
+        }
+        else
+        {
+            pointCtrl = getSelectItemCtrl(interPivot, checkUse);
+        }
+        if (pointCtrl != null)
+        {
+            pointPivot.gameObject.SetActive(true);
+            pointPivot.position = pointCtrl.transform.position + Vector3.up;
+        }
+        else
+        {
+            pointPivot.gameObject.SetActive(false);
+        }
+
         aimTran.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
     }
     public void InteractionEnter()

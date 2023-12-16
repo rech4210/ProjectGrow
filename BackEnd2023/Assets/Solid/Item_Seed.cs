@@ -10,9 +10,13 @@ public class Item_Seed : ItemCtrl
     public float nowWeight;
     public float maxWeight => seedInfo.GrowTime;
     public float weightFill => nowWeight / maxWeight;
-    public ScriptablePlantInfo.PrefabInfo seedInfo;
 
     public SeedKind seedKind;
+    public ScriptablePlantInfo.PrefabInfo seedInfo;
+
+    public Sprite[] seedSprite;
+    public SpriteRenderer model;
+
 
     public float openTime = 1f;
     public float openTemp;
@@ -25,22 +29,28 @@ public class Item_Seed : ItemCtrl
                 break;
             case SeedKind.Revolver:
                 seedInfo = ScriptableManager.instance.getTable(ScriptableManager.PlantScriptableTag).getPrefab<ScriptablePlantInfo.PrefabInfo>(PlantNameEnum.Rovolver.ToString());
+                model.sprite = seedSprite[0];
                 break;
             case SeedKind.Minigun:
                 seedInfo = ScriptableManager.instance.getTable(ScriptableManager.PlantScriptableTag).getPrefab<ScriptablePlantInfo.PrefabInfo>(PlantNameEnum.Minigun.ToString());
+                model.sprite = seedSprite[1];
                 break;
             case SeedKind.Firebat:
                 seedInfo = ScriptableManager.instance.getTable(ScriptableManager.PlantScriptableTag).getPrefab<ScriptablePlantInfo.PrefabInfo>(PlantNameEnum.flame_thrower.ToString());
+                model.sprite = seedSprite[2];
                 break;
             case SeedKind.Electric:
                 seedInfo = ScriptableManager.instance.getTable(ScriptableManager.PlantScriptableTag).getPrefab<ScriptablePlantInfo.PrefabInfo>(PlantNameEnum.Lighting.ToString());
+                model.sprite = seedSprite[3];
                 break;
             case SeedKind.Tower:
                 seedInfo = ScriptableManager.instance.getTable(ScriptableManager.PlantScriptableTag).getPrefab<ScriptablePlantInfo.PrefabInfo>(PlantNameEnum.Dionaea.ToString());
+                model.sprite = seedSprite[4];
                 break;
             case SeedKind.Water:
                 break;
             case SeedKind.Pot:
+                model.sprite = seedSprite[4];
                 break;
         }
     }
@@ -162,9 +172,11 @@ public class Item_Seed : ItemCtrl
                 break;
         }
         //Debug.Log(openTemp);
-        if (openTemp <= 0f)
+        if (seedKind != SeedKind.Pot && openTemp <= 0f)
         {
             Item_Weapon weapon = ItemCtrl.newItem(ItemKind.Weapon, seedKind.ToString()) as Item_Weapon;
+            weapon.weaponKind = seedKind;
+            weapon.OnEnable();
             weapon.transform.position = this.transform.position;
             rootCtrl.interaction.interactionGrabOff();
             this.disable();

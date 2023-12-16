@@ -28,6 +28,7 @@ public class BulletCtrl : MonoBehaviour, I_Pool
     public void disable()
     {
         disalbleAction?.Invoke(this);
+        attacker = null;
     }
     public void enable()
     {
@@ -36,6 +37,7 @@ public class BulletCtrl : MonoBehaviour, I_Pool
 
     private void Update()
     {
+        temp -= Time.deltaTime;
         float moveRange = Time.deltaTime * (range / speed);
         RaycastHit2D[] hits = Physics2D.CircleCastAll(this.transform.position, radius, dic, moveRange, LayerManager.Instance.HitZone);
 
@@ -58,7 +60,11 @@ public class BulletCtrl : MonoBehaviour, I_Pool
         }
         this.transform.Translate(moveRange * dic, Space.World);
         model.transform.eulerAngles = SolidUtility.getAngle2D(dic);
-
+        if (temp <= 0f)
+        {
+            this.gameObject.SetActive(false);
+            this.disable();
+        }
     }
     //private void OnDrawGizmos()
     //{

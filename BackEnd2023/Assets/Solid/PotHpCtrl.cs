@@ -6,6 +6,7 @@ using UnityEngine;
 public class PotHpCtrl : MonoBehaviour, I_HitZone
 {
     public Item_Pot myPot;
+    public Faction Faction => Faction.Pot;
 
     public float nowHp;
     public float maxHp = 40f;
@@ -22,7 +23,7 @@ public class PotHpCtrl : MonoBehaviour, I_HitZone
 
     public bool CheckHitLock(RootCtrl attacker)
     {
-        if (attacker.interaction.GrabItemCtrl.itemKind == ItemKind.Weapon)
+        if (attacker.interaction.GrabItemCtrl != null && attacker.interaction.GrabItemCtrl.itemKind == ItemKind.Weapon)
         {
             switch ((attacker.interaction.GrabItemCtrl as Item_Weapon).weaponKind)
             {
@@ -31,9 +32,9 @@ public class PotHpCtrl : MonoBehaviour, I_HitZone
                 case SeedKind.Minigun:
                 case SeedKind.Firebat:
                 case SeedKind.Electric:
-                    break;
-                case SeedKind.Water:
                     return true;
+                case SeedKind.Water:
+                    return false;
             }
         }
         return false;
@@ -46,7 +47,7 @@ public class PotHpCtrl : MonoBehaviour, I_HitZone
             case Faction.None:
                 break;
             case Faction.Player:
-                if (attacker.interaction.GrabItemCtrl.itemKind == ItemKind.Weapon)
+                if (attacker.interaction.GrabItemCtrl != null && attacker.interaction.GrabItemCtrl.itemKind == ItemKind.Weapon)
                 {
                     switch ((attacker.interaction.GrabItemCtrl as Item_Weapon).weaponKind)
                     {
