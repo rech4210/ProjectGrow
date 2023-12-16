@@ -28,3 +28,33 @@ MonoBehaviour:
     AbilityCondition: 0
     AbilityCount: 0
     bulletprefab: {fileID: 0}
+  - name: 1
+    Type: 0
+    EnergyType: 0
+    BulletCount: 0
+    GaugeTime: 0
+    HP: 0
+    AttackPoint: 0
+    AttackSpeed: 0
+    AttackDistance: 0
+    SpecialOption: 0
+    AbilityObject: 0
+    Ability: 0
+    AbilityCondition: 0
+    AbilityCount: 0
+    bulletprefab: {fileID: 0}
+  - name: 1
+    Type: 0
+    EnergyType: 0
+    BulletCount: 0
+    GaugeTime: 0
+    HP: 0
+    AttackPoint: 0
+    AttackSpeed: 0
+    AttackDistance: 0
+    SpecialOption: 0
+    AbilityObject: 0
+    Ability: 0
+    AbilityCondition: 0
+    AbilityCount: 0
+    bulletprefab: {fileID: 0}
