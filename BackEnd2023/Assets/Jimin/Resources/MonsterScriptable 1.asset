@@ -42,7 +42,7 @@ MonoBehaviour:
     HP: 60
     Atk: 5
     AttackSpeed: 60
-    MoveSpeed: 3
+    MoveSpeed: 5
     ActiveRange: 50
     SightRange: 10
     ChaseT_F: 1

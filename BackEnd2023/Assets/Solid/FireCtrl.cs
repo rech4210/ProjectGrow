@@ -37,7 +37,7 @@ public class FireCtrl : MonoBehaviour
         newBullet = bulletPoolDic[itemWeapon.weaponKind].GetObject(bullet);
         newBullet.dic = dic;
         newBullet.range = itemWeapon.weaponInfo.AttackDistance;//사거리
-        newBullet.speed = 1f;
+        //newBullet.speed = 1f;
         //itemWeapon.weaponInfo.AttackSpeed;//초당 공격속도
         newBullet.damage = itemWeapon.weaponInfo.AttackPoint;
         newBullet.attacker = rootCtrl;
