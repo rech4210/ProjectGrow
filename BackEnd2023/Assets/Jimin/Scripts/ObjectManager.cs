@@ -18,7 +18,7 @@ public class ObjectManager : MonoBehaviour
     ObjectPooling<Zombies> zombiePool = new ObjectPooling<Zombies>();
     //ObjectPooling<items> itemPool = new ObjectPooling<items>;
 
-    private void Awake()
+    public void Initalize()
     {
         zombiePool.Initialize(zombies, this.gameObject.transform, 10);
         //itemPool.Initalize(items, this.gameObject.transform, 10);

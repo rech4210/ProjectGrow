@@ -17,7 +17,18 @@ public class ScriptableManager : MonoBehaviour
 {
     public static ScriptableManager instance;
 
-    public I_Scriptable[] scriptablelist;
+    public List<I_Scriptable> scriptablelist;
+
+    public List<ScriptableObject> scriptableobjedctlist;
+
+    public void Initalize()
+    {
+        ScriptableMonsterInfo monsterscriptable = Resources.Load<ScriptableMonsterInfo>("MonsterScriptable");
+        Scriptable_Object scriptable = Resources.Load<Scriptable_Object>("Scriptable");
+
+        scriptablelist.Add(monsterscriptable);
+        scriptablelist.Add(scriptable);
+    }
 
     public I_Scriptable getTable(string name)
     {

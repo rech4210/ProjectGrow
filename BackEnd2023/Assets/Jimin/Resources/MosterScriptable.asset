@@ -13,12 +13,21 @@ MonoBehaviour:
   m_Name: MosterScriptable
   m_EditorClassIdentifier: 
   prefabInfo:
-  - name: 
-    Atk: 0
-    AttackSpeed: 0
-    MoveSpeed: 0
-    ActiveRange: 0
-    SightRange: 0
-    ChaseT_F: 0
-    ChaseTime: 0
+  - name: monster1
+    Atk: 1
+    AttackSpeed: 2
+    MoveSpeed: 1
+    ActiveRange: 1
+    SightRange: 1
+    ChaseT_F: 1
+    ChaseTime: 1
     FirstAttack: 0
+  - name: monster2
+    Atk: 3
+    AttackSpeed: 4
+    MoveSpeed: 3
+    ActiveRange: 3
+    SightRange: 4
+    ChaseT_F: 0
+    ChaseTime: 3
+    FirstAttack: 1

@@ -13,11 +13,13 @@ public class GameManager : MonoBehaviour
     ObjectManager objectManager;
 
     [SerializeField]
+    ScriptableManager scriptableManager;
+
+    [SerializeField]
     UIManager uiManager;
 
     float CurrentTime = 0f;
     bool bisGameOver = false;
-
 
     private void Awake()
     {
@@ -31,7 +33,12 @@ public class GameManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+    }
 
+    private void Start()
+    {
+        scriptableManager.Initalize();
+        objectManager.Initalize();
     }
 
     private void Update()

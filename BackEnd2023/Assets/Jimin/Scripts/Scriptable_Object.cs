@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 
 [CreateAssetMenu(fileName = "Prefabs", menuName = "Scriptable_Object/Prefabs")]
-public class Scriptable_Object : ScriptableObject, ScriptableInfo
+public class Scriptable_Object : ScriptableObject, I_Scriptable
 {
     public string Name => this.name;
     [System.Serializable]
