@@ -23,9 +23,11 @@ public class ScriptableManager : MonoBehaviour
     {
         ScriptableMonsterInfo monsterscriptable = Resources.Load<ScriptableMonsterInfo>("MonsterScriptable");
         Scriptable_Object scriptable = Resources.Load<Scriptable_Object>("Scriptable");
+        ScriptableWeaponInfo Weaponscriptable = Resources.Load<ScriptableWeaponInfo>("WeaponScriptable");
 
         scriptablelist.Add(monsterscriptable);
         scriptablelist.Add(scriptable);
+        scriptablelist.Add(Weaponscriptable);
     }
 
     public I_Scriptable getTable(string name)

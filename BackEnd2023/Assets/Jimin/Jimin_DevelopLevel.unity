@@ -583,6 +583,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1383113053436151060}
     - target: {fileID: 559114850445002549, guid: bbfd4cada39f34fe6a42a8d0a1319d60, type: 3}
+      propertyPath: list.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 559114850445002549, guid: bbfd4cada39f34fe6a42a8d0a1319d60, type: 3}
       propertyPath: scriptableManager
       value: 
       objectReference: {fileID: 437419401}

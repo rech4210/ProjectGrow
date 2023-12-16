@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    //?? ??
+    //??? ??
+
     public static GameManager instance = null;
 
     [SerializeField]
@@ -20,9 +23,6 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     float SpawnTime;
-
-    [SerializeField]
-    int SpawnCount;
 
     float CurrentTime = 0f;
     float SpawnCoolTime;
@@ -53,16 +53,6 @@ public class GameManager : MonoBehaviour
         CurrentTime += Time.deltaTime;
         SpawnCoolTime += Time.deltaTime;
         uiManager.text.text = Mathf.Round(CurrentTime).ToString();
-
-        if(SpawnCoolTime > SpawnTime)
-        {
-            for(int i = 0; i < SpawnCount; i++)
-            {
-                objectManager.MakeZombie();
-            }
-            Debug.Log("Spawn!!");
-            SpawnCoolTime = 0f;
-        }
     }
 
 }

@@ -10,11 +10,7 @@ public class ScriptableMonsterInfo : ScriptableObject, I_Scriptable
     public class PrefabInfo : ScriptableInfo
     {
         public string name;
-        public enum Type
-        {
-            normal,
-            Tanker
-        }
+        public MonsterTypeEnum Type;
         public int Atk;
         public int AttackSpeed;
         public int MoveSpeed;
@@ -40,4 +36,11 @@ public class ScriptableMonsterInfo : ScriptableObject, I_Scriptable
 
         return null;
     }
+
+}
+
+public enum MonsterTypeEnum
+{
+    normal,
+    Tanker
 }
