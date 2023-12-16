@@ -8,11 +8,7 @@ public class ScriptableWeaponInfo : ScriptableObject, I_Scriptable
     [System.Serializable]
     public class PrefabInfo : ScriptableInfo
     {
-<<<<<<< HEAD
         public SeedKind name;
-=======
-        public string Name;
->>>>>>> origin/ljm_Branch
         public TypeEnum Type;
         public EnergyTypeEnum EnergyType;
         public int BulletCount;
@@ -37,11 +33,7 @@ public class ScriptableWeaponInfo : ScriptableObject, I_Scriptable
     {
         foreach (var tmp in prefabInfo)
         {
-<<<<<<< HEAD
             if (tmp.name.ToString() == prefabs)
-=======
-            if (tmp.Name == prefabs)
->>>>>>> origin/ljm_Branch
             {
                 return tmp as T;
             }

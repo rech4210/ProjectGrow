@@ -10,9 +10,9 @@ public class ScriptablePlantInfo : ScriptableObject, I_Scriptable
     {
         public PlantNameEnum Name;
         public PlantTypeEnum Type;
-        public int GrowTime;
+        public float GrowTime;
         public int FruitCount;
-        public int Reusecount;
+        public int Reusecount;//Àç»ç¿ë È½¼ö
         public int SignIcon;
         public int PlantSillust;
 
