@@ -23,7 +23,10 @@ public class EnemyInput : InputCtrl
             horizontal = direction.x;
             vertical = direction.y;
 
-            StartCoroutine(DelayAttack());
+            if(!isAttack)
+            {
+                StartCoroutine(DelayAttack());
+            }
         }
     }
 
@@ -52,12 +55,11 @@ public class EnemyInput : InputCtrl
                     }
                 }
             }
+
+            yield return new WaitForSeconds(2f);
             rootCtrl.stateCtrl.AttackState();
+            isAttack = false;
         }
-        yield return new WaitForSeconds(2f);
-
-        isAttack = false;
-
     }
      
     public override void initiallize()
