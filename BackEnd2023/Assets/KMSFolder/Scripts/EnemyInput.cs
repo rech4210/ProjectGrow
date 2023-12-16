@@ -4,7 +4,12 @@ public class EnemyInput : InputCtrl
 {
     private void Update()
     {
+
         //transform.position = targetPlayer.position;
+        if (rootCtrl.targetTran == null)
+        {
+            rootCtrl.targetTran = GameManager.instance.ReturnClosesetObject(this.transform);
+        }
 
         if (rootCtrl.targetTran != null)
         {
@@ -21,7 +26,7 @@ public class EnemyInput : InputCtrl
         //Hp Ctrl aggro reference use
         rootCtrl.aggroAction += (attacker) =>
         {
-            rootCtrl.WeaponCtrl.targetTran = attacker.transform;
+            rootCtrl.WeaponCtrl.targetTran = attacker.myTransform;
         };
 
         //

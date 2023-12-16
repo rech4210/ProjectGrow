@@ -22,7 +22,7 @@ public class AnimationCtrl : MonoBehaviour, InitiallizeInterface
     }
     public void StunningAnimation()
     {
-        animator.SetTrigger("Stunned");
+        animator.SetBool("Stunned",true);
     }
 
     public void DeadAnimation()
@@ -32,19 +32,23 @@ public class AnimationCtrl : MonoBehaviour, InitiallizeInterface
     }
     public void GrapAniamtion()
     {
-        animator.SetTrigger("Grap");
+        animator.SetBool("Grap", true);
     }
     public void UseAniamtion()
     {
-        animator.SetTrigger("Use");
+        animator.SetBool("Use", true);
     }
     public void ThrowAniamtion()
     {
-        animator.SetTrigger("Throw");
+        animator.SetBool("Throw",true);
     }
-    public void HiteAnimation()
+    public void HitedAnimation()
     {
         animator.SetTrigger("Hited");
+    }
+    public void AttackAnimation()
+    {
+        animator.SetTrigger("Throw");
     }
     #endregion
 }
