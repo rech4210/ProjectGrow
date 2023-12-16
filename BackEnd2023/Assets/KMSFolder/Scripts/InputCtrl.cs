@@ -1,6 +1,4 @@
 using UnityEngine;
-
-
 public enum BtnState
 { 
     None = 0,
@@ -9,9 +7,9 @@ public enum BtnState
     Up = 3
 }
 
-
 public class InputCtrl : MonoBehaviour, InitiallizeInterface
 {
+
     public BtnState attackState;
 
     protected RootCtrl rootCtrl;
@@ -21,7 +19,7 @@ public class InputCtrl : MonoBehaviour, InitiallizeInterface
     public float vertical;
 
     // 입력관리, 상태머신, 조작, 다른, Ctrl에 작업요청 or AI 처리
-    public void initiallize()
+    public virtual void initiallize()
     {
         rootCtrl = gameObject.GetComponent<RootCtrl>();
         status = rootCtrl.status;

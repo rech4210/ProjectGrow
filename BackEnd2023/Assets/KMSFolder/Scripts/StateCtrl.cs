@@ -8,7 +8,8 @@ public enum stateEnum
     Dead,
     Grap,
     Use,
-    Throw
+    Throw,
+    hited
 }
 
 public class StateCtrl : MonoBehaviour, InitiallizeInterface
@@ -59,6 +60,16 @@ public class StateCtrl : MonoBehaviour, InitiallizeInterface
         if(time- stunnedTime > 3f && stateEnum == stateEnum.Stunned)
         {
             IdleState();
+        }
+    }
+
+    public void HitedState()
+    {
+        if (IsCanAction(stateEnum))
+        {
+            StateChange(stateEnum.hited);
+            rootCtrl.AnimationCtrl.HiteAnimation();
+            stunnedTime = time;
         }
     }
 

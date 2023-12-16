@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq.Expressions;
 using UnityEngine;
-using UnityEngine.UIElements;
+using static UnityEngine.GraphicsBuffer;
 
 public class MoveCtrl : MonoBehaviour, InitiallizeInterface
 {
@@ -20,14 +17,19 @@ public class MoveCtrl : MonoBehaviour, InitiallizeInterface
     {
         rootCtrl = gameObject.GetComponent<RootCtrl>();
         speed = rootCtrl.status.speed;
+        //Target = rootCtrl.inputCtrl.target;
     }
 
     void Update()
     {
+
+        //gettype 수정하기
         //플레이어 이동 관련
         if (rootCtrl.inputCtrl.GetType() == typeof(EnemyInput))
         {
-            transform.position = Target.position;
+            //Vector3 pos = Vector3.MoveTowards(transform.position, Target.position, speed * Time.deltaTime);
+
+            //transform.position += pos;
         }
 
 

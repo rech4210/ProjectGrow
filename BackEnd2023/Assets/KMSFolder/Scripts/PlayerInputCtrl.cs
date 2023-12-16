@@ -1,9 +1,11 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerInputCtrl : InputCtrl
 {
+    private float reviveTime = 1f;
+
+    public Transform target;
 
     private void Update()
     {
@@ -41,5 +43,20 @@ public class PlayerInputCtrl : InputCtrl
         {
             rootCtrl.interaction.interactionThrow();
         }
+    }
+
+    public override void initiallize()
+    {
+        base.initiallize();
+        rootCtrl.deadAction += () => {
+            rootCtrl.stateCtrl.stateEnum = stateEnum.Stunned;
+            rootCtrl.stateCtrl.StunState();
+        };
+
+    }
+    IEnumerator ExecuteLifeAction()
+    {
+        yield return new WaitForSeconds(reviveTime);
+        rootCtrl.lifeAction.Invoke();
     }
 }

@@ -1,14 +1,28 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyInput : InputCtrl
 {
-    //hit 피격시 행동 추가하기 + 상태 애니메이션
     
-    [SerializeField]Transform targetPlayer;
+
+
     private void Update()
     {
         //transform.position = targetPlayer.position;
     }
+
+    public override void initiallize()
+    {
+        base.initiallize();
+        //Hp Ctrl aggro reference use
+        rootCtrl.aggroAction += (attacker) =>
+        {
+            rootCtrl.WeaponCtrl.targetTran = attacker.transform;
+        };
+
+        //
+    }
+
+    // ai가 타켓을 가지고 있는데 타겟이 변경될때마다
+    // weapon ctrl에 타켓 트랜스폼이 있는데 그걸 최신화 시켜줘야함
+    // 액션을 만든다면 변경된 적 타켓의 transform을 weapon에 넣어줘야함.
 }

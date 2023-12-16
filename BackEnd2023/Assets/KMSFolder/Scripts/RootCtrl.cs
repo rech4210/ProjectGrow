@@ -10,12 +10,16 @@ public struct Status
     }
 }
 
-public class RootCtrl : MonoBehaviour
+public class RootCtrl : MonoBehaviour,I_Attacker
 {
     public Action lifeAction;
     public Action deadAction;
-
-
+    public Action<I_Attacker> aggroAction;
+    
+    
+    
+    //??? 프로퍼티 축약.
+    public Transform transform => this.transform;
     public Status status;
     
     public Faction faction;

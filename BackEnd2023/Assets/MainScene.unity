@@ -250,7 +250,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2038746244}
   - {fileID: 1767169412}
@@ -291,13 +291,15 @@ GameObject:
   - component: {fileID: 844819139}
   - component: {fileID: 844819138}
   - component: {fileID: 844819137}
+  - component: {fileID: 844819144}
+  - component: {fileID: 844819143}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &844819137
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -353,7 +355,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9dd25d702f4f4f4eacc82d6c8acf305, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
+  animator: {fileID: 844819143}
 --- !u!114 &844819141
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -372,7 +374,7 @@ MonoBehaviour:
   stateCtrl: {fileID: 0}
   hpCtrl: {fileID: 0}
   WeaponCtrl: {fileID: 0}
-  AnimationCtrl: {fileID: 0}
+  AnimationCtrl: {fileID: 844819140}
 --- !u!4 &844819142
 Transform:
   m_ObjectHideFlags: 0
@@ -389,6 +391,39 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &844819143
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 844819136}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &844819144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 844819136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b94da3c178e34942a4a073b9b123e7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Target: {fileID: 0}
 --- !u!1 &864610341
 GameObject:
   m_ObjectHideFlags: 0
@@ -441,7 +476,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ad841eb1b5f26741a36b777016b0e24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  faction: 0
   targetTran: {fileID: 0}
 --- !u!114 &864610344
 MonoBehaviour:

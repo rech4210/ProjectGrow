@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class HpCtrl : MonoBehaviour, InitiallizeInterface
@@ -16,21 +14,21 @@ public class HpCtrl : MonoBehaviour, InitiallizeInterface
         hp = maxHp;
     }
 
-    public void GetDamaged()
-    {
-        rootCtrl.stateCtrl.StateChange(stateEnum.Stunned);
-        //rootCtrl.stateCtrl.StunState();
-        // 플레이어 처리
-    }
-
     public void SetDamaged(float damage, RootCtrl attacker)
     {
         hp -=damage;
+        rootCtrl.aggroAction.Invoke(attacker);
         //rootCtrl.stateCtrl.
         if(hp <= 0)
         {
             rootCtrl.deadAction.Invoke();
         }
+        else
+        {
+            rootCtrl.stateCtrl.HitedState();
+        }
         // 어그로
     }
 }
+
+

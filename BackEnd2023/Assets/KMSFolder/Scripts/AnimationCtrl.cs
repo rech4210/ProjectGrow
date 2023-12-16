@@ -42,5 +42,9 @@ public class AnimationCtrl : MonoBehaviour, InitiallizeInterface
     {
         animator.SetTrigger("Throw");
     }
+    public void HiteAnimation()
+    {
+        animator.SetTrigger("Hited");
+    }
     #endregion
 }
