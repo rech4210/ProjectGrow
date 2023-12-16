@@ -4,20 +4,6 @@ using UnityEngine;
 using System;
 using Random = UnityEngine.Random;
 
-//[Serializable]
-//public class SpawnTime
-//{
-//    public float FirstMax;
-//    public float FirstMin;
-//    public float SecondMax;
-//    public float SecondMin;
-//    public float ThirdMax;
-//    public float ThirdMin;
-//    public float FourthMax;
-//    public float FourthMin;
-//    public float FifthMax;
-//    public float FifthMin;
-//}
 
 public class GameManager : MonoBehaviour
 {
@@ -36,20 +22,12 @@ public class GameManager : MonoBehaviour
     UIManager uiManager;
 
     [SerializeField]
-    float SpawnTime;
-
-    [SerializeField]
     public List<Transform> Objectlist;
 
-    //[SerializeField]
-    //public SpawnTime[] MonsterList;
-
-    float CurrentTime = 0f;
+    public float CurrentTime = 0f;
+    public int stage = 0;
     float SpawnCoolTime;
     bool bisGameOver = false;
-
-    int stage = 1;
-
 
     private void Awake()
     {
@@ -116,32 +94,6 @@ public class GameManager : MonoBehaviour
         }
         return null;
     }
-
-    //public float SetSpawnTime(GameObject monster)
-    //{
-    //    switch(stage)
-    //    {
-    //        case 1:
-    //            return Random.Range(monster.SpawnTime.FirstMin, monster.SpawnTime.FirstMax);
-    //            break;
-
-    //        case 2:
-    //            return Random.Range(monster.SpawnTime.SecondMin, monster.SpawnTime.SecondMax);
-    //            break;
-
-    //        case 3:
-    //            return Random.Range(monster.SpawnTime.ThridMin, monster.SpawnTime.ThirdMax);
-    //            break;
-
-    //        case 4:
-    //            return Random.Range(monster.SpawnTime.FourthMin, monster.SpawnTime.FourthMax);
-    //            break;
-
-    //        case 5:
-    //            return Random.Range(monster.SpawnTime.fifthMin, monster.SpawnTime.fifthMax);
-    //            break;
-    //    }
-    //}
    
 }
 

@@ -10,6 +10,7 @@ public interface ScriptableInfo
 public interface I_Scriptable
 {
     public string Name => null;
+    public List<T> Prefablist <T>() where T : class, ScriptableInfo;
     T getPrefab<T>(string name) where T : class, ScriptableInfo;
 }
 
