@@ -1,7 +1,12 @@
+using System.Collections;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.TestTools;
 
 public class EnemyInput : InputCtrl
 {
+    bool isAttack = false;
+
     private void Update()
     {
         //transform.position = targetPlayer.position;
@@ -9,20 +14,52 @@ public class EnemyInput : InputCtrl
         {
             rootCtrl.targetTran = GameManager.instance.ReturnClosesetObject(this.transform);
         }
-
         
-        if (rootCtrl.targetTran != null && rootCtrl.stateCtrl.IsInvoking())
+        if (rootCtrl.targetTran != null && rootCtrl.stateCtrl.IsCanAction(rootCtrl.stateCtrl.stateEnum))
         {
-            
             Vector3 direction = rootCtrl.targetTran.position - transform.position;
             direction.Normalize();
+
             horizontal = direction.x;
             vertical = direction.y;
 
-
+            StartCoroutine(DelayAttack());
         }
     }
 
+    IEnumerator DelayAttack()
+    {
+
+        if (Vector2.Distance(rootCtrl.targetTran.position, transform.position) < 0.3f && isAttack == false)
+        {
+            isAttack = true;
+
+            Collider2D[] hits = Physics2D.OverlapCircleAll(this.transform.position, 0.5f, LayerManager.Instance.HitZone);
+
+            if (hits != null && hits.Length > 0)
+            {
+                //판정해야함
+                foreach (Collider2D hit in hits)
+                {
+                    I_HitZone hitZone = hit.transform.GetComponentInParent<I_HitZone>();
+                    if (hitZone != null)
+                    {
+                        if (rootCtrl.faction != hitZone.Faction && hitZone.CheckHitLock(rootCtrl) == false)
+                        {
+                            hitZone.SetDamaged(rootCtrl.scriptableMonster.Atk, rootCtrl);//데미지 작업해야함
+                            yield return null;
+                        }
+                    }
+                }
+            }
+            rootCtrl.stateCtrl.AttackState();
+        }
+        yield return new WaitForSeconds(2f);
+
+        isAttack = false;
+
+    }
+     
     public override void initiallize()
     {
         base.initiallize();
@@ -31,11 +68,5 @@ public class EnemyInput : InputCtrl
         {
             rootCtrl.WeaponCtrl.targetTran = attacker.myTransform;
         };
-
-        //
     }
-
-    // ai가 타켓을 가지고 있는데 타겟이 변경될때마다
-    // weapon ctrl에 타켓 트랜스폼이 있는데 그걸 최신화 시켜줘야함
-    // 액션을 만든다면 변경된 적 타켓의 transform을 weapon에 넣어줘야함.
 }

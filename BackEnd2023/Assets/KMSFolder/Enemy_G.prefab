@@ -204,6 +204,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59d1401b85b6beb4aa9da446df1fddc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  kind: 0
+  scriptableMonster:
+    Name: 0
+    Type: 0
+    HP: 0
+    Atk: 0
+    AttackSpeed: 0
+    MoveSpeed: 0
+    ActiveRange: 0
+    SightRange: 0
+    ChaseT_F: 0
+    ChaseTime: 0
+    FirstAttack: 0
+    prefab: {fileID: 0}
   faction: 0
   targetTran: {fileID: 0}
   inputCtrl: {fileID: 0}
@@ -307,8 +321,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rootCtrl: {fileID: 0}
   grabPivot: {fileID: 0}
+  aimTran: {fileID: 0}
+  interPivot: {fileID: 0}
+  selectItemCtrl: {fileID: 0}
   grabItemCtrl: {fileID: 0}
-  GrabItemCtrl: {fileID: 0}
 --- !u!1 &6629669082712177768
 GameObject:
   m_ObjectHideFlags: 0

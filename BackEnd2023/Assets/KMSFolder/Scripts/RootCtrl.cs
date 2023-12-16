@@ -12,6 +12,9 @@ public struct Status
 
 public class RootCtrl : MonoBehaviour, I_Attacker, I_Pool, I_Faction
 {
+    public MonsterKind kind;
+    public ScriptableMonsterInfo.PrefabInfo scriptableMonster;
+
     public Action lifeAction;
     public Action deadAction;
     public Action<I_Attacker> aggroAction;
@@ -37,6 +40,10 @@ public class RootCtrl : MonoBehaviour, I_Attacker, I_Pool, I_Faction
 
     private void Awake()
     {
+
+        scriptableMonster = ScriptableManager.instance.getTable(ScriptableManager.MobTableTag)
+           .getPrefab<ScriptableMonsterInfo.PrefabInfo>(kind.ToString());
+
         status = new Status(3f);
         inputCtrl = gameObject.GetComponent<InputCtrl>();
         inputCtrl.initiallize();

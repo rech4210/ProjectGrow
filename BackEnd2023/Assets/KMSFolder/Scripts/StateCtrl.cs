@@ -77,7 +77,7 @@ public class StateCtrl : MonoBehaviour, InitiallizeInterface
     #region 상태이상 변경
     public void StunState()
     {
-        if (IsCanAction(stateEnum))
+        if (stateEnum != stateEnum.Stunned || stateEnum != stateEnum.Dead)
         {
             StateChange(stateEnum.Stunned);
             rootCtrl.AnimationCtrl.StunningAnimation();
@@ -147,7 +147,8 @@ public class StateCtrl : MonoBehaviour, InitiallizeInterface
 
     public bool IsCanAction(stateEnum state)
     {
-        if(state != stateEnum.Stunned || state != stateEnum.Dead)
+        if(state != stateEnum.Stunned || state != stateEnum.Dead || state!= stateEnum.Attack)
+
         {
             return true;
         }
