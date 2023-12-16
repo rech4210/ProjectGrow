@@ -9,9 +9,7 @@ public enum Faction
 public class WeaponCtrl : MonoBehaviour, InitiallizeInterface
 {
 
-    public readonly static LayerMask HitZone = 1 + (1 << LayerMask.NameToLayer("HitZone"));
 
-    public Faction faction;
     RootCtrl rootCtrl;
     public Transform targetTran;
 

@@ -11,7 +11,6 @@ public enum ItemKind
 }
 public abstract class ItemCtrl : MonoBehaviour
 {
-    public readonly static LayerMask ItemInterObj = 1 + (1 << LayerMask.NameToLayer("ItemInterObj"));
 
     ///아이템 태그
     ///사용 함수 (루트 컨트롤 보내주세요

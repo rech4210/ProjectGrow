@@ -30,7 +30,7 @@ public class BulletCtrl : MonoBehaviour, I_Pool
     private void Update()
     {
         float moveRange = Time.deltaTime * speed;
-        RaycastHit2D[] hits = Physics2D.CircleCastAll(this.transform.position, radius, dic, moveRange, WeaponCtrl.HitZone);
+        RaycastHit2D[] hits = Physics2D.CircleCastAll(this.transform.position, radius, dic, moveRange, LayerManager.HitZone);
 
         if (hits != null && hits.Length > 0)
         {
@@ -40,7 +40,7 @@ public class BulletCtrl : MonoBehaviour, I_Pool
                 I_HitZone hitZone = hit.transform.GetComponentInParent<I_HitZone>();
                 if (hitZone != null)
                 {
-                    if (attacker.WeaponCtrl.faction != hitZone.RootCtrl.WeaponCtrl.faction)
+                    if (attacker.faction != hitZone.RootCtrl.faction)
                     {
                         //rootCtrl.hpCtrl.SetDamaged(float damage, RootCtrl attacker);//데미지 작업해야함
                         disable();//피격했으니까 제거 - 탄마다 다르게 처리해야함

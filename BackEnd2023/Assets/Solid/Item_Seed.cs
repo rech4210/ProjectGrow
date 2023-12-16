@@ -28,7 +28,7 @@ public class Item_Seed : ItemCtrl
     {
 
         //주변에 Slot을 체크해서 가장 가까운 슬롯에 설치해줌
-        Collider2D[] potList = Physics2D.OverlapCircleAll(rootCtrl.transform.position, 1f, ItemCtrl.ItemInterObj);
+        Collider2D[] potList = Physics2D.OverlapCircleAll(rootCtrl.transform.position, 1f, LayerManager.ItemInterObj);
 
         if (potList != null)
         {

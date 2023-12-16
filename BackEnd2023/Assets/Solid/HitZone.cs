@@ -10,7 +10,6 @@ public class HitZone : MonoBehaviour, I_HitZone
     private void Start()
     {
         rootCtrl = GetComponentInParent<RootCtrl>();
-
     }
 
 
@@ -18,6 +17,5 @@ public class HitZone : MonoBehaviour, I_HitZone
     {
         //rootCtrl.hpCtrl.SetDamaged(damage, attacker);
     }
-
 
 }
