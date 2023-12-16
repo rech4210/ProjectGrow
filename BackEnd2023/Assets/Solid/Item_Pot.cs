@@ -28,7 +28,7 @@ public class Item_Pot : ItemCtrl
             case ItemKind.Slot:
                 //밭에 화분 배치
                 PotSlot slot = nowItem as PotSlot;
-                if (slot != null && slot.nowItemCtrl == null)
+                if (slot != null && slot.nowPot == null)
                 {
                     return true;
                 }
@@ -64,7 +64,7 @@ public class Item_Pot : ItemCtrl
             case ItemKind.Slot:
                 //밭에 화분 배치
                 PotSlot slot = nowItem as PotSlot;
-                if (slot != null && slot.nowItemCtrl == null)
+                if (slot != null && slot.nowPot == null)
                 {
                     FieldCtrl.Instance.setSlot(this, slot);
                     return;
@@ -211,7 +211,7 @@ public class Item_Pot : ItemCtrl
                 break;
             case SeedKind.Tower:
                 //Todo PlantInfo로 변경해야함
-                weaponUseCount = ScriptableManager.instance.getTable("WeaponInfo").getPrefab<ScriptableWeaponInfo.PrefabInfo>(nowSeed.seedKind.ToString()).AbilityCount;
+                weaponUseCount = ScriptableManager.instance.getTable("PlantScriptable").getPrefab<ScriptablePlantInfo.PrefabInfo>(nowSeed.seedKind.ToString()).Reusecount;
                 break;
         }
 

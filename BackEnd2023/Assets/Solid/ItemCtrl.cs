@@ -12,6 +12,24 @@ public enum ItemKind
 }
 public abstract class ItemCtrl : MonoBehaviour, I_Pool
 {
+    //public static ItemCtrl newItem(ItemKind itemKind)
+    //{
+    //    switch (itemKind)
+    //    {
+    //        case ItemKind.Pot:
+    //            return newItem(ScriptableManager.instance.getTable(""))
+    //        case ItemKind.Seed:
+    //            return
+    //        case ItemKind.Weapon:
+    //            return
+    //    }
+    //}
+    //private static ItemCtrl newItem(ItemCtrl prefab)
+    //{
+
+    //}
+    public static Dictionary<ItemKind, ObjectPooling<ItemCtrl>> poolDic = new Dictionary<ItemKind, ObjectPooling<ItemCtrl>>();
+
     protected Action<I_Pool> disableAction;
     public void SetPoolEvent(Action<I_Pool> poolevent)
     {

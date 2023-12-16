@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
     public int stage = 0;
     float SpawnCoolTime;
     bool bisGameOver = false;
+    public Action startCall;
 
     private void Awake()
     {
@@ -47,6 +48,12 @@ public class GameManager : MonoBehaviour
     {
         scriptableManager.Initalize();
         objectManager.Initalize();
+
+        if (ItemCtrl.poolDic == null)
+        {
+            ItemCtrl.poolDic = new Dictionary<ItemKind, ObjectPooling<ItemCtrl>>();
+        }
+        ItemCtrl.poolDic.Clear();
     }
 
     private void Update()
@@ -63,11 +70,11 @@ public class GameManager : MonoBehaviour
 
     public void DeleteTransformlist(Transform transform)
     {
-        if(Objectlist.Contains(transform))
+        if (Objectlist.Contains(transform))
         {
-            for(int i = 0; i < Objectlist.Count; i++)
+            for (int i = 0; i < Objectlist.Count; i++)
             {
-                if(Objectlist[i] == transform)
+                if (Objectlist[i] == transform)
                 {
                     Objectlist.Remove(Objectlist[i]);
                 }
@@ -94,6 +101,6 @@ public class GameManager : MonoBehaviour
         }
         return null;
     }
-   
+
 }
 

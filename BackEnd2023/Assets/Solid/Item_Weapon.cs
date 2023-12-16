@@ -11,6 +11,7 @@ public enum SeedKind
     Electric = 4,
     Water = 5,
     Tower = 6,
+    Pot = 7,
 }
 
 public class Item_Weapon : ItemCtrl
@@ -27,9 +28,14 @@ public class Item_Weapon : ItemCtrl
     public float nowGuage;//남은 게이지
     public int nowAmmo;//남은 탄
 
+    public FireCtrl fireCtrl;
+
     private void Start()
     {
-        weaponInfo = ScriptableManager.instance.getTable("Bullet").getPrefab<ScriptableWeaponInfo.PrefabInfo>(weaponKind.ToString());
+        weaponInfo = ScriptableManager.instance.getTable("WeaponScriptable").getPrefab<ScriptableWeaponInfo.PrefabInfo>(weaponKind.ToString());
+        fireCtrl.setWeapon(this);
+
+
     }
     public override bool checkUse(ItemCtrl nowItem)
     {//무기는 화분에 사용할경우? 놉 내려놓을때 근처에 타워식물이 있으면 자동으로 장착, 줍기로 회수 
@@ -90,8 +96,7 @@ public class Item_Weapon : ItemCtrl
     public override void UseCall(RootCtrl rootCtrl, UseState useState)
     {
         //공격 모션
-
-
+        fireCtrl.Fire(rootCtrl);
 
     }
 }

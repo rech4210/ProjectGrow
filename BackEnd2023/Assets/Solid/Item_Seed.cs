@@ -20,6 +20,11 @@ public class Item_Seed : ItemCtrl
             case ItemKind.None:
                 break;
             case ItemKind.Slot:
+                PotSlot slot = nowItem as PotSlot;
+                if (slot != null && slot.nowPot == null)
+                {
+                    return true;
+                }
                 break;
             case ItemKind.Pot:
                 Item_Pot pot = nowItem as Item_Pot;
@@ -38,6 +43,11 @@ public class Item_Seed : ItemCtrl
             case ItemKind.None:
                 break;
             case ItemKind.Slot:
+                PotSlot slot = nowItem as PotSlot;
+                if (slot != null && slot.nowPot == null)
+                {
+                        //ItemCtrl.newItem(ItemKind.Pot);
+                }
                 break;
             case ItemKind.Pot:
                 Item_Pot pot = nowItem as Item_Pot;
