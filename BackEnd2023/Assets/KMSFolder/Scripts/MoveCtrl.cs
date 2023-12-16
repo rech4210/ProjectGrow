@@ -5,6 +5,7 @@ public class MoveCtrl : MonoBehaviour, InitiallizeInterface
 {
     RootCtrl rootCtrl;
     float speed;
+    float enemySpeed = 3;
     // 이동 처리, 플립 관리
 
     Vector3 pos;
@@ -26,8 +27,13 @@ public class MoveCtrl : MonoBehaviour, InitiallizeInterface
         //플레이어 이동 관련
         if (rootCtrl.inputCtrl.GetType() == typeof(EnemyInput))
         {
-            //Vector2 pos = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
 
+            Vector3 direction = target.position - transform.position;
+            direction.Normalize();
+
+            transform.position += direction * (speed / enemySpeed) * Time.deltaTime;
+
+            //Physics2D.OverlapCircle
             //transform.Translate(Vector2.MoveTowards(transform.position, target.position,10) * speed * Time.deltaTime);
         }
 
