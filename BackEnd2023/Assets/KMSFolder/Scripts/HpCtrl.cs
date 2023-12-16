@@ -10,7 +10,7 @@ public class HpCtrl : MonoBehaviour, InitiallizeInterface
     public void initiallize()
     {
         rootCtrl = gameObject.GetComponent<RootCtrl>();
-        rootCtrl.lifeAction += () => { hp = maxHp; };
+        rootCtrl.lifeAction += () => { hp = maxHp; rootCtrl.stateCtrl.RemoveStunned(); };
         hp = maxHp;
     }
 

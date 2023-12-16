@@ -24,6 +24,10 @@ public class AnimationCtrl : MonoBehaviour, InitiallizeInterface
     {
         animator.SetBool("Stunned",true);
     }
+    public void RemoveStunningAnimation()
+    {
+        animator.SetBool("Stunned",false);
+    }
 
     public void DeadAnimation()
     {

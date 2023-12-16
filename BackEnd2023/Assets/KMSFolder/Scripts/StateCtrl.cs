@@ -164,4 +164,9 @@ public class StateCtrl : MonoBehaviour, InitiallizeInterface
             rootCtrl.AnimationCtrl.AttackAnimation();
         }
     }
+    public void RemoveStunned()
+    {
+        stateEnum = stateEnum.Idle;
+        rootCtrl.AnimationCtrl.RemoveStunningAnimation();
+    }
 }
