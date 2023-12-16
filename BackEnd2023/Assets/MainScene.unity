@@ -370,7 +370,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   faction: 0
-  targetTran: {fileID: 0}
+  targetTran: {fileID: 864610342}
   inputCtrl: {fileID: 0}
   moveCtrl: {fileID: 0}
   stateCtrl: {fileID: 0}
