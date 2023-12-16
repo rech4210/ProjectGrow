@@ -293,6 +293,8 @@ GameObject:
   - component: {fileID: 844819137}
   - component: {fileID: 844819144}
   - component: {fileID: 844819143}
+  - component: {fileID: 844819145}
+  - component: {fileID: 844819146}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -315,7 +317,6 @@ MonoBehaviour:
   attackState: 0
   horizontal: 0
   vertical: 0
-  targetPlayer: {fileID: 864610342}
 --- !u!114 &844819138
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -423,7 +424,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b94da3c178e34942a4a073b9b123e7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Target: {fileID: 0}
+  target: {fileID: 864610342}
+--- !u!114 &844819145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 844819136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ad841eb1b5f26741a36b777016b0e24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetTran: {fileID: 0}
+--- !u!114 &844819146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 844819136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9db4fa351c3a50747b84b599a83b11f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rootCtrl: {fileID: 0}
+  grabPivot: {fileID: 0}
+  selectItemCtrl: {fileID: 0}
+  grabItemCtrl: {fileID: 0}
 --- !u!1 &864610341
 GameObject:
   m_ObjectHideFlags: 0
@@ -522,7 +552,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b94da3c178e34942a4a073b9b123e7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Target: {fileID: 539177055}
+  target: {fileID: 864610342}
 --- !u!114 &864610348
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -580,6 +610,7 @@ MonoBehaviour:
   attackState: 0
   horizontal: 0
   vertical: 0
+  target: {fileID: 0}
 --- !u!1 &1078818002
 GameObject:
   m_ObjectHideFlags: 0

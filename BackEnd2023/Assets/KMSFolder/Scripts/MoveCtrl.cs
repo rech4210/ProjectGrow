@@ -11,25 +11,24 @@ public class MoveCtrl : MonoBehaviour, InitiallizeInterface
 
     //스프라이트 반전 scale -1
     //SpriteRenderer playerRenderer;
-   [SerializeField] Transform Target;
+    public Transform target = null;
 
     public void initiallize()
     {
         rootCtrl = gameObject.GetComponent<RootCtrl>();
         speed = rootCtrl.status.speed;
-        //Target = rootCtrl.inputCtrl.target;
+        //target = rootCtrl.inputCtrl.target; 
     }
 
     void Update()
     {
-
         //gettype 수정하기
         //플레이어 이동 관련
         if (rootCtrl.inputCtrl.GetType() == typeof(EnemyInput))
         {
-            //Vector3 pos = Vector3.MoveTowards(transform.position, Target.position, speed * Time.deltaTime);
+            //Vector2 pos = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
 
-            //transform.position += pos;
+            //transform.Translate(Vector2.MoveTowards(transform.position, target.position,10) * speed * Time.deltaTime);
         }
 
 
@@ -43,11 +42,11 @@ public class MoveCtrl : MonoBehaviour, InitiallizeInterface
                 pos.x = rootCtrl.inputCtrl.horizontal * Time.deltaTime * speed;
                 if (rootCtrl.inputCtrl.horizontal > 0)
                 {
-                    Target.localScale = new Vector3(1, 1, 1);
+                    target.localScale = new Vector3(1, 1, 1);
                 }
                 else if (rootCtrl.inputCtrl.horizontal < 0)
                 {
-                    Target.localScale = new Vector3(-1, 1, 1);
+                    target.localScale = new Vector3(-1, 1, 1);
                 }
                 rootCtrl.stateCtrl.WalkState(rootCtrl.inputCtrl.horizontal, rootCtrl.inputCtrl.vertical);
             }
