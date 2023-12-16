@@ -17,3 +17,11 @@ MonoBehaviour:
     Prefabs: {fileID: 4331197926641971126, guid: 5c751946b3eb3498084cb4037d02e81d, type: 3}
   - Item_Name: Pot
     Prefabs: {fileID: 901659959253262485, guid: b32701d9ac61ffa48a5359489152410e, type: 3}
+  - Item_Name: effect_ flamethrower01
+    Prefabs: {fileID: 4569741562154130301, guid: 7894f9fe5a07e4c37a362fda7dea8ba8, type: 3}
+  - Item_Name: effect_starlight
+    Prefabs: {fileID: 1818909879952143244, guid: 56b7fb95d36ad4809a71ed2237c792e3, type: 3}
+  - Item_Name: effect_stun
+    Prefabs: {fileID: 7307226144820963394, guid: 3385dcb20d8934debb289267121a063c, type: 3}
+  - Item_Name: Drop Effect
+    Prefabs: {fileID: 7991721652625559881, guid: 1ed958e02ab2b442ca035a0088061370, type: 3}
