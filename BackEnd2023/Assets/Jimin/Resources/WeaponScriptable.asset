@@ -16,44 +16,89 @@ MonoBehaviour:
   - name: 1
     Type: 0
     EnergyType: 0
-    BulletCount: 0
+    BulletCount: 6
     GaugeTime: 0
     HP: 0
-    AttackPoint: 0
-    AttackSpeed: 0
-    AttackDistance: 0
+    AttackPoint: 10
+    AttackSpeed: 0.2
+    AttackDistance: 50
     SpecialOption: 0
     AbilityObject: 0
     Ability: 0
     AbilityCondition: 0
     AbilityCount: 0
     bulletprefab: {fileID: 0}
-  - name: 1
+  - name: 2
     Type: 0
     EnergyType: 0
-    BulletCount: 0
+    BulletCount: 50
     GaugeTime: 0
     HP: 0
-    AttackPoint: 0
-    AttackSpeed: 0
-    AttackDistance: 0
+    AttackPoint: 10
+    AttackSpeed: 0.05
+    AttackDistance: 50
     SpecialOption: 0
     AbilityObject: 0
     Ability: 0
     AbilityCondition: 0
     AbilityCount: 0
     bulletprefab: {fileID: 0}
-  - name: 1
+  - name: 3
     Type: 0
-    EnergyType: 0
+    EnergyType: 1
     BulletCount: 0
-    GaugeTime: 1241
+    GaugeTime: 10
     HP: 0
+    AttackPoint: 3
+    AttackSpeed: 0.1
+    AttackDistance: 15
+    SpecialOption: 0
+    AbilityObject: 0
+    Ability: 0
+    AbilityCondition: 0
+    AbilityCount: 0
+    bulletprefab: {fileID: 0}
+  - name: 4
+    Type: 0
+    EnergyType: 1
+    BulletCount: 0
+    GaugeTime: 10
+    HP: 0
+    AttackPoint: 5
+    AttackSpeed: 1000
+    AttackDistance: 50
+    SpecialOption: 1
+    AbilityObject: 1
+    Ability: 1
+    AbilityCondition: 1
+    AbilityCount: 10
+    bulletprefab: {fileID: 0}
+  - name: 5
+    Type: 0
+    EnergyType: 1
+    BulletCount: 0
+    GaugeTime: 900
+    HP: 0
+    AttackPoint: 0.5
+    AttackSpeed: 0.1
+    AttackDistance: 10
+    SpecialOption: 1
+    AbilityObject: 2
+    Ability: 2
+    AbilityCondition: 2
+    AbilityCount: 0
+    bulletprefab: {fileID: 0}
+  - name: 7
+    Type: 0
+    EnergyType: 1
+    BulletCount: 0
+    GaugeTime: 0
+    HP: 40
     AttackPoint: 0
     AttackSpeed: 0
     AttackDistance: 0
-    SpecialOption: 0
-    AbilityObject: 0
+    SpecialOption: 1
+    AbilityObject: 2
     Ability: 0
     AbilityCondition: 0
     AbilityCount: 0

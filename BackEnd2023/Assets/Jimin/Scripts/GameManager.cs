@@ -40,8 +40,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     UIManager uiManager;
 
-    [SerializeField]
-    public List<Transform> Objectlist;
+    public List<I_Faction> Objectlist = new List<I_Faction>();
 
     public float CurrentTime = 0f;
     public int stage = 0;
@@ -82,18 +81,18 @@ public class GameManager : MonoBehaviour
         uiManager.text.text = Mathf.Round(CurrentTime).ToString();
     }
 
-    public void AddtoTransformlist(Transform transform)
+    public void AddtoTransformlist(I_Faction factionTarget)
     {
-        Objectlist.Add(transform);
+        Objectlist.Add(factionTarget);
     }
 
-    public void DeleteTransformlist(Transform transform)
+    public void DeleteTransformlist(I_Faction factionTarget)
     {
-        if (Objectlist.Contains(transform))
+        if (Objectlist.Contains(factionTarget))
         {
             for (int i = 0; i < Objectlist.Count; i++)
             {
-                if (Objectlist[i] == transform)
+                if (Objectlist[i] == factionTarget)
                 {
                     Objectlist.Remove(Objectlist[i]);
                 }
@@ -106,17 +105,17 @@ public class GameManager : MonoBehaviour
         if (Objectlist.Count > 0)
         {
             int index = 0;
-            float distance = Vector2.Distance(Objectlist[0].transform.position, _transform.position);
+            float distance = Vector2.Distance(Objectlist[0].myTransform.position, _transform.position);
 
             for (int i = 1; i < Objectlist.Count; i++)
             {
-                if (Vector2.Distance(Objectlist[i].transform.position, _transform.position) < distance)
+                if (Vector2.Distance(Objectlist[i].myTransform.position, _transform.position) < distance)
                 {
                     index = i;
                 }
             }
 
-            return Objectlist[index];
+            return Objectlist[index].myTransform;
         }
         return null;
     }

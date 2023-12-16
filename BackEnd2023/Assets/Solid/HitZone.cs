@@ -12,8 +12,16 @@ public class HitZone : MonoBehaviour, I_HitZone
     {
         rootCtrl = GetComponentInParent<RootCtrl>();
         hitBox = GetComponent<Collider2D>();
-        RootCtrl.lifeAction += () => { hitBox.enabled = true; };
-        RootCtrl.deadAction += () => { hitBox.enabled = false; };
+        RootCtrl.lifeAction += () =>
+        {
+            hitBox.enabled = true;
+            GameManager.instance.AddtoTransformlist(rootCtrl);
+        };
+        RootCtrl.deadAction += () =>
+        {
+            hitBox.enabled = false;
+            GameManager.instance.DeleteTransformlist(rootCtrl);
+        };
     }
 
 

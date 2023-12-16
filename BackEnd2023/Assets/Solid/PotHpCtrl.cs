@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,11 +8,16 @@ public class PotHpCtrl : MonoBehaviour, I_HitZone
     public Item_Pot myPot;
 
     public float nowHp;
-    public float maxHp;
+    public float maxHp = 40f;
+    public Collider2D hitBox;
 
     private void Awake()
     {
         myPot = GetComponentInParent<Item_Pot>();
+        if (hitBox == null)
+        {
+            hitBox = GetComponent<Collider2D>();
+        }
     }
 
     public bool CheckHitLock(RootCtrl attacker)
@@ -72,10 +78,22 @@ public class PotHpCtrl : MonoBehaviour, I_HitZone
                 {
                     nowHp = 0f;
                     //ÆÄ±«
+                    attacker.DeadEvent(myPot);
+
+
+
+                    hitBox.enabled = false;
+                    GameManager.instance.DeleteTransformlist(myPot);
                 }
                 break;
         }
 
     }
 
+    public void lifeOn()
+    {
+        nowHp = 40;
+        hitBox.enabled = true;
+        GameManager.instance.AddtoTransformlist(myPot);
+    }
 }

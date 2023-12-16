@@ -17,5 +17,3 @@ MonoBehaviour:
     Prefabs: {fileID: 4331197926641971126, guid: 5c751946b3eb3498084cb4037d02e81d, type: 3}
   - Item_Name: Pot
     Prefabs: {fileID: 901659959253262485, guid: b32701d9ac61ffa48a5359489152410e, type: 3}
-  - Item_Name: Weapon
-    Prefabs: {fileID: 6056330896372844182, guid: 0ab7bd200ffa51e42ab733c5b82c913e, type: 3}
