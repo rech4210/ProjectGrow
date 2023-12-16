@@ -7,7 +7,8 @@ using Random = UnityEngine.Random;
 public enum MonsterKind
 {
     Gorani,
-    Wildboar
+    Wildboar,
+    Player,
 }
 
 [Serializable]
@@ -29,10 +30,10 @@ public class SpawnMonsterInfo
 public class ObjectManager : MonoBehaviour
 {
     [SerializeField]
-    public Zombies zombies;
+    public RootCtrl zombies;
 
     [SerializeField]
-    public Wildboar wildboar;
+    public RootCtrl wildboar;
 
     [SerializeField]
     public SpawnRoundInfo[] MonsterList;
@@ -41,8 +42,8 @@ public class ObjectManager : MonoBehaviour
     List<Transform> RandomVector;
 
 
-    ObjectPooling<Zombies> zombiePool = new ObjectPooling<Zombies>();
-    ObjectPooling<Wildboar> wildboarPool = new ObjectPooling<Wildboar>();
+    ObjectPooling<RootCtrl> zombiePool = new ObjectPooling<RootCtrl>();
+    ObjectPooling<RootCtrl> wildboarPool = new ObjectPooling<RootCtrl>();
 
     bool bisPlaying;
 
@@ -81,13 +82,13 @@ public class ObjectManager : MonoBehaviour
 
     public void MakeZombie()
     {
-        Zombies newzombie = zombiePool.GetObject(zombies);
+        RootCtrl newzombie = zombiePool.GetObject(zombies);
         newzombie.transform.position = RandomVector[Random.Range(0, RandomVector.Count)].position;
     }
 
     public void MakeWildboar()
     {
-        Wildboar newwildboar = wildboarPool.GetObject(wildboar);
+        RootCtrl newwildboar = wildboarPool.GetObject(wildboar);
         newwildboar.transform.position = RandomVector[Random.Range(0, RandomVector.Count)].position;
     }
 
