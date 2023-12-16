@@ -34,6 +34,21 @@ public class Item_Pot : ItemCtrl
                 {
                     isWood = false;
                     nowSeed = seed;
+                    nowSeed.gameObject.SetActive(false);//일단 꺼두자
+                    //화분에 리소스 설정
+                    switch (nowSeed.WeaponKind)
+                    {
+                        case WeaponKind.None:
+                            break;
+                        case WeaponKind.Revolver:
+                            break;
+                        case WeaponKind.Minigun:
+                            break;
+                        case WeaponKind.Firebat:
+                            break;
+                        case WeaponKind.Electric:
+                            break;
+                    }
                     return true;
                 }
                 break;
@@ -69,7 +84,7 @@ public class Item_Pot : ItemCtrl
                 }
                 else
                 {//씨앗 없음, 설치 안됨
-                    ItemCtrl hitCtrl = InteractionCtrl.selectItemCtrl(rootCtrl.transform, checkUse);
+                    ItemCtrl hitCtrl = InteractionCtrl.getSelectItemCtrl(rootCtrl.transform, checkUse);
                     if (hitCtrl != null)
                     {
                         //Todo 장착중인 아이템 해제함
@@ -92,6 +107,9 @@ public class Item_Pot : ItemCtrl
             {
                 waterValue -= Time.deltaTime;
                 nowSeed.addWeight(Time.deltaTime, this);
+                //게이지 표시
+                //nowSeed.nowWeight / nowSeed.maxWeight;//현재 성장율
+                //(nowSeed.nowWeight+waterValue) / nowSeed.maxWeight;//예상 성장률
             }
         }
     }
