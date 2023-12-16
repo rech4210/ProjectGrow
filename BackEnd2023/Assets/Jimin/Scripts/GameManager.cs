@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    private static GameManager instance = null;
+    public static GameManager instance = null;
+
+    [SerializeField]
+    GameObject BulletParent;
 
     [SerializeField]
     ObjectManager objectManager;
