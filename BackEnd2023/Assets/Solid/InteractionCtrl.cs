@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class InteractionCtrl : MonoBehaviour, I_Interaction
@@ -109,5 +107,9 @@ public class InteractionCtrl : MonoBehaviour, I_Interaction
 
         }
         return hitCtrl;
+    }
+
+    public void interactionThrow()
+    {
     }
 }
