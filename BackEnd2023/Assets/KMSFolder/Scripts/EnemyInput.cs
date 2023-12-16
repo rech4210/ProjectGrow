@@ -10,6 +10,7 @@ public class EnemyInput : InputCtrl
         if (rootCtrl.targetTran == null)
         {
             rootCtrl.targetTran = GameManager.instance.ReturnClosesetObject(this.transform);
+            rootCtrl.stateCtrl.IdleState();
         }
         
         if (rootCtrl.targetTran != null && rootCtrl.stateCtrl.IsCanAction(rootCtrl.stateCtrl.stateEnum))
@@ -17,10 +18,17 @@ public class EnemyInput : InputCtrl
             Vector3 direction = rootCtrl.targetTran.position - transform.position;
             direction.Normalize();
 
-            horizontal = direction.x;
-            vertical = direction.y;
-
-            if(!isAttack)
+            if (rootCtrl.stateCtrl.IsCanAction(rootCtrl.stateCtrl.stateEnum))
+            {
+                horizontal = direction.x;
+                vertical = direction.y;
+            }
+            else
+            {
+                horizontal = 0;
+                vertical = 0;
+            }
+            if (!isAttack)
             {
                 StartCoroutine(DelayAttack());
             }

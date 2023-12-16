@@ -24,7 +24,7 @@ public class MoveCtrl : MonoBehaviour, InitiallizeInterface
     {
         pos = Vector3.zero;
 
-        if ((rootCtrl.stateCtrl.IsCanAction(rootCtrl.stateCtrl.stateEnum)) || Input.GetAxis("Horizontal") != 0)
+        if ((rootCtrl.stateCtrl.IsCanAction(rootCtrl.stateCtrl.stateEnum)))
         {
             pos.x = rootCtrl.inputCtrl.horizontal * Time.deltaTime * rootCtrl.scriptableMonster.MoveSpeed;
             transform.position += pos;
@@ -61,9 +61,9 @@ public class MoveCtrl : MonoBehaviour, InitiallizeInterface
             rootCtrl.stateCtrl.IdleState();
         }
 
-        if ((rootCtrl.stateCtrl.IsCanAction(rootCtrl.stateCtrl.stateEnum)) || Input.GetAxis("Vertical") != 0)
+        if ((rootCtrl.stateCtrl.IsCanAction(rootCtrl.stateCtrl.stateEnum)))
         {
-            pos.y = rootCtrl.inputCtrl.vertical * Time.deltaTime * speed;
+            pos.y = rootCtrl.inputCtrl.vertical * Time.deltaTime * rootCtrl.scriptableMonster.MoveSpeed;
             rootCtrl.stateCtrl.WalkState(rootCtrl.inputCtrl.horizontal, rootCtrl.inputCtrl.vertical);
             transform.position += pos;
 
