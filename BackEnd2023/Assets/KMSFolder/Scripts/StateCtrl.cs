@@ -148,7 +148,6 @@ public class StateCtrl : MonoBehaviour, InitiallizeInterface
     public bool IsCanAction(stateEnum state)
     {
         if(state != stateEnum.Stunned || state != stateEnum.Dead || state!= stateEnum.Attack)
-
         {
             return true;
         }
