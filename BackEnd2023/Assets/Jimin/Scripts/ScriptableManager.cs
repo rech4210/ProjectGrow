@@ -9,16 +9,33 @@ public interface ScriptableInfo
 
 public interface I_Scriptable
 {
-    public string Name => null;
+    public virtual string Name => null;
     public List<T> Prefablist<T>() where T : class, ScriptableInfo;
     T getPrefab<T>(string name) where T : class, ScriptableInfo;
 }
 
 public class ScriptableManager : MonoBehaviour
 {
-    public static ScriptableManager instance;
+    public static ScriptableManager _instance;
+    public static ScriptableManager instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = FindObjectOfType<ScriptableManager>();
+                if (_instance == null)
+                {
+                    _instance = new GameObject().AddComponent<ScriptableManager>();
+                }
+                _instance.Initalize();
+            }
+            return _instance;
+        }
+    }
 
     public List<I_Scriptable> scriptablelist = new List<I_Scriptable>();
+
 
     public void Initalize()
     {
@@ -39,7 +56,7 @@ public class ScriptableManager : MonoBehaviour
 
         foreach (var scriptable in scriptablelist)
         {
-            if (scriptable.Name == "name")
+            if (scriptable != null && scriptable.Name == "name")
             {
                 selectedscriptable = scriptable;
                 return selectedscriptable;

@@ -46,7 +46,7 @@ public class Item_Seed : ItemCtrl
                 PotSlot slot = nowItem as PotSlot;
                 if (slot != null && slot.nowPot == null)
                 {
-                        //ItemCtrl.newItem(ItemKind.Pot);
+                    ItemCtrl.newItem(ItemKind.Pot, "Pot");
                 }
                 break;
             case ItemKind.Pot:

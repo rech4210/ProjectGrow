@@ -12,22 +12,28 @@ public enum ItemKind
 }
 public abstract class ItemCtrl : MonoBehaviour, I_Pool
 {
-    //public static ItemCtrl newItem(ItemKind itemKind)
-    //{
-    //    switch (itemKind)
-    //    {
-    //        case ItemKind.Pot:
-    //            return newItem(ScriptableManager.instance.getTable(""))
-    //        case ItemKind.Seed:
-    //            return
-    //        case ItemKind.Weapon:
-    //            return
-    //    }
-    //}
-    //private static ItemCtrl newItem(ItemCtrl prefab)
-    //{
-
-    //}
+    public static ItemCtrl newItem(ItemKind itemKind, string tag)
+    {
+        switch (itemKind)
+        {
+            case ItemKind.Pot:
+                return newItem(ScriptableManager.instance.getTable("Scriptable").getPrefab<Scriptable_Object.PrefabInfo>("Pot").Prefabs.GetComponent<ItemCtrl>());
+            case ItemKind.Seed:
+                return newItem(ScriptableManager.instance.getTable("PlantScriptable").getPrefab<ScriptablePlantInfo.PrefabInfo>(tag).prefab.GetComponent<ItemCtrl>());
+            case ItemKind.Weapon:
+                return newItem(ScriptableManager.instance.getTable("WeaponScriptable").getPrefab<ScriptablePlantInfo.PrefabInfo>(tag).prefab.GetComponent<ItemCtrl>());
+        }
+        return null;
+    }
+    public static ItemCtrl newItem(ItemCtrl prefab)
+    {
+        if (poolDic.ContainsKey(prefab.itemKind) == false)
+        {
+            poolDic[prefab.itemKind] = new ObjectPooling<ItemCtrl>();
+            poolDic[prefab.itemKind].Initialize(prefab, GameManager.instance.transform, 10);
+        }
+        return poolDic[prefab.itemKind].GetObject(prefab);
+    }
     public static Dictionary<ItemKind, ObjectPooling<ItemCtrl>> poolDic = new Dictionary<ItemKind, ObjectPooling<ItemCtrl>>();
 
     protected Action<I_Pool> disableAction;
