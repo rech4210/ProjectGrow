@@ -27,7 +27,8 @@ MonoBehaviour:
     Ability: 0
     AbilityCondition: 0
     AbilityCount: 0
-    bulletprefab: {fileID: 6056330896372844182, guid: 0ab7bd200ffa51e42ab733c5b82c913e, type: 3}
+    weaponPrefab: {fileID: 6056330896372844182, guid: 0ab7bd200ffa51e42ab733c5b82c913e, type: 3}
+    bulletprefab: {fileID: 565971979375242135, guid: d738dc85ea4d7b047a6106b7a30fd86c, type: 3}
   - name: 2
     Type: 0
     EnergyType: 0
@@ -42,7 +43,8 @@ MonoBehaviour:
     Ability: 0
     AbilityCondition: 0
     AbilityCount: 0
-    bulletprefab: {fileID: 6056330896372844182, guid: 0ab7bd200ffa51e42ab733c5b82c913e, type: 3}
+    weaponPrefab: {fileID: 6056330896372844182, guid: 0ab7bd200ffa51e42ab733c5b82c913e, type: 3}
+    bulletprefab: {fileID: 565971979375242135, guid: d738dc85ea4d7b047a6106b7a30fd86c, type: 3}
   - name: 3
     Type: 0
     EnergyType: 1
@@ -57,7 +59,8 @@ MonoBehaviour:
     Ability: 0
     AbilityCondition: 0
     AbilityCount: 0
-    bulletprefab: {fileID: 6056330896372844182, guid: 0ab7bd200ffa51e42ab733c5b82c913e, type: 3}
+    weaponPrefab: {fileID: 6056330896372844182, guid: 0ab7bd200ffa51e42ab733c5b82c913e, type: 3}
+    bulletprefab: {fileID: 565971979375242135, guid: d738dc85ea4d7b047a6106b7a30fd86c, type: 3}
   - name: 4
     Type: 0
     EnergyType: 1
@@ -72,7 +75,8 @@ MonoBehaviour:
     Ability: 1
     AbilityCondition: 1
     AbilityCount: 10
-    bulletprefab: {fileID: 6056330896372844182, guid: 0ab7bd200ffa51e42ab733c5b82c913e, type: 3}
+    weaponPrefab: {fileID: 6056330896372844182, guid: 0ab7bd200ffa51e42ab733c5b82c913e, type: 3}
+    bulletprefab: {fileID: 565971979375242135, guid: d738dc85ea4d7b047a6106b7a30fd86c, type: 3}
   - name: 5
     Type: 0
     EnergyType: 1
@@ -87,7 +91,8 @@ MonoBehaviour:
     Ability: 2
     AbilityCondition: 2
     AbilityCount: 0
-    bulletprefab: {fileID: 6056330896372844182, guid: 0ab7bd200ffa51e42ab733c5b82c913e, type: 3}
+    weaponPrefab: {fileID: 6056330896372844182, guid: 0ab7bd200ffa51e42ab733c5b82c913e, type: 3}
+    bulletprefab: {fileID: 565971979375242135, guid: d738dc85ea4d7b047a6106b7a30fd86c, type: 3}
   - name: 7
     Type: 0
     EnergyType: 1
@@ -102,4 +107,5 @@ MonoBehaviour:
     Ability: 0
     AbilityCondition: 0
     AbilityCount: 0
+    weaponPrefab: {fileID: 0}
     bulletprefab: {fileID: 901659959253262485, guid: b32701d9ac61ffa48a5359489152410e, type: 3}

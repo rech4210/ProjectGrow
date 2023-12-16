@@ -33,7 +33,7 @@ public abstract class ItemCtrl : MonoBehaviour, I_Pool
         }
     }
 
-  
+
     public static ItemCtrl newItem(ItemKind itemKind, string tag)
     {
         switch (itemKind)
@@ -43,7 +43,7 @@ public abstract class ItemCtrl : MonoBehaviour, I_Pool
             case ItemKind.Seed:
                 return newItem(ScriptableManager.instance.getTable(ScriptableManager.PlantScriptableTag).getPrefab<ScriptablePlantInfo.PrefabInfo>(tag).prefab.GetComponent<ItemCtrl>());
             case ItemKind.Weapon:
-                return newItem(ScriptableManager.instance.getTable(ScriptableManager.WeaponScriptableTag).getPrefab<ScriptableWeaponInfo.PrefabInfo>(tag).bulletprefab.GetComponent<ItemCtrl>());//Todo 블렛 말고 무기 프리팹으로 교체해야함
+                return newItem(ScriptableManager.instance.getTable(ScriptableManager.WeaponScriptableTag).getPrefab<ScriptableWeaponInfo.PrefabInfo>(tag).weaponPrefab.GetComponent<ItemCtrl>());
                 //return newItem(ScriptableManager.instance.getTable(ScriptableManager.ScriptableTag).getPrefab<Scriptable_Object.PrefabInfo>(tag).Prefabs.GetComponent<ItemCtrl>());//Todo 블렛 말고 무기 프리팹으로 교체해야함
         }
         return null;
@@ -97,13 +97,13 @@ public abstract class ItemCtrl : MonoBehaviour, I_Pool
 
     public virtual ItemKind itemKind => ItemKind.None;
 
-    //public bool isGrab;//그랩상태 필요한가?
+    public bool isGrab;
     [SerializeField]
     public bool isGrabLock;//그랩 가능 불가능
     public virtual bool IsGrabLock => isGrabLock;
     [SerializeField]
     public bool isInterLock;//인터렉션 잠금
-    public virtual bool IsInterLock => isInterLock;
+    public virtual bool IsInterLock => isInterLock || isGrab == false;
 
 
     //마우스 클릭의 아이템 사용 처리

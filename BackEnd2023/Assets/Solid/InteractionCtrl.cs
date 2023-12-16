@@ -6,19 +6,28 @@ public class InteractionCtrl : MonoBehaviour, I_Interaction
 
     public RootCtrl rootCtrl;
     public Transform grabPivot;
+    public Transform aimTran;
+    public Transform interPivot;
 
 
-    [HideInInspector]
     public ItemCtrl selectItemCtrl;
-    [HideInInspector]
     public ItemCtrl grabItemCtrl;
-    public ItemCtrl GrabItemCtrl;
 
     public void initiallize()
     {
         rootCtrl = GetComponentInParent<RootCtrl>();
+        aimTran = new GameObject().transform;
+        aimTran.name = "AimTran";
+    }
+    private void Start()
+    {
+        rootCtrl.WeaponCtrl.targetTran = aimTran;
     }
 
+    private void Update()
+    {
+        aimTran.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+    }
     public void InteractionEnter()
     {
         if (grabItemCtrl != null)
@@ -27,7 +36,7 @@ public class InteractionCtrl : MonoBehaviour, I_Interaction
         }
         else
         {
-            selectItemCtrl = getSelectItemCtrl(rootCtrl.transform, checkUse);
+            selectItemCtrl = getSelectItemCtrl(interPivot, checkUse);
             if (selectItemCtrl != null)
             {
                 selectItemCtrl.UseCall(rootCtrl, UseState.Start);
@@ -69,7 +78,7 @@ public class InteractionCtrl : MonoBehaviour, I_Interaction
         }
         else
         {
-            grabItemCtrl = getSelectItemCtrl(rootCtrl.transform, checkGrab);
+            grabItemCtrl = getSelectItemCtrl(interPivot, checkGrab);
             if (grabItemCtrl != null)
             {
                 grabItemCtrl = grabItemCtrl.GrabToggle(rootCtrl, true);
@@ -85,6 +94,16 @@ public class InteractionCtrl : MonoBehaviour, I_Interaction
 
     public bool checkUse(ItemCtrl itemCtrl)
     {
+        switch (itemCtrl.itemKind)
+        {
+            case ItemKind.None:
+            case ItemKind.Slot:
+                return false;
+            case ItemKind.Pot:
+            case ItemKind.Seed:
+            case ItemKind.Weapon:
+                break;
+        }
         return itemCtrl.IsInterLock == false;
     }
     public bool checkGrab(ItemCtrl itemCtrl)

@@ -19,6 +19,7 @@ public class BulletCtrl : MonoBehaviour, I_Pool
     public float speed;
     public Action<I_Pool> disalbleAction;
     public Transform model;
+    public float temp;
     public void SetPoolEvent(Action<I_Pool> poolevent)
     {
         disalbleAction += poolevent;
@@ -28,10 +29,14 @@ public class BulletCtrl : MonoBehaviour, I_Pool
     {
         disalbleAction?.Invoke(this);
     }
+    public void enable()
+    {
+        temp = speed;
+    }
 
     private void Update()
     {
-        float moveRange = Time.deltaTime * speed;
+        float moveRange = Time.deltaTime * (range / speed);
         RaycastHit2D[] hits = Physics2D.CircleCastAll(this.transform.position, radius, dic, moveRange, LayerManager.Instance.HitZone);
 
         if (hits != null && hits.Length > 0)

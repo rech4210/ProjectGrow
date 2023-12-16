@@ -22,6 +22,7 @@ public class ScriptableWeaponInfo : ScriptableObject, I_Scriptable
         public AbilityEnum Ability;
         public AbilityConditionEnum AbilityCondition;
         public int AbilityCount;
+        public GameObject weaponPrefab;
         public GameObject bulletprefab;
     }
     public List<PrefabInfo> prefabInfo;
