@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -72,10 +73,15 @@ public class PotHpCtrl : MonoBehaviour, I_HitZone
                 {
                     nowHp = 0f;
                     //ÆÄ±«
+                    attacker.DeadEvent(myPot);
                 }
                 break;
         }
 
     }
 
+    public void lifeOn()
+    {
+
+    }
 }

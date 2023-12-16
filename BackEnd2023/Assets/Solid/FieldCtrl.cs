@@ -31,11 +31,12 @@ public class FieldCtrl : MonoBehaviour
         }
     }
 
-    public void setSlot(ItemCtrl potCtrl, PotSlot slot)
+    public void setSlot(Item_Pot potCtrl, PotSlot slot)
     {
         slot.nowPot = potCtrl;
         potCtrl.isGrabLock = true;
         potCtrl.transform.SetParent(slot.transform);
+        potCtrl.hpCtrl.lifeOn();
         potCtrl.transform.localPosition = Vector3.zero;
     }
 

@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Item_Pot : ItemCtrl
+public class Item_Pot : ItemCtrl, I_Faction
 {
+    public Transform myTransform => this.transform;
 
     public override ItemKind itemKind => ItemKind.Pot;
 
@@ -12,6 +13,7 @@ public class Item_Pot : ItemCtrl
     public Item_Seed nowSeed;
     public float waterValue;
     public bool isWood;//³ª¹«°¡ µÆµÂ
+    public PotHpCtrl hpCtrl;
 
     public Animator ani;
 
@@ -23,6 +25,7 @@ public class Item_Pot : ItemCtrl
     public void Awake()
     {
         ani = GetComponentInChildren<Animator>();
+        hpCtrl = GetComponent<PotHpCtrl>();
     }
     public override bool checkUse(ItemCtrl nowItem)
     {
