@@ -2,10 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UIElements;
 
+public enum Faction
+{
+    None = 0,
+    Player = 1,
+    Enemy = 10,
+}
 public class WeaponCtrl : MonoBehaviour, InitiallizeInterface
 {
+
+    public readonly static LayerMask HitZone = 1 + (1 << LayerMask.NameToLayer("HitZone"));
+
+    public Faction faction;
     RootCtrl rootCtrl;
     public Transform targetTran;
 
