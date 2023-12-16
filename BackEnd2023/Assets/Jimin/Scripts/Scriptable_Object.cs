@@ -15,7 +15,10 @@ public class Scriptable_Object : ScriptableObject, I_Scriptable
 
     public List<PrefabInfo> prefabInfo;
 
-
+    public List<T> Prefablist<T>() where T : class, ScriptableInfo
+    {
+        return prefabInfo.ConvertAll((x) => x as T);
+    }
     public T getPrefab<T>(string prefabs) where T : class, ScriptableInfo
     {
         foreach(var tmp in prefabInfo)
