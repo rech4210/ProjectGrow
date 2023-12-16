@@ -30,11 +30,11 @@ public class MoveCtrl : MonoBehaviour, InitiallizeInterface
             pos.x = rootCtrl.inputCtrl.horizontal * Time.deltaTime * speed;
             if (rootCtrl.inputCtrl.horizontal > 0)
             {
-                modelTran.localScale = new Vector3(1, 1, 1);
+                modelTran.localScale = new Vector3(-1, 1, 1);
             }
             else if (rootCtrl.inputCtrl.horizontal < 0)
             {
-                modelTran.localScale = new Vector3(-1, 1, 1);
+                modelTran.localScale = new Vector3(1, 1, 1);
             }
             rootCtrl.stateCtrl.WalkState(rootCtrl.inputCtrl.horizontal, rootCtrl.inputCtrl.vertical);
         }
