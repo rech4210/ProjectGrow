@@ -29,7 +29,7 @@ public class StateCtrl : MonoBehaviour, InitiallizeInterface
 
     public void StateChange(stateEnum state)
     {
-        switch (stateEnum)
+        switch (state)
         {
             case stateEnum.Idle:
                 stateEnum = stateEnum.Idle;

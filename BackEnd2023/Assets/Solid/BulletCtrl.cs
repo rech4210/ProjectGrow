@@ -32,7 +32,7 @@ public class BulletCtrl : MonoBehaviour, I_Pool
     }
     public void enable()
     {
-        temp = speed;
+        temp = range / speed;
     }
 
     private void Update()
