@@ -29,6 +29,11 @@ public class Item_Pot : ItemCtrl, I_Faction
     {
         ani = GetComponentInChildren<Animator>(true);
         hpCtrl = GetComponentInChildren<PotHpCtrl>(true);
+
+        for (int i = 0; i < gunIconSprites.Length; i++)
+        {
+            gunIconSprites[i].transform.parent.gameObject.SetActive(false);
+        }
     }
     public override bool checkUse(ItemCtrl nowItem)
     {
@@ -50,7 +55,7 @@ public class Item_Pot : ItemCtrl, I_Faction
                 if (seed != null && nowSeed == null)
                 {
                     //화분에 리소스 설정
-                    switch (nowSeed.seedKind)
+                    switch (seed.seedKind)
                     {
                         case SeedKind.None:
                         case SeedKind.Revolver:
@@ -195,10 +200,71 @@ public class Item_Pot : ItemCtrl, I_Faction
 
                 if (nowSeed != null)
                 {
+                    switch (nowSeed.seedKind)
+                    {
+                        case SeedKind.None:
+                        case SeedKind.Tower:
+                        case SeedKind.Pot:
+                            //씨앗 회수 안되는 경우
+                            return;
+                        case SeedKind.Revolver:
+                            break;
+                        case SeedKind.Minigun:
+                            break;
+                        case SeedKind.Firebat:
+                            break;
+                        case SeedKind.Electric:
+                            break;
+                        case SeedKind.Water:
+                            break;
+                    }
                     if (isWood)
                     {
                         //열매 생성
                         //씨앗 회수
+
+                        ani.SetInteger("LeefType", 0);
+                        ani.SetFloat("LeefFill", 0f);
+                        for (int i = 0; i < gunIconSprites.Length; i++)
+                        {
+                            gunIconSprites[i].transform.parent.gameObject.SetActive(false);
+                        }
+                        void seedCraft(PlantNameEnum plant, SeedKind seedKind)
+                        {
+                            for (int i = 0; i < 2; i++)
+                            {
+                                Item_Seed seedItem = ItemCtrl.newItem(ItemKind.Seed, plant.ToString()) as Item_Seed;
+                                seedItem.seedKind = seedKind;
+                                seedItem.transform.position = gunIconSprites[i].transform.position;
+                                seedItem.potOut();
+                            }
+                        }
+                        switch (nowSeed.seedKind)
+                        {
+                            case SeedKind.None:
+                                break;
+                            case SeedKind.Revolver:
+                                seedCraft(PlantNameEnum.Rovolver, SeedKind.Revolver);
+                                break;
+                            case SeedKind.Minigun:
+                                seedCraft(PlantNameEnum.Minigun, SeedKind.Minigun);
+                                break;
+                            case SeedKind.Firebat:
+                                seedCraft(PlantNameEnum.flame_thrower, SeedKind.Firebat);
+                                break;
+                            case SeedKind.Electric:
+                                seedCraft(PlantNameEnum.Lighting, SeedKind.Electric);
+                                break;
+                            case SeedKind.Water:
+                                break;
+                            case SeedKind.Tower:
+                                break;
+                            case SeedKind.Pot:
+                                break;
+                            default:
+                                break;
+                        }
+
                         nowSeed.disable();
                         nowSeed = null;
                     }

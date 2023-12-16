@@ -462,7 +462,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 7388bdc5035562e4db7513b1d0212fe2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cb6f0f45f5ec5c64895462137e534ac3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -815,6 +815,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rootCtrl: {fileID: 0}
   grabPivot: {fileID: 1965806687}
+  selectItemCtrl: {fileID: 0}
   grabItemCtrl: {fileID: 0}
   GrabItemCtrl: {fileID: 0}
 --- !u!114 &864610349
@@ -1041,42 +1042,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 901659959225205990, guid: b32701d9ac61ffa48a5359489152410e, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 901659959225205990, guid: b32701d9ac61ffa48a5359489152410e, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 901659959225205990, guid: b32701d9ac61ffa48a5359489152410e, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 901659959225205990, guid: b32701d9ac61ffa48a5359489152410e, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 901659959225205990, guid: b32701d9ac61ffa48a5359489152410e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 901659959225205992, guid: b32701d9ac61ffa48a5359489152410e, type: 3}
-      propertyPath: m_Size.x
-      value: 1.76
-      objectReference: {fileID: 0}
-    - target: {fileID: 901659959225205992, guid: b32701d9ac61ffa48a5359489152410e, type: 3}
-      propertyPath: m_Size.y
-      value: 1.52
-      objectReference: {fileID: 0}
-    - target: {fileID: 901659959225205992, guid: b32701d9ac61ffa48a5359489152410e, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: dc52534462096014d88acd214758e119, type: 3}
-    - target: {fileID: 901659959225205992, guid: b32701d9ac61ffa48a5359489152410e, type: 3}
-      propertyPath: m_WasSpriteAssigned
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 901659959253262485, guid: b32701d9ac61ffa48a5359489152410e, type: 3}
       propertyPath: m_Name
       value: Item_Pot
@@ -1124,10 +1089,6 @@ PrefabInstance:
     - target: {fileID: 901659959253262486, guid: b32701d9ac61ffa48a5359489152410e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 901659959758861558, guid: b32701d9ac61ffa48a5359489152410e, type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b32701d9ac61ffa48a5359489152410e, type: 3}

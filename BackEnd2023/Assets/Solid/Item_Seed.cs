@@ -14,6 +14,9 @@ public class Item_Seed : ItemCtrl
 
     public SeedKind seedKind;
 
+    public float openTime = 1f;
+    public float openTemp;
+
     private void OnEnable()
     {
         switch (seedKind)
@@ -41,6 +44,12 @@ public class Item_Seed : ItemCtrl
                 break;
         }
     }
+    public override void potOut()
+    {
+        OnEnable();
+        base.potOut();
+    }
+
     public override bool checkUse(ItemCtrl nowItem)
     {
         //화분에 입력 들어오는건 씨앗, 무기일경우 타워화분임
@@ -104,6 +113,28 @@ public class Item_Seed : ItemCtrl
     public override void UseCall(RootCtrl rootCtrl, UseState useState)
     {
 
+        switch (useState)
+        {
+            case UseState.None:
+                break;
+            case UseState.Start:
+                openTemp = openTime;
+                break;
+            case UseState.Ing:
+                openTemp -= Time.deltaTime;
+                break;
+            case UseState.End:
+                break;
+        }
+        Debug.Log(openTemp);
+        if (openTemp <= 0f)
+        {
+            Item_Weapon weapon = ItemCtrl.newItem(ItemKind.Weapon, seedKind.ToString()) as Item_Weapon;
+            weapon.transform.position = this.transform.position;
+            rootCtrl.interaction.interactionGrabOff();
+            this.disable();
+            return;
+        }
         //주변에 Slot을 체크해서 가장 가까운 슬롯에 설치해줌
         Collider2D[] potList = Physics2D.OverlapCircleAll(rootCtrl.transform.position, 1f, LayerManager.Instance.ItemInterObj);
 

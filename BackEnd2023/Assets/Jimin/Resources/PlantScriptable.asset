@@ -11,7 +11,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2a5f4256d7fc54511b5a2f753d61464a, type: 3}
   m_Name: PlantScriptable
-  m_EditorClassIdentifier:
+  m_EditorClassIdentifier: 
   prefabInfo:
   - Name: 0
     Type: 0
@@ -20,7 +20,7 @@ MonoBehaviour:
     Reusecount: 0
     SignIcon: 0
     PlantSillust: 0
-    prefab: {fileID: 0}
+    prefab: {fileID: 5994676055889814354, guid: ecb4adb172932af4684ec4d4111592d1, type: 3}
   - Name: 1
     Type: 0
     GrowTime: 10
@@ -28,7 +28,7 @@ MonoBehaviour:
     Reusecount: 0
     SignIcon: 0
     PlantSillust: 0
-    prefab: {fileID: 0}
+    prefab: {fileID: 5994676055889814354, guid: ecb4adb172932af4684ec4d4111592d1, type: 3}
   - Name: 2
     Type: 0
     GrowTime: 15
@@ -36,7 +36,7 @@ MonoBehaviour:
     Reusecount: 0
     SignIcon: 0
     PlantSillust: 0
-    prefab: {fileID: 0}
+    prefab: {fileID: 5994676055889814354, guid: ecb4adb172932af4684ec4d4111592d1, type: 3}
   - Name: 3
     Type: 0
     GrowTime: 60
@@ -44,12 +44,20 @@ MonoBehaviour:
     Reusecount: 0
     SignIcon: 0
     PlantSillust: 0
-    prefab: {fileID: 0}
+    prefab: {fileID: 5994676055889814354, guid: ecb4adb172932af4684ec4d4111592d1, type: 3}
   - Name: 4
     Type: 1
     GrowTime: 30
-    FruitCount: 1
+    FruitCount: 0
     Reusecount: 3
     SignIcon: 0
     PlantSillust: 0
-    prefab: {fileID: 0}
+    prefab: {fileID: 5994676055889814354, guid: ecb4adb172932af4684ec4d4111592d1, type: 3}
+  - Name: 5
+    Type: 1
+    GrowTime: 0
+    FruitCount: 0
+    Reusecount: 0
+    SignIcon: 0
+    PlantSillust: 0
+    prefab: {fileID: 5994676055889814354, guid: ecb4adb172932af4684ec4d4111592d1, type: 3}

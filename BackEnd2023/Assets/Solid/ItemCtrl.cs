@@ -12,17 +12,39 @@ public enum ItemKind
 }
 public abstract class ItemCtrl : MonoBehaviour, I_Pool
 {
+    public static PlantNameEnum ChangePlant(SeedKind seedKind)
+    {
+        switch (seedKind)
+        {
+            case SeedKind.Revolver:
+                return PlantNameEnum.Rovolver;
+            case SeedKind.Minigun:
+                return PlantNameEnum.Minigun;
+            case SeedKind.Firebat:
+                return PlantNameEnum.flame_thrower;
+            case SeedKind.Electric:
+                return PlantNameEnum.Lighting;
+            case SeedKind.None:
+            case SeedKind.Water:
+            case SeedKind.Tower:
+            case SeedKind.Pot:
+            default:
+                return PlantNameEnum.Pot;
+        }
+    }
+
+  
     public static ItemCtrl newItem(ItemKind itemKind, string tag)
     {
         switch (itemKind)
         {
             case ItemKind.Pot:
-                return newItem(ScriptableManager.instance.getTable("Scriptable").getPrefab<Scriptable_Object.PrefabInfo>("Pot").Prefabs.GetComponent<ItemCtrl>());
+                return newItem(ScriptableManager.instance.getTable(ScriptableManager.ScriptableTag).getPrefab<Scriptable_Object.PrefabInfo>("Pot").Prefabs.GetComponent<ItemCtrl>());
             case ItemKind.Seed:
-                return newItem(ScriptableManager.instance.getTable("PlantScriptable").getPrefab<ScriptablePlantInfo.PrefabInfo>(tag).prefab.GetComponent<ItemCtrl>());
+                return newItem(ScriptableManager.instance.getTable(ScriptableManager.PlantScriptableTag).getPrefab<ScriptablePlantInfo.PrefabInfo>(tag).prefab.GetComponent<ItemCtrl>());
             case ItemKind.Weapon:
-                //return newItem(ScriptableManager.instance.getTable("WeaponScriptable").getPrefab<ScriptableWeaponInfo.PrefabInfo>(tag).bulletprefab.GetComponent<ItemCtrl>());//Todo 블렛 말고 무기 프리팹으로 교체해야함
-                return newItem(ScriptableManager.instance.getTable("Scriptable").getPrefab<Scriptable_Object.PrefabInfo>(tag).Prefabs.GetComponent<ItemCtrl>());//Todo 블렛 말고 무기 프리팹으로 교체해야함
+                return newItem(ScriptableManager.instance.getTable(ScriptableManager.WeaponScriptableTag).getPrefab<ScriptableWeaponInfo.PrefabInfo>(tag).bulletprefab.GetComponent<ItemCtrl>());//Todo 블렛 말고 무기 프리팹으로 교체해야함
+                //return newItem(ScriptableManager.instance.getTable(ScriptableManager.ScriptableTag).getPrefab<Scriptable_Object.PrefabInfo>(tag).Prefabs.GetComponent<ItemCtrl>());//Todo 블렛 말고 무기 프리팹으로 교체해야함
         }
         return null;
     }
@@ -38,7 +60,24 @@ public abstract class ItemCtrl : MonoBehaviour, I_Pool
     public static Dictionary<ItemKind, ObjectPooling<ItemCtrl>> poolDic = new Dictionary<ItemKind, ObjectPooling<ItemCtrl>>();
 
 
+    public virtual void potOut()
+    {
+        isGrabLock = true;
+        StartCoroutine(cor_Move());
+    }
+    public IEnumerator cor_Move()
+    {
+        float time = 0.2f;
+        Vector3 dic = new Vector3(UnityEngine.Random.Range(-1f, 1f), UnityEngine.Random.Range(-1f, 1f), 0).normalized;
+        while (time > 0f)
+        {
+            time -= Time.deltaTime;
+            this.transform.Translate(dic * Time.deltaTime, Space.World);
+            yield return null;
+        }
+        isGrabLock = false;
 
+    }
 
     protected Action<I_Pool> disableAction;
     public void SetPoolEvent(Action<I_Pool> poolevent)
