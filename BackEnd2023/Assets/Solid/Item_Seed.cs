@@ -8,10 +8,15 @@ public class Item_Seed : ItemCtrl
     public override ItemKind itemKind => ItemKind.Seed;
 
     public float nowWeight;
-    public float maxWeight;
+    public float maxWeight => seedInfo.GrowTime;
+    public ScriptablePlantInfo.PrefabInfo seedInfo;
 
     public SeedKind seedKind;
 
+    private void OnEnable()
+    {
+        seedInfo = ScriptableManager.instance.getTable(ScriptableManager.PlantScriptableTag).getPrefab<ScriptablePlantInfo.PrefabInfo>(seedKind.ToString());
+    }
     public override bool checkUse(ItemCtrl nowItem)
     {
         //화분에 입력 들어오는건 씨앗, 무기일경우 타워화분임
