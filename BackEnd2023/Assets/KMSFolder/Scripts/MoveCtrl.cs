@@ -22,8 +22,6 @@ public class MoveCtrl : MonoBehaviour, InitiallizeInterface
 
     void Update()
     {
-        //gettype 수정하기
-        //플레이어 이동 관련
      
         pos = Vector3.zero;
 
