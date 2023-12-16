@@ -12,6 +12,7 @@ public class HitZone : MonoBehaviour, I_HitZone
     {
         rootCtrl = GetComponentInParent<RootCtrl>();
         hitBox = GetComponent<Collider2D>();
+
         RootCtrl.lifeAction += () =>
         {
             hitBox.enabled = true;

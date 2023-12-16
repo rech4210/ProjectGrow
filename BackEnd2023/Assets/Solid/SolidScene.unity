@@ -967,10 +967,6 @@ PrefabInstance:
       propertyPath: pointPivot
       value: 
       objectReference: {fileID: 1353883188}
-    - target: {fileID: 6455879949196355668, guid: 7a440b3df974c394896111f11552beed, type: 3}
-      propertyPath: kind
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 6455879949196355672, guid: 7a440b3df974c394896111f11552beed, type: 3}
       propertyPath: m_Name
       value: Player

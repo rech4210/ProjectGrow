@@ -37,3 +37,15 @@ MonoBehaviour:
     ChaseTime: 10
     FirstAttack: 0
     prefab: {fileID: 0}
+  - Name: 2
+    Type: 0
+    HP: 60
+    Atk: 5
+    AttackSpeed: 60
+    MoveSpeed: 3
+    ActiveRange: 50
+    SightRange: 10
+    ChaseT_F: 1
+    ChaseTime: 10
+    FirstAttack: 0
+    prefab: {fileID: 0}

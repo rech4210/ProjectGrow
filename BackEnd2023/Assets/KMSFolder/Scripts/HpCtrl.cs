@@ -16,10 +16,10 @@ public class HpCtrl : MonoBehaviour, InitiallizeInterface
 
     public void SetDamaged(float damage, RootCtrl attacker)
     {
-        hp -=damage;
-        rootCtrl.aggroAction.Invoke(attacker);
+        hp -= damage;
+        rootCtrl.aggroAction?.Invoke(attacker);
         //rootCtrl.stateCtrl.
-        if(hp <= 0)
+        if (hp <= 0)
         {
             attacker.DeadEvent(rootCtrl);
             rootCtrl.deadAction.Invoke();

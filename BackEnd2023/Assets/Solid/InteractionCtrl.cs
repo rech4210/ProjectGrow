@@ -33,6 +33,7 @@ public class InteractionCtrl : MonoBehaviour, I_Interaction
         {
             rootCtrl.WeaponCtrl.targetTran = aimTran;
             rootCtrl.targetTran = aimTran;
+            rootCtrl.lifeAction();
         }
     }
 
