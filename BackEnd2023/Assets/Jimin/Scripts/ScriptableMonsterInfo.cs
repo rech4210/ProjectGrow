@@ -9,7 +9,7 @@ public class ScriptableMonsterInfo : ScriptableObject, I_Scriptable
     [System.Serializable]
     public class PrefabInfo : ScriptableInfo
     {
-        public MonsterKind name;
+        public MonsterKind Name;
         public MonsterTypeEnum Type;
         public int HP;
         public int Atk;
@@ -20,6 +20,8 @@ public class ScriptableMonsterInfo : ScriptableObject, I_Scriptable
         public bool ChaseT_F;
         public int ChaseTime;
         public bool FirstAttack;
+
+        public GameObject prefab;
     }
 
     public List<PrefabInfo> prefabInfo;
@@ -32,7 +34,7 @@ public class ScriptableMonsterInfo : ScriptableObject, I_Scriptable
     {
         foreach (var tmp in prefabInfo)
         {
-            if (tmp.name.ToString() == prefabs)
+            if (tmp.Name.ToString() == prefabs)
             {
                 return tmp as T;
             }

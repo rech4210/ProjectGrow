@@ -8,15 +8,15 @@ public class ScriptableWeaponInfo : ScriptableObject, I_Scriptable
     [System.Serializable]
     public class PrefabInfo : ScriptableInfo
     {
-        public string name;
+        public string Name;
         public TypeEnum Type;
         public EnergyTypeEnum EnergyType;
         public int BulletCount;
-        public float GaugeTime;
-        public float HP;
-        public float AttackPoint;
-        public float AttackSpeed;
-        public float AttackDistance;
+        public int GaugeTime;
+        public int HP;
+        public int AttackPoint;
+        public int AttackSpeed;
+        public int AttackDistance;
         public bool SpecialOption;
         public AbilityObjectEnum AbilityObject;
         public AbilityEnum Ability;
@@ -25,12 +25,15 @@ public class ScriptableWeaponInfo : ScriptableObject, I_Scriptable
         public GameObject bulletprefab;
     }
     public List<PrefabInfo> prefabInfo;
-
+    public List<T> Prefablist<T>() where T : class, ScriptableInfo
+    {
+        return prefabInfo.ConvertAll((x) => x as T);
+    }
     public T getPrefab<T>(string prefabs) where T : class, ScriptableInfo
     {
         foreach (var tmp in prefabInfo)
         {
-            if (tmp.name == prefabs)
+            if (tmp.Name == prefabs)
             {
                 return tmp as T;
             }
