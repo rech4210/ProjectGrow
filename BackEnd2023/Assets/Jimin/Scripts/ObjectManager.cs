@@ -12,8 +12,8 @@ public class ObjectManager : MonoBehaviour
     //[SerializeField]
     //public items items;
 
-    Vector2[] RandomVector = new Vector2[] { new Vector2(2f, 3f), new Vector2(5f, 5f) };
-
+    [SerializeField]
+    List<Vector2> RandomVector;
 
     ObjectPooling<Zombies> zombiePool = new ObjectPooling<Zombies>();
     //ObjectPooling<items> itemPool = new ObjectPooling<items>;
@@ -24,10 +24,10 @@ public class ObjectManager : MonoBehaviour
         //itemPool.Initalize(items, this.gameObject.transform, 10);
     }
 
-    protected void MakeZombie()
+    public void MakeZombie()
     {
         Zombies newzombie = zombiePool.GetObject(zombies);
-        newzombie.transform.position = RandomVector[Random.Range(0, RandomVector.Length)];
+        newzombie.transform.position = RandomVector[Random.Range(0, RandomVector.Count)];
     }
 
     protected void Makeitem()
