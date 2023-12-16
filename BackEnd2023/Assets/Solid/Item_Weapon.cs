@@ -11,6 +11,7 @@ public enum SeedKind
     Electric = 4,
     Water = 5,
     Tower = 6,
+    Pot = 7,
 }
 
 public class Item_Weapon : ItemCtrl

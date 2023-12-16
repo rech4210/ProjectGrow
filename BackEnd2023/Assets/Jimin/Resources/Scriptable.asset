@@ -15,3 +15,5 @@ MonoBehaviour:
   prefabInfo:
   - Item_Name: Zombie
     Prefabs: {fileID: 4331197926641971126, guid: 5c751946b3eb3498084cb4037d02e81d, type: 3}
+  - Item_Name: Pot
+    Prefabs: {fileID: 901659959253262485, guid: b32701d9ac61ffa48a5359489152410e, type: 3}

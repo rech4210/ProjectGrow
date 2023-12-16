@@ -11,14 +11,14 @@ public class ScriptableMonsterInfo : ScriptableObject, I_Scriptable
     {
         public MonsterKind Name;
         public MonsterTypeEnum Type;
-        public int HP;
-        public int Atk;
-        public int AttackSpeed;
-        public int MoveSpeed;
-        public int ActiveRange;
-        public int SightRange;
+        public float HP;
+        public float Atk;
+        public float AttackSpeed;
+        public float MoveSpeed;
+        public float ActiveRange;
+        public float SightRange;
         public bool ChaseT_F;
-        public int ChaseTime;
+        public float ChaseTime;
         public bool FirstAttack;
 
         public GameObject prefab;

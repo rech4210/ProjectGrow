@@ -47,7 +47,7 @@ MonoBehaviour:
     Type: 0
     EnergyType: 0
     BulletCount: 0
-    GaugeTime: 0
+    GaugeTime: 1241
     HP: 0
     AttackPoint: 0
     AttackSpeed: 0

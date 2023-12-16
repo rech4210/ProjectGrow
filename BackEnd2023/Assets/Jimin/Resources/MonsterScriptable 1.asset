@@ -10,28 +10,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f333fbb1eac484011bcbfa4f2bfdd7bb, type: 3}
-  m_Name: MonsterScriptable
+  m_Name: MonsterScriptable 1
   m_EditorClassIdentifier: 
   prefabInfo:
-  - name: monster1
+  - name: 0
     Type: 0
-    HP: 5
-    Atk: 1
-    AttackSpeed: 2
-    MoveSpeed: 1
-    ActiveRange: 1
-    SightRange: 1
-    ChaseT_F: 1
-    ChaseTime: 1
-    FirstAttack: 0
-  - name: monster2
-    Type: 0
-    HP: 5
-    Atk: 3
-    AttackSpeed: 4
+    HP: 30
+    Atk: 10
+    AttackSpeed: 35
     MoveSpeed: 3
-    ActiveRange: 3
+    ActiveRange: 50
+    SightRange: 10
+    ChaseT_F: 1
+    ChaseTime: 10
+    FirstAttack: 0
+  - name: 1
+    Type: 0
+    HP: 60
+    Atk: 5
+    AttackSpeed: 60
+    MoveSpeed: 50
+    ActiveRange: 10
     SightRange: 4
-    ChaseT_F: 0
-    ChaseTime: 3
-    FirstAttack: 1
+    ChaseT_F: 1
+    ChaseTime: 10
+    FirstAttack: 0
