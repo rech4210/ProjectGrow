@@ -2,14 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum WeaponKind
-{
-    None = 0,
-    Revolver = 1,
-    Minigun = 2,
-    Firebat = 3,
-    Electric = 4,
-}
+
 public class Item_Seed : ItemCtrl
 {
     public override ItemKind itemKind => ItemKind.Seed;

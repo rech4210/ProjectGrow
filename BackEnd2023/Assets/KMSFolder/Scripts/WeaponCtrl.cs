@@ -7,6 +7,8 @@ using UnityEngine.UIElements;
 public class WeaponCtrl : MonoBehaviour, InitiallizeInterface
 {
     RootCtrl rootCtrl;
+    public Transform targetTran;
+
 
     //공격 호출
 
@@ -18,9 +20,9 @@ public class WeaponCtrl : MonoBehaviour, InitiallizeInterface
         rootCtrl = gameObject.GetComponent<RootCtrl>();
     }
 
-    private Vector2 AimPoint()
+    private Transform AimPoint()
     {
-        return Input.mousePosition;
+        return targetTran;
     }
 
     public void AttackCommand()
