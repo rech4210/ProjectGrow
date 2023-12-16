@@ -26,6 +26,7 @@ public class HpCtrl : MonoBehaviour, InitiallizeInterface
     public void SetDamaged(float damage, RootCtrl attacker)
     {
         hp -=damage;
+        //rootCtrl.stateCtrl.
         if(hp <= 0)
         {
             rootCtrl.deadAction.Invoke();
