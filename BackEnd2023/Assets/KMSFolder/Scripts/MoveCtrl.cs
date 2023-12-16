@@ -13,14 +13,13 @@ public class MoveCtrl : MonoBehaviour, InitiallizeInterface
     Vector3 pos;
 
     //스프라이트 반전 scale -1
-    SpriteRenderer playerRenderer;
-
+    //SpriteRenderer playerRenderer;
+   [SerializeField] Transform Target;
 
     public void initiallize()
     {
         rootCtrl = gameObject.GetComponent<RootCtrl>();
         speed = rootCtrl.status.speed;
-        playerRenderer = gameObject.GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -33,11 +32,11 @@ public class MoveCtrl : MonoBehaviour, InitiallizeInterface
             pos.x = rootCtrl.inputCtrl.horizontal * Time.deltaTime * speed;
             if(rootCtrl.inputCtrl.horizontal > 0)
             {
-                playerRenderer.flipX = false;
+                Target.localScale = new Vector3(1,1,1);
             }
             else if(rootCtrl.inputCtrl.horizontal < 0)
             {
-                playerRenderer.flipX = true;
+                Target.localScale = new Vector3(-1,1,1);
             }
             rootCtrl.stateCtrl.WalkState(rootCtrl.inputCtrl.horizontal, rootCtrl.inputCtrl.vertical);
         }

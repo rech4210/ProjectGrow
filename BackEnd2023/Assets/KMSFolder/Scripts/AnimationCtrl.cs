@@ -1,18 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AnimationCtrl : MonoBehaviour, InitiallizeInterface
 {
     RootCtrl rootCtrl;
-    Animator animator;
+    [SerializeField]Animator animator;
 
     float IdleMoveValue = 1;
     // 상태머신에서 요청한 애니메이션 처리
     public void initiallize()
     {
         rootCtrl = gameObject.GetComponent<RootCtrl>();
-        animator = gameObject.GetComponent<Animator>();
+        //animator = gameObject.GetComponent<Animator>();
     }
 
     #region 상태이상

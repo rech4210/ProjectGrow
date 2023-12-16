@@ -52,6 +52,11 @@ public class InputCtrl : MonoBehaviour, InitiallizeInterface
                 rootCtrl.interaction.interactionGrap();
             }
         }
+
+        if(Input.GetKeyDown(KeyCode.LeftControl))
+        {
+            rootCtrl.interaction.interactionThrow();
+        }
     }
 
     // 입력관리, 상태머신, 조작, 다른, Ctrl에 작업요청 or AI 처리
