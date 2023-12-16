@@ -25,7 +25,7 @@ public class RootCtrl : MonoBehaviour
 
     private void Awake()
     {
-        status = new Status(0.5f);
+        status = new Status(3f);
         inputCtrl = gameObject.GetComponent<InputCtrl>();
         inputCtrl.initiallize();
 

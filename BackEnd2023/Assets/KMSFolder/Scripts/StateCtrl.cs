@@ -13,7 +13,6 @@ public enum stateEnum
 
 public class StateCtrl : MonoBehaviour, InitiallizeInterface
 {
-
     public stateEnum stateEnum = stateEnum.Idle;
     RootCtrl rootCtrl;
 
@@ -78,12 +77,20 @@ public class StateCtrl : MonoBehaviour, InitiallizeInterface
             rootCtrl.AnimationCtrl.IdleToMoveAniamtion(0);
         }
     }
-    public void WalkState()
+    public void WalkState(float pointX,float pointY)
     {
+        if(pointX <0)
+        {
+            pointX = -pointX;
+        }
+        if(pointY <0)
+        {
+            pointY = -pointY;
+        }
         if (IsCanAction(stateEnum))
         {
             stateEnum = stateEnum.Move;
-            rootCtrl.AnimationCtrl.IdleToMoveAniamtion(1);
+            rootCtrl.AnimationCtrl.IdleToMoveAniamtion(pointX+pointY);
         }
     }
     public void GrapState()

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -26,28 +27,36 @@ public class MoveCtrl : MonoBehaviour, InitiallizeInterface
         
         pos = Vector3.zero;
 
-        if ((rootCtrl.stateCtrl.stateEnum != stateEnum.Stunned) || Input.GetAxis("Horizontal") !=0) 
+        if ((rootCtrl.stateCtrl.IsCanAction(rootCtrl.stateCtrl.stateEnum)) || Input.GetAxis("Horizontal") !=0) 
         {
             pos.x = rootCtrl.inputCtrl.horizontal * Time.deltaTime * speed;
             if(rootCtrl.inputCtrl.horizontal > 0)
             {
                 playerRenderer.flipX = false;
-                rootCtrl.stateCtrl.WalkState();
+                rootCtrl.stateCtrl.WalkState(rootCtrl.inputCtrl.horizontal, rootCtrl.inputCtrl.vertical);
+
             }
             else
             {
                 playerRenderer.flipX = true;
-                rootCtrl.stateCtrl.WalkState();
+                rootCtrl.stateCtrl.WalkState(rootCtrl.inputCtrl.horizontal, rootCtrl.inputCtrl.vertical);
+
             }
         }
-
-        if ((rootCtrl.stateCtrl.stateEnum != stateEnum.Stunned) || Input.GetAxis("Vertical") != 0)
+        else
         {
-            pos.y = rootCtrl.inputCtrl.vertical * Time.deltaTime * speed;
-            rootCtrl.stateCtrl.WalkState();
+            rootCtrl.stateCtrl.IdleState();
         }
 
+        if ((rootCtrl.stateCtrl.IsCanAction(rootCtrl.stateCtrl.stateEnum)) || Input.GetAxis("Vertical") != 0)
+        {
+            pos.y = rootCtrl.inputCtrl.vertical * Time.deltaTime * speed;
+            rootCtrl.stateCtrl.WalkState(rootCtrl.inputCtrl.horizontal, rootCtrl.inputCtrl.vertical);
+        }
+        else
+        {
+            rootCtrl.stateCtrl.IdleState();
+        }
         transform.position += pos;
-        rootCtrl.stateCtrl.IdleState();
     }
 }
