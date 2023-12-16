@@ -2,19 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public interface ScriptableInfo
+{
+
+}
+
+public interface I_Scriptable
+{
+    public string Name => null;
+    T getPrefab<T>(string name) where T : class, ScriptableInfo;
+}
+
 public class ScriptableManager : MonoBehaviour
 {
     public static ScriptableManager instance;
 
-    public Scriptable_Object[] scriptablelist;
+    public I_Scriptable[] scriptablelist;
 
-    public Scriptable_Object getTable(string name)
+    public I_Scriptable getTable(string name)
     {
-        Scriptable_Object selectedscriptable;
+        I_Scriptable selectedscriptable = null;
 
         foreach (var scriptable in scriptablelist)
         {
-            if(scriptable.name == "name")
+            if(scriptable.Name == "name")
             {
                 selectedscriptable = scriptable;
                 return selectedscriptable;

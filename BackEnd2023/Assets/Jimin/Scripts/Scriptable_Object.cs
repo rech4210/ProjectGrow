@@ -1,11 +1,13 @@
 using UnityEngine;
 using System.Collections.Generic;
 
+
 [CreateAssetMenu(fileName = "Prefabs", menuName = "Scriptable_Object/Prefabs")]
-public class Scriptable_Object : ScriptableObject
+public class Scriptable_Object : ScriptableObject, ScriptableInfo
 {
+    public string Name => this.name;
     [System.Serializable]
-    public class PrefabInfo
+    public class PrefabInfo:ScriptableInfo
     {
         public string Item_Name;
         public GameObject Prefabs;
@@ -14,13 +16,13 @@ public class Scriptable_Object : ScriptableObject
     public List<PrefabInfo> prefabInfo;
 
 
-    public GameObject getPrefab(string prefabs)
+    public T getPrefab<T>(string prefabs) where T : class, ScriptableInfo
     {
         foreach(var tmp in prefabInfo)
         {
             if(tmp.Item_Name == prefabs)
             {
-                return tmp.Prefabs;
+                return tmp as T;
             }
         }
 
