@@ -1,9 +1,10 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 public class EnemyInput : InputCtrl
 {
     bool isAttack = false;
-
+    public List<SeedKind> seedKindsList = new List<SeedKind>();
     private void Update()
     {
         //transform.position = targetPlayer.position;
@@ -88,11 +89,20 @@ public class EnemyInput : InputCtrl
                 StartCoroutine(ExcuteDeadAction());
             }
         };
+
+
     }
 
     IEnumerator ExcuteDeadAction()
     {
         yield return new WaitForSeconds(0.5f);
+        ItemCtrl.newItem(ItemKind.Seed,GetRandomSeed().ToString());
         rootCtrl.disable();
+    }
+
+    private SeedKind GetRandomSeed()
+    {
+        var rd = Random.Range(0,seedKindsList.Count-1);
+        return seedKindsList[rd];
     }
 }
