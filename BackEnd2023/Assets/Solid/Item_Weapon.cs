@@ -2,9 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum WeaponKind
+{
+    None = 0,
+    Revolver = 1,
+    Minigun = 2,
+    Firebat = 3,
+    Electric = 4,
+}
+
 public class Item_Weapon : ItemCtrl
 {
+    public Transform bullet;
 
+    public WeaponKind weaponKind;
     private Transform fireTran;
 
     public override bool checkUse(ItemCtrl nowItem)
@@ -15,7 +26,7 @@ public class Item_Weapon : ItemCtrl
 
     public override void GrabToggle(RootCtrl rootCtrl, bool isGrab)
     {
-        if (isGrab==false)
+        if (isGrab == false)
         {
             //내려놯을때 주변에 타워있는지 체크해서 쥐어주기 
         }
@@ -24,6 +35,13 @@ public class Item_Weapon : ItemCtrl
     public override void UseCall(RootCtrl rootCtrl, UseState useState)
     {
         //공격 모션
-        //Vector2 dic = rootCtrl.WeaponCtrl.
+        Vector2 dic = (rootCtrl.WeaponCtrl.targetTran.position - fireTran.position);
+        float dis = dic.magnitude;
+        dic = dic.normalized;
+        //탄황 생성, 해당 방향으로 발사
+        BulletCtrl newBullet = Instantiate(bullet, null).GetComponent<BulletCtrl>();
+        newBullet.dic = dic;
+        newBullet.range = 100f;
+        newBullet.gameObject.SetActive(true);
     }
 }
