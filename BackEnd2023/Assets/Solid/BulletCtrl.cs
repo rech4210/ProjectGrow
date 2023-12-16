@@ -4,6 +4,7 @@ using System.Collections;
 using System;
 public interface I_HitZone
 {
+    public Faction Faction => Faction.None;
     public RootCtrl RootCtrl => null;
     public void SetDamaged(float damage, RootCtrl attacker);
 
@@ -11,6 +12,7 @@ public interface I_HitZone
 public class BulletCtrl : MonoBehaviour, I_Pool
 {
     public RootCtrl attacker;
+    public float damage;
     public float radius = 0.1f;
     public Vector3 dic;
     public float range;
@@ -40,9 +42,9 @@ public class BulletCtrl : MonoBehaviour, I_Pool
                 I_HitZone hitZone = hit.transform.GetComponentInParent<I_HitZone>();
                 if (hitZone != null)
                 {
-                    if (attacker.faction != hitZone.RootCtrl.faction)
+                    if (attacker.faction != hitZone.Faction)
                     {
-                        //rootCtrl.hpCtrl.SetDamaged(float damage, RootCtrl attacker);//데미지 작업해야함
+                        hitZone.SetDamaged(damage, attacker);//데미지 작업해야함
                         disable();//피격했으니까 제거 - 탄마다 다르게 처리해야함
                         return;
                     }
