@@ -22,13 +22,12 @@ public class MoveCtrl : MonoBehaviour, InitiallizeInterface
 
     void Update()
     {
-
-
         pos = Vector3.zero;
 
         if ((rootCtrl.stateCtrl.IsCanAction(rootCtrl.stateCtrl.stateEnum)) || Input.GetAxis("Horizontal") != 0)
         {
             pos.x = rootCtrl.inputCtrl.horizontal * Time.deltaTime * rootCtrl.scriptableMonster.MoveSpeed;
+            transform.position += pos;
 
             if (rootCtrl.targetTran != null)
             {
@@ -66,11 +65,12 @@ public class MoveCtrl : MonoBehaviour, InitiallizeInterface
         {
             pos.y = rootCtrl.inputCtrl.vertical * Time.deltaTime * speed;
             rootCtrl.stateCtrl.WalkState(rootCtrl.inputCtrl.horizontal, rootCtrl.inputCtrl.vertical);
+            transform.position += pos;
+
         }
         else
         {
             rootCtrl.stateCtrl.IdleState();
         }
-        transform.position += pos;
     }
 }

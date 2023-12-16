@@ -66,5 +66,20 @@ public class EnemyInput : InputCtrl
         {
             rootCtrl.WeaponCtrl.targetTran = attacker.myTransform;
         };
+
+        rootCtrl.deadAction += () => {
+            if (rootCtrl.stateCtrl.IsCanAction(rootCtrl.stateCtrl.stateEnum))
+            {
+                rootCtrl.stateCtrl.stateEnum = stateEnum.Dead;
+                rootCtrl.stateCtrl.DeadState();
+                StartCoroutine(ExcuteDeadAction());
+            }
+        };
+    }
+
+    IEnumerator ExcuteDeadAction()
+    {
+        yield return new WaitForSeconds(0.5f);
+        rootCtrl.disable();
     }
 }
