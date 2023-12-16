@@ -15,7 +15,10 @@ public class RootCtrl : MonoBehaviour
     public Action lifeAction;
     public Action deadAction;
 
+
     public Status status;
+    
+    public Faction faction;
 
     public InputCtrl inputCtrl;
     public MoveCtrl moveCtrl;
