@@ -26,7 +26,7 @@ public class LayerManager : MonoBehaviour
 
     public void Awake()
     {
-        HitZone = 1 + (1 << LayerMask.NameToLayer("ItemInterObj"));
-        ItemInterObj = 1 + (1 << LayerMask.NameToLayer("HitZone"));
+        HitZone = 1 + (1 << LayerMask.NameToLayer("HitZone"));
+        ItemInterObj = 1 + (1 << LayerMask.NameToLayer("ItemInterObj"));
     }
 }

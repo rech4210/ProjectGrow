@@ -8,10 +8,11 @@ public class InteractionCtrl : MonoBehaviour, I_Interaction
     public Transform grabPivot;
 
 
-    [HideInInspector]
-    public ItemCtrl selectItemCtrl;
+    //[HideInInspector]
+    //public ItemCtrl selectItemCtrl;
     [HideInInspector]
     public ItemCtrl grabItemCtrl;
+    public ItemCtrl GrabItemCtrl;
 
     public void initiallize()
     {
@@ -20,26 +21,24 @@ public class InteractionCtrl : MonoBehaviour, I_Interaction
 
     public void InteractionEnter()
     {
-        selectItemCtrl = getSelectItemCtrl(rootCtrl.transform, checkUse);
-        if (selectItemCtrl != null)
+        if (grabItemCtrl != null)
         {
-            selectItemCtrl.UseCall(rootCtrl, UseState.Start);
+            grabItemCtrl.UseCall(rootCtrl, UseState.Start);
         }
     }
     public void InteractionStay()
     {
-        if (selectItemCtrl != null)
+        if (grabItemCtrl != null)
         {
-            selectItemCtrl.UseCall(rootCtrl, UseState.Ing);
+            grabItemCtrl.UseCall(rootCtrl, UseState.Ing);
         }
     }
     public void InteractionExit()
     {
-        if (selectItemCtrl != null)
+        if (grabItemCtrl != null)
         {
-            selectItemCtrl.UseCall(rootCtrl, UseState.End);
+            grabItemCtrl.UseCall(rootCtrl, UseState.End);
         }
-        selectItemCtrl = null;
     }
 
 
@@ -47,10 +46,9 @@ public class InteractionCtrl : MonoBehaviour, I_Interaction
     {
         if (grabItemCtrl != null)
         {
-            grabItemCtrl.GrabToggle(rootCtrl, false);
             grabItemCtrl.transform.SetParent(null);//Todo 아이템 풀링에 접근해서 부모 찾아서 사용 or 풀링에서 회수될때 부모 재설정
             grabItemCtrl.transform.rotation = Quaternion.identity;
-            grabItemCtrl = null;
+            interactionGrabOff();
         }
         else
         {
@@ -111,5 +109,12 @@ public class InteractionCtrl : MonoBehaviour, I_Interaction
 
     public void interactionThrow()
     {
+    }
+
+    public void interactionGrabOff()
+    {
+        grabItemCtrl.GrabToggle(rootCtrl, false);
+
+        grabItemCtrl = null;
     }
 }

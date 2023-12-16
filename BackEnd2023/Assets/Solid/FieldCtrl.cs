@@ -8,6 +8,7 @@ public class FieldCtrl : MonoBehaviour
     public static FieldCtrl Instance { get { return instance; } }
     //화분을 관리함
     public Vector2Int grid;
+    public Vector2 gridSize;
     public Vector2 offset;//위치 오프셋
 
     public PotSlot potSlotPrefab;
@@ -16,6 +17,7 @@ public class FieldCtrl : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        potSlotPrefab.gameObject.SetActive(false);
     }
     private void Start()
     {
@@ -23,13 +25,18 @@ public class FieldCtrl : MonoBehaviour
         for (int i = 0; i < potArr.Length; i++)
         {
             potArr[i] = Instantiate(potSlotPrefab, this.transform);
+            potArr[i].gameObject.SetActive(true);
             potArr[i].index = i;
+            potArr[i].transform.localPosition = new Vector3(gridSize.x * (i % grid.x) - offset.x, gridSize.y * (i / grid.y) - offset.y, 0f);
         }
     }
 
     public void setSlot(ItemCtrl potCtrl, PotSlot slot)
     {
         slot.nowItemCtrl = potCtrl;
+        potCtrl.isGrabLock = true;
+        potCtrl.transform.SetParent(slot.transform);
+        potCtrl.transform.localPosition = Vector3.zero;
     }
 
 

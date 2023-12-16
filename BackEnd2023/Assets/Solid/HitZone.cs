@@ -22,4 +22,28 @@ public class HitZone : MonoBehaviour, I_HitZone
         rootCtrl.hpCtrl.SetDamaged(damage, attacker);
     }
 
+    public bool CheckHitLock(RootCtrl attacker)
+    {
+        switch (RootCtrl.faction)
+        {
+            case Faction.None:
+                break;
+            case Faction.Player:
+                if (attacker.faction == Faction.Enemy)
+                {
+                    return true;
+                }
+                break;
+            case Faction.Pot:
+                break;
+            case Faction.Enemy:
+                if (attacker.faction != Faction.Enemy)
+                {
+                    return true;
+                }
+                break;
+        }
+        return false;
+
+    }
 }

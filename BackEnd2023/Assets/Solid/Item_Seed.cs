@@ -15,8 +15,38 @@ public class Item_Seed : ItemCtrl
     public override bool checkUse(ItemCtrl nowItem)
     {
         //화분에 입력 들어오는건 씨앗, 무기일경우 타워화분임
-
+        switch (nowItem.itemKind)
+        {
+            case ItemKind.None:
+                break;
+            case ItemKind.Slot:
+                break;
+            case ItemKind.Pot:
+                Item_Pot pot = nowItem as Item_Pot;
+                if (pot != null && pot.nowSeed == null)
+                {
+                    return true;
+                }
+                break;
+        }
         return false;
+    }
+    public void useAction(ItemCtrl nowItem)
+    {
+        switch (nowItem.itemKind)
+        {
+            case ItemKind.None:
+                break;
+            case ItemKind.Slot:
+                break;
+            case ItemKind.Pot:
+                Item_Pot pot = nowItem as Item_Pot;
+                if (pot != null && pot.nowSeed == null)
+                {
+                    pot.setSeed(this);
+                }
+                break;
+        }
     }
 
     public override void GrabToggle(RootCtrl rootCtrl, bool isGrab)
@@ -52,6 +82,8 @@ public class Item_Seed : ItemCtrl
             }
             if (hitCtrl != null)
             {
+                useAction(hitCtrl);
+                rootCtrl.interaction.interactionGrabOff();
                 //Todo 장착중인 아이템 해제함
                 //rootCtrl.weaponCtrl.ItemRemove();
                 //this.disable();//화분 설치할때 회수가 될필요 있나?

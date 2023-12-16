@@ -7,7 +7,7 @@ public interface I_HitZone
     public Faction Faction => Faction.None;
     public RootCtrl RootCtrl => null;
     public void SetDamaged(float damage, RootCtrl attacker);
-
+    public bool CheckHitLock(RootCtrl attacker);//true면 데미지 받지 않음
 }
 public class BulletCtrl : MonoBehaviour, I_Pool
 {
@@ -42,7 +42,7 @@ public class BulletCtrl : MonoBehaviour, I_Pool
                 I_HitZone hitZone = hit.transform.GetComponentInParent<I_HitZone>();
                 if (hitZone != null)
                 {
-                    if (attacker.faction != hitZone.Faction)
+                    if (attacker.faction != hitZone.Faction && hitZone.CheckHitLock(attacker) == false)
                     {
                         hitZone.SetDamaged(damage, attacker);//데미지 작업해야함
                         disable();//피격했으니까 제거 - 탄마다 다르게 처리해야함
