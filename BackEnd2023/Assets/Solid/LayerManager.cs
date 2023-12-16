@@ -4,6 +4,23 @@ using System.Collections;
 
 public class LayerManager : MonoBehaviour
 {
+    private static LayerManager instance;
+    public static LayerManager Instance
+    {
+        get
+        {
+            if (instance == null)
+            {
+                instance = FindObjectOfType<LayerManager>();
+            }
+            if (instance == null)
+            {
+                instance = new GameObject().AddComponent<LayerManager>();
+
+            }
+            return instance;
+        }
+    }
     public static LayerMask HitZone;
     public static LayerMask ItemInterObj;
 
