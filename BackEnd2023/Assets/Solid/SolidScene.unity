@@ -881,6 +881,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   faction: 0
+  targetTran: {fileID: 0}
   inputCtrl: {fileID: 0}
   moveCtrl: {fileID: 0}
   stateCtrl: {fileID: 0}
@@ -899,7 +900,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b94da3c178e34942a4a073b9b123e7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Target: {fileID: 539177055}
+  modelTran: {fileID: 539177055}
 --- !u!114 &864610348
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -914,7 +915,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rootCtrl: {fileID: 0}
   grabPivot: {fileID: 1965806687}
-  selectItemCtrl: {fileID: 0}
   grabItemCtrl: {fileID: 0}
   GrabItemCtrl: {fileID: 0}
 --- !u!114 &864610349

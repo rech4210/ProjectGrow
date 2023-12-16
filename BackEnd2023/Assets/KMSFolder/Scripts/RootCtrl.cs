@@ -23,6 +23,8 @@ public class RootCtrl : MonoBehaviour,I_Attacker
     public Status status;
     
     public Faction faction;
+    public Transform targetTran;
+
 
     public InputCtrl inputCtrl;
     public MoveCtrl moveCtrl;

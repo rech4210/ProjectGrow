@@ -12,7 +12,7 @@ public class MoveCtrl : MonoBehaviour, InitiallizeInterface
 
     //스프라이트 반전 scale -1
     //SpriteRenderer playerRenderer;
-    public Transform target = null;
+    public Transform modelTran = null;
 
     public void initiallize()
     {
@@ -25,22 +25,10 @@ public class MoveCtrl : MonoBehaviour, InitiallizeInterface
     {
         //gettype 수정하기
         //플레이어 이동 관련
-        if (rootCtrl.inputCtrl.GetType() == typeof(EnemyInput))
-        {
-
-            Vector3 direction = target.position - transform.position;
-            direction.Normalize();
-
-            transform.position += direction * (speed / enemySpeed) * Time.deltaTime;
-
-            //Physics2D.OverlapCircle
-            //transform.Translate(Vector2.MoveTowards(transform.position, target.position,10) * speed * Time.deltaTime);
-        }
+        
 
 
-        //적 이동 관련
-        else if (rootCtrl.inputCtrl.GetType() == typeof(PlayerInputCtrl))
-        {
+     
             pos = Vector3.zero;
 
             if ((rootCtrl.stateCtrl.IsCanAction(rootCtrl.stateCtrl.stateEnum)) || Input.GetAxis("Horizontal") != 0)
@@ -48,11 +36,11 @@ public class MoveCtrl : MonoBehaviour, InitiallizeInterface
                 pos.x = rootCtrl.inputCtrl.horizontal * Time.deltaTime * speed;
                 if (rootCtrl.inputCtrl.horizontal > 0)
                 {
-                    target.localScale = new Vector3(1, 1, 1);
+                    modelTran.localScale = new Vector3(1, 1, 1);
                 }
                 else if (rootCtrl.inputCtrl.horizontal < 0)
                 {
-                    target.localScale = new Vector3(-1, 1, 1);
+                    modelTran.localScale = new Vector3(-1, 1, 1);
                 }
                 rootCtrl.stateCtrl.WalkState(rootCtrl.inputCtrl.horizontal, rootCtrl.inputCtrl.vertical);
             }
@@ -71,6 +59,5 @@ public class MoveCtrl : MonoBehaviour, InitiallizeInterface
                 rootCtrl.stateCtrl.IdleState();
             }
             transform.position += pos;
-        }
     }
 }
