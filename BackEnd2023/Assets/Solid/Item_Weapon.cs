@@ -28,6 +28,7 @@ public class Item_Weapon : ItemCtrl
     public float nowGuage;//남은 게이지
     public int nowAmmo;//남은 탄
     public float attackDelay;
+    public bool isAttackOn;
 
     public FireCtrl fireCtrl;
 
