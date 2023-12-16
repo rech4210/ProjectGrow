@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public struct Status
@@ -11,6 +12,9 @@ public struct Status
 
 public class RootCtrl : MonoBehaviour
 {
+    public Action lifeAction;
+    public Action deadAction;
+
     public Status status;
 
     public InputCtrl inputCtrl;
