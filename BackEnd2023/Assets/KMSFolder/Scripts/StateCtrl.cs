@@ -13,6 +13,8 @@ public enum stateEnum
 
 public class StateCtrl : MonoBehaviour, InitiallizeInterface
 {
+    public float time = 0;
+    float stunnedTime = 0;
     public stateEnum stateEnum = stateEnum.Idle;
     RootCtrl rootCtrl;
 
@@ -53,7 +55,11 @@ public class StateCtrl : MonoBehaviour, InitiallizeInterface
 
     private void Update()
     {
-        //스턴 체크
+        time += Time.deltaTime;
+        if(time- stunnedTime > 3f && stateEnum == stateEnum.Stunned)
+        {
+            IdleState();
+        }
     }
 
     #region 상태이상 변경
@@ -63,6 +69,7 @@ public class StateCtrl : MonoBehaviour, InitiallizeInterface
         {
             StateChange(stateEnum.Stunned);
             rootCtrl.AnimationCtrl.StunningAnimation();
+            stunnedTime = time;
         }
         //스턴 제어 (시간 추가)
     }

@@ -6,4 +6,5 @@ public interface I_Interaction
     void InteractionStay();
     void InteractionExit();
     void interactionGrap();
+    void interactionThrow();
 }
