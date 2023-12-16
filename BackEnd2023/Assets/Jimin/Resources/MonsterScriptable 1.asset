@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MonsterScriptable 1
   m_EditorClassIdentifier: 
   prefabInfo:
-  - name: 0
+  - Name: 0
     Type: 0
     HP: 30
     Atk: 10
@@ -24,14 +24,16 @@ MonoBehaviour:
     ChaseT_F: 1
     ChaseTime: 10
     FirstAttack: 0
-  - name: 1
+    prefab: {fileID: 0}
+  - Name: 1
     Type: 0
     HP: 60
     Atk: 5
     AttackSpeed: 60
-    MoveSpeed: 50
-    ActiveRange: 10
-    SightRange: 4
+    MoveSpeed: 2
+    ActiveRange: 50
+    SightRange: 10
     ChaseT_F: 1
     ChaseTime: 10
     FirstAttack: 0
+    prefab: {fileID: 0}
