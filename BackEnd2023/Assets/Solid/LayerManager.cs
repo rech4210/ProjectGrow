@@ -21,8 +21,8 @@ public class LayerManager : MonoBehaviour
             return instance;
         }
     }
-    public static LayerMask HitZone;
-    public static LayerMask ItemInterObj;
+    public LayerMask HitZone;
+    public LayerMask ItemInterObj;
 
     public void Awake()
     {

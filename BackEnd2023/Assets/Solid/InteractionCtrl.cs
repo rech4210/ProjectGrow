@@ -82,7 +82,7 @@ public class InteractionCtrl : MonoBehaviour, I_Interaction
 
     public static ItemCtrl getSelectItemCtrl(Transform pivotTran, Func<ItemCtrl, bool> checkUse)
     {
-        Collider2D[] potList = Physics2D.OverlapCircleAll(pivotTran.position, 1f, LayerManager.ItemInterObj);
+        Collider2D[] potList = Physics2D.OverlapCircleAll(pivotTran.position, 1f, LayerManager.Instance.ItemInterObj);
         ItemCtrl hitCtrl = null;
 
         if (potList != null)

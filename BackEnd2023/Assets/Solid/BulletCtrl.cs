@@ -30,7 +30,7 @@ public class BulletCtrl : MonoBehaviour, I_Pool
     private void Update()
     {
         float moveRange = Time.deltaTime * speed;
-        RaycastHit2D[] hits = Physics2D.CircleCastAll(this.transform.position, radius, dic, moveRange, LayerManager.HitZone);
+        RaycastHit2D[] hits = Physics2D.CircleCastAll(this.transform.position, radius, dic, moveRange, LayerManager.Instance.HitZone);
 
         if (hits != null && hits.Length > 0)
         {
