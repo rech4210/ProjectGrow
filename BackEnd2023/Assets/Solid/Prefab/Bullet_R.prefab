@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 565971979375242134}
   - component: {fileID: 565971979375242132}
   m_Layer: 0
-  m_Name: Bullet
+  m_Name: Bullet_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -51,8 +51,9 @@ MonoBehaviour:
   radius: 0.1
   dic: {x: 0.4, y: 0.2, z: 0}
   range: 100
-  speed: 3
+  speed: 1
   model: {fileID: 565971980378234349}
+  temp: 0
 --- !u!210 &565971979375242132
 SortingGroup:
   m_ObjectHideFlags: 0
