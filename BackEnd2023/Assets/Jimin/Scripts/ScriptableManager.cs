@@ -36,13 +36,17 @@ public class ScriptableManager : MonoBehaviour
 
     public List<I_Scriptable> scriptablelist = new List<I_Scriptable>();
 
+    public const string MobTableTag = "MonsterScriptable";
+    public const string ScriptableTag = "Scriptable";
+    public const string WeaponScriptableTag = "WeaponScriptable";
+    public const string PlantScriptableTag = "PlantScriptable";
 
     public void Initalize()
     {
-        ScriptableMonsterInfo monsterscriptable = Resources.Load<ScriptableMonsterInfo>("MonsterScriptable");
-        Scriptable_Object scriptable = Resources.Load<Scriptable_Object>("Scriptable");
-        ScriptableWeaponInfo Weaponscriptable = Resources.Load<ScriptableWeaponInfo>("WeaponScriptable");
-        ScriptablePlantInfo PlantScriptable = Resources.Load<ScriptablePlantInfo>("PlantScriptable");
+        ScriptableMonsterInfo monsterscriptable = Resources.Load<ScriptableMonsterInfo>(MobTableTag);
+        Scriptable_Object scriptable = Resources.Load<Scriptable_Object>(ScriptableTag);
+        ScriptableWeaponInfo Weaponscriptable = Resources.Load<ScriptableWeaponInfo>(WeaponScriptableTag);
+        ScriptablePlantInfo PlantScriptable = Resources.Load<ScriptablePlantInfo>(PlantScriptableTag);
 
         scriptablelist.Add(monsterscriptable);
         scriptablelist.Add(scriptable);
@@ -56,7 +60,7 @@ public class ScriptableManager : MonoBehaviour
 
         foreach (var scriptable in scriptablelist)
         {
-            if (scriptable != null && scriptable.Name == "name")
+            if (scriptable != null && scriptable.Name == name)
             {
                 selectedscriptable = scriptable;
                 return selectedscriptable;

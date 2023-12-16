@@ -30,12 +30,24 @@ public class Item_Weapon : ItemCtrl
 
     public FireCtrl fireCtrl;
 
-    private void Start()
+    private void OnEnable()
     {
-        weaponInfo = ScriptableManager.instance.getTable("WeaponScriptable").getPrefab<ScriptableWeaponInfo.PrefabInfo>(weaponKind.ToString());
+        weaponInfo = ScriptableManager.instance.getTable(ScriptableManager.WeaponScriptableTag).getPrefab<ScriptableWeaponInfo.PrefabInfo>(weaponKind.ToString());
         fireCtrl.setWeapon(this);
 
-
+        switch (weaponInfo.EnergyType)
+        {
+            case EnergyTypeEnum.Bullet:
+                nowAmmo = weaponInfo.BulletCount;
+                break;
+            case EnergyTypeEnum.Gauge:
+                nowGuage = weaponInfo.GaugeTime;
+                break;
+            case EnergyTypeEnum.Null:
+                break;
+            default:
+                break;
+        }
     }
     public override bool checkUse(ItemCtrl nowItem)
     {//무기는 화분에 사용할경우? 놉 내려놓을때 근처에 타워식물이 있으면 자동으로 장착, 줍기로 회수 
@@ -95,8 +107,29 @@ public class Item_Weapon : ItemCtrl
 
     public override void UseCall(RootCtrl rootCtrl, UseState useState)
     {
-        //공격 모션
         fireCtrl.Fire(rootCtrl);
+
+        //공격 모션
+        switch (weaponInfo.EnergyType)
+        {
+            case EnergyTypeEnum.Bullet:
+                if (nowAmmo <= 0)
+                {
+                    //모두 소모함
+
+                }
+                break;
+            case EnergyTypeEnum.Gauge:
+                if (nowGuage <= 0f)
+                {
+                    //모두 소모함
+                }
+                break;
+            case EnergyTypeEnum.Null:
+                break;
+            default:
+                break;
+        }
 
     }
 }

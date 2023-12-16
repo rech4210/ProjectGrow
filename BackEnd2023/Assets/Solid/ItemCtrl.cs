@@ -21,7 +21,8 @@ public abstract class ItemCtrl : MonoBehaviour, I_Pool
             case ItemKind.Seed:
                 return newItem(ScriptableManager.instance.getTable("PlantScriptable").getPrefab<ScriptablePlantInfo.PrefabInfo>(tag).prefab.GetComponent<ItemCtrl>());
             case ItemKind.Weapon:
-                return newItem(ScriptableManager.instance.getTable("WeaponScriptable").getPrefab<ScriptablePlantInfo.PrefabInfo>(tag).prefab.GetComponent<ItemCtrl>());
+                //return newItem(ScriptableManager.instance.getTable("WeaponScriptable").getPrefab<ScriptableWeaponInfo.PrefabInfo>(tag).bulletprefab.GetComponent<ItemCtrl>());//Todo 블렛 말고 무기 프리팹으로 교체해야함
+                return newItem(ScriptableManager.instance.getTable("Scriptable").getPrefab<Scriptable_Object.PrefabInfo>(tag).Prefabs.GetComponent<ItemCtrl>());//Todo 블렛 말고 무기 프리팹으로 교체해야함
         }
         return null;
     }
@@ -30,11 +31,14 @@ public abstract class ItemCtrl : MonoBehaviour, I_Pool
         if (poolDic.ContainsKey(prefab.itemKind) == false)
         {
             poolDic[prefab.itemKind] = new ObjectPooling<ItemCtrl>();
-            poolDic[prefab.itemKind].Initialize(prefab, GameManager.instance.transform, 10);
+            poolDic[prefab.itemKind].Initialize(prefab, GameManager.poolParent, 10);
         }
         return poolDic[prefab.itemKind].GetObject(prefab);
     }
     public static Dictionary<ItemKind, ObjectPooling<ItemCtrl>> poolDic = new Dictionary<ItemKind, ObjectPooling<ItemCtrl>>();
+
+
+
 
     protected Action<I_Pool> disableAction;
     public void SetPoolEvent(Action<I_Pool> poolevent)
@@ -44,6 +48,8 @@ public abstract class ItemCtrl : MonoBehaviour, I_Pool
     public virtual void disable()
     {
         //풀링 회수 
+        this.transform.SetParent(GameManager.poolParent);
+        this.gameObject.SetActive(false);
         disableAction?.Invoke(this);
     }
     ///아이템 태그

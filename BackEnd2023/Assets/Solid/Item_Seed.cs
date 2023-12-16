@@ -8,10 +8,39 @@ public class Item_Seed : ItemCtrl
     public override ItemKind itemKind => ItemKind.Seed;
 
     public float nowWeight;
-    public float maxWeight;
+    public float maxWeight => seedInfo.GrowTime;
+    public float weightFill => nowWeight / maxWeight;
+    public ScriptablePlantInfo.PrefabInfo seedInfo;
 
     public SeedKind seedKind;
 
+    private void OnEnable()
+    {
+        switch (seedKind)
+        {
+            case SeedKind.None:
+                break;
+            case SeedKind.Revolver:
+                seedInfo = ScriptableManager.instance.getTable(ScriptableManager.PlantScriptableTag).getPrefab<ScriptablePlantInfo.PrefabInfo>(PlantNameEnum.Rovolver.ToString());
+                break;
+            case SeedKind.Minigun:
+                seedInfo = ScriptableManager.instance.getTable(ScriptableManager.PlantScriptableTag).getPrefab<ScriptablePlantInfo.PrefabInfo>(PlantNameEnum.Minigun.ToString());
+                break;
+            case SeedKind.Firebat:
+                seedInfo = ScriptableManager.instance.getTable(ScriptableManager.PlantScriptableTag).getPrefab<ScriptablePlantInfo.PrefabInfo>(PlantNameEnum.flame_thrower.ToString());
+                break;
+            case SeedKind.Electric:
+                seedInfo = ScriptableManager.instance.getTable(ScriptableManager.PlantScriptableTag).getPrefab<ScriptablePlantInfo.PrefabInfo>(PlantNameEnum.Lighting.ToString());
+                break;
+            case SeedKind.Tower:
+                seedInfo = ScriptableManager.instance.getTable(ScriptableManager.PlantScriptableTag).getPrefab<ScriptablePlantInfo.PrefabInfo>(PlantNameEnum.Dionaea.ToString());
+                break;
+            case SeedKind.Water:
+                break;
+            case SeedKind.Pot:
+                break;
+        }
+    }
     public override bool checkUse(ItemCtrl nowItem)
     {
         //화분에 입력 들어오는건 씨앗, 무기일경우 타워화분임
@@ -43,17 +72,25 @@ public class Item_Seed : ItemCtrl
             case ItemKind.None:
                 break;
             case ItemKind.Slot:
-                PotSlot slot = nowItem as PotSlot;
-                if (slot != null && slot.nowPot == null)
+                if (seedKind == SeedKind.Pot)
                 {
-                    ItemCtrl.newItem(ItemKind.Pot, "Pot");
+                    PotSlot slot = nowItem as PotSlot;
+                    if (slot != null && slot.nowPot == null)
+                    {
+                        Item_Pot newPot = ItemCtrl.newItem(ItemKind.Pot, "Pot") as Item_Pot;
+                        FieldCtrl.Instance.setSlot(newPot, slot);
+                        this.disable();
+                    }
                 }
                 break;
             case ItemKind.Pot:
-                Item_Pot pot = nowItem as Item_Pot;
-                if (pot != null && pot.nowSeed == null)
+                if (seedKind != SeedKind.Pot)
                 {
-                    pot.setSeed(this);
+                    Item_Pot pot = nowItem as Item_Pot;
+                    if (pot != null && pot.nowSeed == null)
+                    {
+                        pot.setSeed(this);
+                    }
                 }
                 break;
         }
