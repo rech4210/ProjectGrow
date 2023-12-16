@@ -22,7 +22,7 @@ public class MoveCtrl : MonoBehaviour, InitiallizeInterface
 
     void Update()
     {
-     
+        
         pos = Vector3.zero;
 
         if ((rootCtrl.stateCtrl.IsCanAction(rootCtrl.stateCtrl.stateEnum)) || Input.GetAxis("Horizontal") != 0)

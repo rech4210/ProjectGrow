@@ -48,7 +48,7 @@ public class AnimationCtrl : MonoBehaviour, InitiallizeInterface
     }
     public void AttackAnimation()
     {
-        animator.SetTrigger("Throw");
+        animator.SetBool("Attack",true);
     }
     #endregion
 }

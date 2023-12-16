@@ -98,7 +98,7 @@ public class StateCtrl : MonoBehaviour, InitiallizeInterface
     {
         if (IsCanAction(stateEnum))
         {
-            stateEnum = stateEnum.Idle;
+            StateChange(stateEnum.Idle);
             rootCtrl.AnimationCtrl.IdleToMoveAniamtion(0);
         }
     }
@@ -114,7 +114,7 @@ public class StateCtrl : MonoBehaviour, InitiallizeInterface
         }
         if (IsCanAction(stateEnum))
         {
-            stateEnum = stateEnum.Move;
+            StateChange(stateEnum.Move);
             rootCtrl.AnimationCtrl.IdleToMoveAniamtion(pointX+pointY);
         }
     }
@@ -122,7 +122,7 @@ public class StateCtrl : MonoBehaviour, InitiallizeInterface
     {
         if (IsCanAction(stateEnum))
         {
-            stateEnum = stateEnum.Grap;
+            StateChange(stateEnum.Grap);
             rootCtrl.AnimationCtrl.GrapAniamtion();
         }
     }
@@ -131,7 +131,7 @@ public class StateCtrl : MonoBehaviour, InitiallizeInterface
     {
         if (IsCanAction(stateEnum))
         {
-            stateEnum = stateEnum.Use;
+            StateChange(stateEnum.Use);
             rootCtrl.AnimationCtrl.UseAniamtion();
         }
     }
@@ -139,7 +139,7 @@ public class StateCtrl : MonoBehaviour, InitiallizeInterface
     {
         if (IsCanAction(stateEnum))
         {
-            stateEnum = stateEnum.Throw;
+            StateChange(stateEnum.Throw);
             rootCtrl.AnimationCtrl.ThrowAniamtion();
         }
     }
@@ -160,7 +160,7 @@ public class StateCtrl : MonoBehaviour, InitiallizeInterface
         if (IsCanAction(stateEnum))
         {
             stateEnum = stateEnum.Attack;
-            rootCtrl.AnimationCtrl.ThrowAniamtion();
+            rootCtrl.AnimationCtrl.AttackAnimation();
         }
     }
 }
