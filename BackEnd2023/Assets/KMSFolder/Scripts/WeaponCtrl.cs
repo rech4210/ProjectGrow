@@ -4,6 +4,7 @@ public enum Faction
 {
     None = 0,
     Player = 1,
+    Pot = 2,
     Enemy = 10,
 }
 public class WeaponCtrl : MonoBehaviour, InitiallizeInterface
@@ -31,7 +32,7 @@ public class WeaponCtrl : MonoBehaviour, InitiallizeInterface
 
     public void AttackCommand()
     {
-        switch (rootCtrl.inputCtrl.attackState) 
+        switch (rootCtrl.inputCtrl.attackState)
         {
             case BtnState.None:
                 break;

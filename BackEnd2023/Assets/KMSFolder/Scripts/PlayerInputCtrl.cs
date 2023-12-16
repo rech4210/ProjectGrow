@@ -11,13 +11,13 @@ public class PlayerInputCtrl : InputCtrl
         vertical = Input.GetAxis("Vertical");
         //Add 4 keys
 
-        if (Input.GetMouseButton(0))
-        {
-            attackState = BtnState.Stay;
-        }
-        else if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0))
         {
             attackState = BtnState.Down;
+        }
+        else if (Input.GetMouseButton(0))
+        {
+            attackState = BtnState.Stay;
         }
         else if (Input.GetMouseButtonUp(0))
         {

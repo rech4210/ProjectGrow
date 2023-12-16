@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,11 +8,20 @@ public enum ItemKind
     Slot = 1,
     Pot = 2,
     Seed = 3,//씨앗
-
+    Weapon = 5,//무기
 }
-public abstract class ItemCtrl : MonoBehaviour
+public abstract class ItemCtrl : MonoBehaviour,I_Pool
 {
-
+    protected Action<I_Pool> disableAction;
+    public void SetPoolEvent(Action<I_Pool> poolevent)
+    {
+        disableAction += poolevent;
+    }
+    public virtual void disable()
+    {
+        //풀링 회수 
+        disableAction?.Invoke(this);
+    }
     ///아이템 태그
     ///사용 함수 (루트 컨트롤 보내주세요
     ///들기 놓기
@@ -30,8 +40,6 @@ public abstract class ItemCtrl : MonoBehaviour
     public abstract bool checkUse(ItemCtrl nowItem);
 
 
-    public virtual void disable()
-    {
-        //풀링 회수 
-    }
+    
+
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class Item_Pot : ItemCtrl
 {
 
-    public override ItemKind itemKind => ItemKind.Seed;
+    public override ItemKind itemKind => ItemKind.Pot;
 
     public Item_Seed nowSeed;
     public float waterValue;
@@ -24,38 +24,76 @@ public class Item_Pot : ItemCtrl
                 PotSlot slot = nowItem as PotSlot;
                 if (slot != null && slot.nowItemCtrl == null)
                 {
-                    FieldCtrl.Instance.setSlot(this, slot);
                     return true;
                 }
                 break;
-            case ItemKind.Seed:
+            case ItemKind.Seed: //이부분은 seed에 옮겨야함
                 Item_Seed seed = nowItem as Item_Seed;
                 if (seed != null && nowSeed == null)
                 {
-                    isWood = false;
-                    nowSeed = seed;
-                    nowSeed.gameObject.SetActive(false);//일단 꺼두자
                     //화분에 리소스 설정
                     switch (nowSeed.WeaponKind)
                     {
                         case WeaponKind.None:
-                            break;
                         case WeaponKind.Revolver:
-                            break;
                         case WeaponKind.Minigun:
-                            break;
                         case WeaponKind.Firebat:
-                            break;
                         case WeaponKind.Electric:
-                            break;
+                            return true;
                     }
-                    return true;
                 }
                 break;
         }
         return false;
     }
 
+
+    public void useAction(ItemCtrl nowItem)
+    {
+        //화분에 입력 들어오는건 씨앗, 무기일경우 타워화분임
+        switch (nowItem.itemKind)
+        {
+            case ItemKind.None:
+                break;
+            case ItemKind.Slot:
+                //밭에 화분 배치
+                PotSlot slot = nowItem as PotSlot;
+                if (slot != null && slot.nowItemCtrl == null)
+                {
+                    FieldCtrl.Instance.setSlot(this, slot);
+                    return;
+                }
+                break;
+            case ItemKind.Seed:
+                break;
+        }
+
+    }
+    public void setSeed(Item_Seed seed)
+    {
+        if (nowSeed == null)
+        {
+            isWood = false;
+            nowSeed = seed;
+            nowSeed.transform.SetParent(this.transform);
+            nowSeed.transform.localPosition = Vector3.zero;
+            nowSeed.gameObject.SetActive(false);//일단 꺼두자
+                                                //화분에 리소스 설정
+            switch (nowSeed.WeaponKind)
+            {
+                case WeaponKind.None:
+                    break;
+                case WeaponKind.Revolver:
+                    break;
+                case WeaponKind.Minigun:
+                    break;
+                case WeaponKind.Firebat:
+                    break;
+                case WeaponKind.Electric:
+                    break;
+            }
+        }
+    }
     public override void GrabToggle(RootCtrl rootCtrl, bool isGrab)
     {
 
@@ -72,7 +110,7 @@ public class Item_Pot : ItemCtrl
                 break;
             case UseState.Start:
 
-                if (nowSeed == null)
+                if (nowSeed != null)
                 {
                     if (isWood)
                     {
@@ -89,6 +127,8 @@ public class Item_Pot : ItemCtrl
                     {
                         //Todo 장착중인 아이템 해제함
                         //rootCtrl.weaponCtrl.ItemRemove();
+                        useAction(hitCtrl);
+                        rootCtrl.interaction.interactionGrabOff();
                     }
                 }
                 break;

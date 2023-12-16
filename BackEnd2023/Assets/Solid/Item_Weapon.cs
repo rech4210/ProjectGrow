@@ -9,6 +9,7 @@ public enum WeaponKind
     Minigun = 2,
     Firebat = 3,
     Electric = 4,
+    Water = 5,
 }
 
 public class Item_Weapon : ItemCtrl
@@ -16,12 +17,14 @@ public class Item_Weapon : ItemCtrl
     public static Dictionary<WeaponKind, ObjectPooling<BulletCtrl>> bulletPoolDic = new Dictionary<WeaponKind, ObjectPooling<BulletCtrl>>();
     public BulletCtrl bullet;
 
+    public override ItemKind itemKind => ItemKind.Weapon;
+
     public WeaponKind weaponKind;
     private Transform fireTran;
 
     private void Start()
     {
-        //bullet = ScriptableManager.instance.getTable("Bullet").getPrefab(weaponKind.tosring()).getcomponent<bulletCtrl>();
+        //bullet = ScriptableManager.instance.getTable("Bullet").getPrefab<WeaponInfo>(weaponKind.ToString()).GetComponent<BulletCtrl>();
     }
     public override bool checkUse(ItemCtrl nowItem)
     {//무기는 화분에 사용할경우? 놉 내려놓을때 근처에 타워식물이 있으면 자동으로 장착, 줍기로 회수 
