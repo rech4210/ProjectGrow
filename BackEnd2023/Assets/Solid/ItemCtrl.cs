@@ -19,15 +19,15 @@ public abstract class ItemCtrl : MonoBehaviour
 
     public virtual ItemKind itemKind => ItemKind.None;
 
-    //public bool isGrab;//그랩상태
+    //public bool isGrab;//그랩상태 필요한가?
     public bool isGrabLock;//그랩 가능 불가능
-    public bool isUseLock;
+    public bool isInterLock;//인터렉션 잠금
 
 
     //마우스 클릭의 아이템 사용 처리
-    public abstract void UseCall(I_RootCtrl rootCtrl, UseState useState);
+    public abstract void UseCall(RootCtrl rootCtrl, UseState useState);
     //들기 놓기 처리
-    public abstract void GrabToggle(I_RootCtrl rootCtrl, bool isGrab);
+    public abstract void GrabToggle(RootCtrl rootCtrl, bool isGrab);
     public abstract bool checkUse(ItemCtrl nowItem);
 
 
