@@ -55,7 +55,7 @@ public class ObjectManager : MonoBehaviour
     {
         zombiePool.Initialize(zombies, this.gameObject.transform, 10);
         wildboarPool.Initialize(wildboar, this.gameObject.transform, 10);
-        List<ScriptableMonsterInfo.PrefabInfo> mobList =  ScriptableManager.instance.getTable("MonsterScriptable").Prefablist<ScriptableMonsterInfo.PrefabInfo>();
+        List<ScriptableMonsterInfo.PrefabInfo> mobList = ScriptableManager.instance.getTable(ScriptableManager.MobTableTag).Prefablist<ScriptableMonsterInfo.PrefabInfo>();
 
         for (int i = 0; i < mobList.Count; i++)
         {
@@ -67,7 +67,7 @@ public class ObjectManager : MonoBehaviour
 
     public void MakeMob(MonsterKind mob)
     {
-        switch(mob)
+        switch (mob)
         {
             case MonsterKind.Gorani:
                 MakeZombie();
@@ -93,12 +93,12 @@ public class ObjectManager : MonoBehaviour
 
     public void Update()
     {
-        if(bisPlaying)
+        if (bisPlaying)
         {
-            if(roundInfo.roundtimer > GameManager.instance.CurrentTime)
+            if (roundInfo.roundtimer > GameManager.instance.CurrentTime)
             {
                 GameManager.instance.stage++;
-                if(MonsterList.Length <= GameManager.instance.stage)
+                if (MonsterList.Length <= GameManager.instance.stage)
                 {
                     //클리어
                     bisPlaying = false;
@@ -108,10 +108,10 @@ public class ObjectManager : MonoBehaviour
 
             for (int i = 0; i < roundInfo.monsterinfo.Length; i++)
             {
-                if(spawndelay.ContainsKey(roundInfo.monsterinfo[i].monster))
+                if (spawndelay.ContainsKey(roundInfo.monsterinfo[i].monster))
                 {
                     spawndelay[roundInfo.monsterinfo[i].monster] -= Time.deltaTime;
-                    if(spawndelay[roundInfo.monsterinfo[i].monster] <= 0)
+                    if (spawndelay[roundInfo.monsterinfo[i].monster] <= 0)
                     {
                         spawndelay[roundInfo.monsterinfo[i].monster] = Random.Range(roundInfo.monsterinfo[i].time.x, roundInfo.monsterinfo[i].time.y);
                         MakeMob(roundInfo.monsterinfo[i].monster);

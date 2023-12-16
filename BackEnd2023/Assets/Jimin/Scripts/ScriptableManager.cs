@@ -36,7 +36,7 @@ public class ScriptableManager : MonoBehaviour
 
     public List<I_Scriptable> scriptablelist = new List<I_Scriptable>();
 
-    public const string MobTableTag = "MonsterScriptable";
+    public const string MobTableTag = "MonsterScriptable 1";
     public const string ScriptableTag = "Scriptable";
     public const string WeaponScriptableTag = "WeaponScriptable";
     public const string PlantScriptableTag = "PlantScriptable";

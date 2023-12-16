@@ -35,6 +35,7 @@ public class FieldCtrl : MonoBehaviour
     {
         slot.nowPot = potCtrl;
         potCtrl.isGrabLock = true;
+        potCtrl.Awake();
         potCtrl.transform.SetParent(slot.transform);
         potCtrl.hpCtrl.lifeOn();
         potCtrl.transform.localPosition = Vector3.zero;

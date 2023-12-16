@@ -5,6 +5,7 @@ using UnityEngine;
 public class Item_Pot : ItemCtrl, I_Faction
 {
     public Transform myTransform => this.transform;
+    public bool IsTarget => hpCtrl.nowHp > 0f;
 
     public override ItemKind itemKind => ItemKind.Pot;
 
@@ -24,8 +25,8 @@ public class Item_Pot : ItemCtrl, I_Faction
 
     public void Awake()
     {
-        ani = GetComponentInChildren<Animator>();
-        hpCtrl = GetComponent<PotHpCtrl>();
+        ani = GetComponentInChildren<Animator>(true);
+        hpCtrl = GetComponentInChildren<PotHpCtrl>(true);
     }
     public override bool checkUse(ItemCtrl nowItem)
     {
@@ -123,12 +124,23 @@ public class Item_Pot : ItemCtrl, I_Faction
                 case SeedKind.None:
                     break;
                 case SeedKind.Revolver:
+                    ani.SetInteger("LeefType", 1);
                     break;
                 case SeedKind.Minigun:
+                    ani.SetInteger("LeefType", 2);
                     break;
                 case SeedKind.Firebat:
+                    ani.SetInteger("LeefType", 3);
                     break;
                 case SeedKind.Electric:
+                    ani.SetInteger("LeefType", 4);
+                    break;
+                case SeedKind.Water:
+                    break;
+                case SeedKind.Tower:
+                    ani.SetInteger("LeefType", 5);
+                    break;
+                case SeedKind.Pot:
                     break;
             }
         }
@@ -221,7 +233,7 @@ public class Item_Pot : ItemCtrl, I_Faction
                 break;
             case SeedKind.Tower:
                 //Todo PlantInfo로 변경해야함
-                weaponUseCount = ScriptableManager.instance.getTable("PlantScriptable").getPrefab<ScriptablePlantInfo.PrefabInfo>(nowSeed.seedKind.ToString()).Reusecount;
+                weaponUseCount = ScriptableManager.instance.getTable(ScriptableManager.PlantScriptableTag).getPrefab<ScriptablePlantInfo.PrefabInfo>(nowSeed.seedKind.ToString()).Reusecount;
                 break;
         }
 
