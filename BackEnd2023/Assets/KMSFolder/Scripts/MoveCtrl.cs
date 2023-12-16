@@ -18,6 +18,7 @@ public class MoveCtrl : MonoBehaviour, InitiallizeInterface
     {
         rootCtrl = gameObject.GetComponent<RootCtrl>();
         speed = rootCtrl.status.speed;
+        playerRenderer = gameObject.GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -31,20 +32,22 @@ public class MoveCtrl : MonoBehaviour, InitiallizeInterface
             if(rootCtrl.inputCtrl.horizontal > 0)
             {
                 playerRenderer.flipX = false;
-                rootCtrl.AnimationCtrl.MoveAniamtion();
+                rootCtrl.stateCtrl.WalkState();
             }
             else
             {
                 playerRenderer.flipX = true;
-                rootCtrl.AnimationCtrl.MoveAniamtion();
+                rootCtrl.stateCtrl.WalkState();
             }
         }
 
         if ((rootCtrl.stateCtrl.stateEnum != stateEnum.Stunned) || Input.GetAxis("Vertical") != 0)
         {
             pos.y = rootCtrl.inputCtrl.vertical * Time.deltaTime * speed;
+            rootCtrl.stateCtrl.WalkState();
         }
 
         transform.position += pos;
+        rootCtrl.stateCtrl.IdleState();
     }
 }

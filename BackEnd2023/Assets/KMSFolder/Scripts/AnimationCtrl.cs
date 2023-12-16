@@ -7,6 +7,7 @@ public class AnimationCtrl : MonoBehaviour, InitiallizeInterface
     RootCtrl rootCtrl;
     Animator animator;
 
+    float IdleMoveValue = 1;
     // 상태머신에서 요청한 애니메이션 처리
     public void initiallize()
     {
@@ -16,23 +17,20 @@ public class AnimationCtrl : MonoBehaviour, InitiallizeInterface
 
     #region 상태이상
 
-    public void IdleAniamtion()
+    public void IdleToMoveAniamtion(float value)
     {
-        animator.SetTrigger("Idle");
+        //animator.SetTrigger("Idle");
+        animator.SetFloat("IdleToMove", value);
     }
     public void StunningAnimation()
     {
         animator.SetTrigger("Stunned");
     }
 
-    public void MoveAniamtion()
+    public void DeadAnimation()
     {
-        animator.SetTrigger("Move");
-    }
-
-    public void DeathAnimation()
-    {
-        animator.SetTrigger("Death");
+        animator.SetBool("dead", true);
+        animator.SetTrigger("deadCall");
     }
     public void GrapAniamtion()
     {

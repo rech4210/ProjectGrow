@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public struct Status
@@ -27,7 +25,7 @@ public class RootCtrl : MonoBehaviour
 
     private void Awake()
     {
-        status = new Status(5f);
+        status = new Status(0.5f);
         inputCtrl = gameObject.GetComponent<InputCtrl>();
         inputCtrl.initiallize();
 
