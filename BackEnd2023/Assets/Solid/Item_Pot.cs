@@ -40,6 +40,15 @@ public class Item_Pot : ItemCtrl, I_Faction, I_Attacker
     {
         targetRoot = null;
     }
+    public override void disable()
+    {
+        Invoke("potDisable", 2f);
+    }
+    public void potDisable()
+    {
+        FieldCtrl.Instance.removePot(this);
+        base.disable();
+    }
     public void Update()
     {
         SeedUpdate();

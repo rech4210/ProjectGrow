@@ -50,7 +50,8 @@ public class Item_Seed : ItemCtrl
             case SeedKind.Water:
                 break;
             case SeedKind.Pot:
-                model.sprite = seedSprite[4];
+                seedInfo = ScriptableManager.instance.getTable(ScriptableManager.PlantScriptableTag).getPrefab<ScriptablePlantInfo.PrefabInfo>(PlantNameEnum.Pot.ToString());
+                model.sprite = seedSprite[5];
                 break;
         }
     }

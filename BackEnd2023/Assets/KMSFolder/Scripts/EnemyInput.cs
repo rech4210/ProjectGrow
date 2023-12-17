@@ -91,7 +91,9 @@ public class EnemyInput : InputCtrl
         //Hp Ctrl aggro reference use
         rootCtrl.aggroAction += (attacker) =>
         {
-            rootCtrl.WeaponCtrl.targetTran = attacker.myTransform;
+            rootCtrl.targetTran = attacker.myTransform;
+            targetPool = rootCtrl.targetTran.GetComponent<I_Pool>();
+            targetPool.SetDisableOneEvent(targetOff);
         };
 
         rootCtrl.deadAction += () =>

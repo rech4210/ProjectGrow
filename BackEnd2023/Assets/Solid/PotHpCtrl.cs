@@ -75,6 +75,7 @@ public class PotHpCtrl : MonoBehaviour, I_HitZone
                     break;
                 case Faction.Enemy:
                     nowHp -= damage;
+                    myPot.ani.SetFloat("HPFill", nowHp / maxHp);
                     if (nowHp <= 0f)
                     {
                         nowHp = 0f;
@@ -93,6 +94,7 @@ public class PotHpCtrl : MonoBehaviour, I_HitZone
                         }
                         hitBox.enabled = false;
                         GameManager.instance.DeleteTransformlist(myPot);
+                        myPot.disable();
                     }
                     break;
             }
@@ -101,7 +103,8 @@ public class PotHpCtrl : MonoBehaviour, I_HitZone
 
     public void lifeOn()
     {
-        nowHp = 40;
+        nowHp = maxHp = 40;
+        myPot.ani.SetFloat("HPFill", nowHp / maxHp);
         hitBox.enabled = true;
         GameManager.instance.AddtoTransformlist(myPot);
     }
