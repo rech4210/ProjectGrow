@@ -21,7 +21,7 @@ public class Item_Seed : ItemCtrl
     public float openTime = 1f;
     public float openTemp;
 
-    private void OnEnable()
+    public void OnEnable()
     {
         switch (seedKind)
         {
@@ -180,6 +180,8 @@ public class Item_Seed : ItemCtrl
             weapon.OnEnable();
             weapon.transform.position = this.transform.position;
             rootCtrl.interaction.interactionGrabOff();
+            GameManager.instance.soundManager.PlaySoundclip("Snd_getItem");
+            
             this.disable();
             return;
         }

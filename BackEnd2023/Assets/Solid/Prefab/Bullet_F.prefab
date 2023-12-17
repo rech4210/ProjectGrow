@@ -46,9 +46,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebd76088a086cfc418f9288bad8584fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sound: Fire
   hitCount: 5
   hitTemp: 0
-  attacker: {fileID: 0}
   damage: 0
   radius: 0.3
   offsetRange: 6

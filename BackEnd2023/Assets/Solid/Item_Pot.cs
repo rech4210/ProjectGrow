@@ -63,7 +63,7 @@ public class Item_Pot : ItemCtrl, I_Faction, I_Attacker
                     for (int i = 0; i < hits.Length; i++)
                     {
                         I_HitZone hitZone = hits[i].GetComponent<I_HitZone>();
-                        if (hitZone != null && hitZone.Faction == Faction.Enemy)
+                        if (hitZone != null && hitZone.RootCtrl != null && hitZone.Faction == Faction.Enemy)
                         {
                             targetRoot = hitZone.RootCtrl;
                             targetRoot.SetDisableOneEvent(targetOff);
@@ -367,8 +367,9 @@ public class Item_Pot : ItemCtrl, I_Faction, I_Attacker
                             default:
                                 break;
                         }
-
+                        weapon = null;
                         nowSeed.disable();
+                        isWood = false;
                         nowSeed = null;
                     }
                 }

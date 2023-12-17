@@ -112,12 +112,16 @@ public class EnemyInput : InputCtrl
     IEnumerator ExcuteDeadAction()
     {
         yield return new WaitForSeconds(0.5f);
-        var item = ItemCtrl.newItem(ItemKind.Seed, GetRandomSeed().ToString());
+        PlantNameEnum seed = GetRandomSeed();
+        Item_Seed item = ItemCtrl.newItem(ItemKind.Seed, seed.ToString()) as Item_Seed;
+        item.seedKind = ItemCtrl.ChangeSeed(seed);
+        item.potOut();
         item.gameObject.SetActive(true);
         item.gameObject.transform.position = this.gameObject.transform.position;
         var obj = ScriptableManager.instance.getTable(ScriptableManager.ScriptableTag).getPrefab<Scriptable_Object.PrefabInfo>("Die Effect").Prefabs;
         FieldCtrl.Instance.pool(obj.transform).transform.SetPositionAndRotation(this.transform.position, Quaternion.identity);
 
+        GameManager.instance.soundManager.PlaySoundclip("Snd_death");
         rootCtrl.disable();
     }
 
