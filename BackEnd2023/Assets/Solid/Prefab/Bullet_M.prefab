@@ -46,9 +46,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebd76088a086cfc418f9288bad8584fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitCount: 1
+  hitTemp: 0
   attacker: {fileID: 0}
   damage: 0
   radius: 0.1
+  offsetRange: 0
   dic: {x: 0.4, y: 0.2, z: 0}
   range: 100
   speed: 1
@@ -90,7 +93,7 @@ Transform:
   m_GameObject: {fileID: 565971980378234350}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.2241, y: 0.2241, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6537116639796059701}
@@ -121,14 +124,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6423199273518480582}
-  m_LocalRotation: {x: -0, y: -0, z: -0.7049117, w: 0.70929503}
+  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.2475, y: 1.2475, z: 1.2475}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 565971980378234349}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -89.645}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
 --- !u!212 &2738133236600421982
 SpriteRenderer:
   m_ObjectHideFlags: 0

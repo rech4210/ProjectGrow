@@ -21,67 +21,82 @@ public class PotHpCtrl : MonoBehaviour, I_HitZone
         }
     }
 
-    public bool CheckHitLock(RootCtrl attacker)
+    public bool CheckHitLock(I_Attacker attacker)
     {
-        if (attacker.interaction.GrabItemCtrl != null && attacker.interaction.GrabItemCtrl.itemKind == ItemKind.Weapon)
+        if (attacker is RootCtrl)
         {
-            switch ((attacker.interaction.GrabItemCtrl as Item_Weapon).weaponKind)
+            RootCtrl rootCtrl = attacker as RootCtrl;
+            if (rootCtrl != null && rootCtrl.interaction.GrabItemCtrl != null && rootCtrl.interaction.GrabItemCtrl.itemKind == ItemKind.Weapon)
             {
-                case SeedKind.None:
-                case SeedKind.Revolver:
-                case SeedKind.Minigun:
-                case SeedKind.Firebat:
-                case SeedKind.Electric:
-                    return true;
-                case SeedKind.Water:
-                    return false;
+                switch ((rootCtrl.interaction.GrabItemCtrl as Item_Weapon).weaponKind)
+                {
+                    case SeedKind.None:
+                    case SeedKind.Revolver:
+                    case SeedKind.Minigun:
+                    case SeedKind.Firebat:
+                    case SeedKind.Electric:
+                        return true;
+                    case SeedKind.Water:
+                        return myPot.isWood;
+                }
             }
         }
         return false;
     }
 
-    public void SetDamaged(float damage, RootCtrl attacker)
+    public void SetDamaged(float damage, I_Attacker attacker)
     {
-        switch (attacker.faction)
+        if (attacker is RootCtrl)
         {
-            case Faction.None:
-                break;
-            case Faction.Player:
-                if (attacker.interaction.GrabItemCtrl != null && attacker.interaction.GrabItemCtrl.itemKind == ItemKind.Weapon)
-                {
-                    switch ((attacker.interaction.GrabItemCtrl as Item_Weapon).weaponKind)
+            RootCtrl rootCtrl = attacker as RootCtrl;
+            switch (attacker.Faction)
+            {
+                case Faction.None:
+                    break;
+                case Faction.Player:
+                    if (rootCtrl.interaction.GrabItemCtrl != null && rootCtrl.interaction.GrabItemCtrl.itemKind == ItemKind.Weapon)
                     {
-                        case SeedKind.None:
-                        case SeedKind.Revolver:
-                        case SeedKind.Minigun:
-                        case SeedKind.Firebat:
-                        case SeedKind.Electric:
-                            Debug.Log("피격은 아닌데");
-                            break;
-                        case SeedKind.Water:
-                            myPot.waterValue = 5f;
-                            break;
+                        switch ((rootCtrl.interaction.GrabItemCtrl as Item_Weapon).weaponKind)
+                        {
+                            case SeedKind.None:
+                            case SeedKind.Revolver:
+                            case SeedKind.Minigun:
+                            case SeedKind.Firebat:
+                            case SeedKind.Electric:
+                                Debug.Log("피격은 아닌데");
+                                break;
+                            case SeedKind.Water:
+                                myPot.waterValue = 5f;
+                                break;
+                        }
                     }
-                }
-                break;
-            case Faction.Pot:
-                break;
-            case Faction.Enemy:
-                nowHp -= damage;
-                if (nowHp <= 0f)
-                {
-                    nowHp = 0f;
-                    //파괴
-                    attacker.DeadEvent(myPot);
+                    break;
+                case Faction.Pot:
+                    break;
+                case Faction.Enemy:
+                    nowHp -= damage;
+                    if (nowHp <= 0f)
+                    {
+                        nowHp = 0f;
+                        //파괴
+                        attacker.DeadEvent(myPot);
 
-
-
-                    hitBox.enabled = false;
-                    GameManager.instance.DeleteTransformlist(myPot);
-                }
-                break;
+                        if (myPot.nowSeed != null)
+                        {
+                            myPot.nowSeed.disable();
+                            myPot.nowSeed = null;
+                        }
+                        if (myPot.weapon != null)
+                        {
+                            myPot.weapon.disable();
+                            myPot.weapon = null;
+                        }
+                        hitBox.enabled = false;
+                        GameManager.instance.DeleteTransformlist(myPot);
+                    }
+                    break;
+            }
         }
-
     }
 
     public void lifeOn()

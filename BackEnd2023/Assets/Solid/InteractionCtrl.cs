@@ -121,6 +121,7 @@ public class InteractionCtrl : MonoBehaviour, I_Interaction
                 {
                     grabItemCtrl.transform.SetParent(grabPivot);
                     grabItemCtrl.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+                    grabItemCtrl.transform.localScale = Vector3.one;
                 }
             }
         }

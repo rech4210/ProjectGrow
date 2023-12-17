@@ -172,7 +172,7 @@ public class Item_Seed : ItemCtrl
                 break;
         }
         //Debug.Log(openTemp);
-        if (seedKind != SeedKind.Pot && openTemp <= 0f)
+        if (seedKind != SeedKind.Pot && seedKind != SeedKind.Tower && openTemp <= 0f)
         {
             Item_Weapon weapon = ItemCtrl.newItem(ItemKind.Weapon, seedKind.ToString()) as Item_Weapon;
             weapon.weaponKind = seedKind;

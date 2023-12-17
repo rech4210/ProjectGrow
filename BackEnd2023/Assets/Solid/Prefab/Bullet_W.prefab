@@ -46,11 +46,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebd76088a086cfc418f9288bad8584fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitCount: 1
+  hitTemp: 0
   attacker: {fileID: 0}
   damage: 0
-  radius: 0.1
+  radius: 0.3
+  offsetRange: 0
   dic: {x: 0.4, y: 0.2, z: 0}
-  range: 100
+  range: 3
   speed: 0.1
   model: {fileID: 565971980378234349}
   temp: 0
