@@ -36,9 +36,18 @@ public class Item_Pot : ItemCtrl, I_Faction, I_Attacker
     public Transform TargetTran => targetRoot.transform;
     public Faction Faction => Faction.None;
 
-    void DeadEvent(I_Faction i_Faction)
+    public void DeadEvent(I_Faction i_Faction)
     {
         targetRoot = null;
+    }
+    public override void disable()
+    {
+        Invoke("potDisable", 2f);
+    }
+    public void potDisable()
+    {
+        FieldCtrl.Instance.removePot(this);
+        base.disable();
     }
     public void Update()
     {
@@ -54,9 +63,10 @@ public class Item_Pot : ItemCtrl, I_Faction, I_Attacker
                     for (int i = 0; i < hits.Length; i++)
                     {
                         I_HitZone hitZone = hits[i].GetComponent<I_HitZone>();
-                        if (hitZone.Faction == Faction.Enemy)
+                        if (hitZone != null && hitZone.Faction == Faction.Enemy)
                         {
                             targetRoot = hitZone.RootCtrl;
+                            targetRoot.SetDisableOneEvent(targetOff);
                         }
                     }
                 }
@@ -65,6 +75,13 @@ public class Item_Pot : ItemCtrl, I_Faction, I_Attacker
             {
                 weapon.UseCallAttack(this, UseState.Start, endAmmo);
             }
+        }
+    }
+    public void targetOff(I_Pool targetPool)
+    {
+        if (targetPool == (I_Pool)targetRoot)
+        {
+            targetRoot = null;
         }
     }
     public void SeedUpdate()

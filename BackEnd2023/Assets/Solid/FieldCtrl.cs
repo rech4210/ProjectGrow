@@ -40,6 +40,17 @@ public class FieldCtrl : MonoBehaviour
         potCtrl.hpCtrl.lifeOn();
         potCtrl.transform.localPosition = Vector3.zero;
     }
+    public void removePot(Item_Pot pot)
+    {
+        for (int i = 0; i < potArr.Length; i++)
+        {
+            if (potArr[i].nowPot == pot)
+            {
+                potArr[i].nowPot = null;
+                return;
+            }
+        }
+    }
 
 
 

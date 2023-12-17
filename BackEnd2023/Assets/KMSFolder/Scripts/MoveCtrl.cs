@@ -28,7 +28,8 @@ public class MoveCtrl : MonoBehaviour, InitiallizeInterface
         {
             pos.x = rootCtrl.inputCtrl.horizontal * Time.deltaTime * rootCtrl.scriptableMonster.MoveSpeed;
             transform.position += pos;
-
+            pos.y = rootCtrl.inputCtrl.vertical * Time.deltaTime * rootCtrl.scriptableMonster.MoveSpeed;
+            transform.position += pos;
             if (rootCtrl.targetTran != null)
             {
 
@@ -63,10 +64,7 @@ public class MoveCtrl : MonoBehaviour, InitiallizeInterface
 
         if ((rootCtrl.stateCtrl.IsCanAction(rootCtrl.stateCtrl.stateEnum)))
         {
-            pos.y = rootCtrl.inputCtrl.vertical * Time.deltaTime * rootCtrl.scriptableMonster.MoveSpeed;
             rootCtrl.stateCtrl.WalkState(rootCtrl.inputCtrl.horizontal, rootCtrl.inputCtrl.vertical);
-            transform.position += pos;
-
         }
         else
         {

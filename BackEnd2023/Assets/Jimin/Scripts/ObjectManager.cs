@@ -114,8 +114,12 @@ public class ObjectManager : MonoBehaviour
                     spawndelay[roundInfo.monsterinfo[i].monster] -= Time.deltaTime;
                     if (spawndelay[roundInfo.monsterinfo[i].monster] <= 0)
                     {
-                        spawndelay[roundInfo.monsterinfo[i].monster] = Random.Range(roundInfo.monsterinfo[i].time.x, roundInfo.monsterinfo[i].time.y);
-                        MakeMob(roundInfo.monsterinfo[i].monster);
+                        int count = (int)Random.Range(roundInfo.monsterinfo[i].count.x, roundInfo.monsterinfo[i].count.x);
+                        for (int j = 0; j < count; j++)
+                        {
+                            MakeMob(roundInfo.monsterinfo[i].monster);
+                            spawndelay[roundInfo.monsterinfo[i].monster] = Random.Range(roundInfo.monsterinfo[i].time.x, roundInfo.monsterinfo[i].time.y);
+                        }
                     }
                 }
             }
