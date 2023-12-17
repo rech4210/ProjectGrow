@@ -102,12 +102,20 @@ public abstract class ItemCtrl : MonoBehaviour, I_Pool
     {
         disableAction += poolevent;
     }
+    public Action<I_Pool> oneDisableCall;
+    public void SetDisableOneEvent(Action<I_Pool> disableEvent)
+    {
+        oneDisableCall -= disableEvent;
+        oneDisableCall += disableEvent;
+    }
     public virtual void disable()
     {
         //풀링 회수 
         this.transform.SetParent(GameManager.poolParent);
         this.gameObject.SetActive(false);
         disableAction?.Invoke(this);
+        oneDisableCall?.Invoke(this);
+        oneDisableCall = delegate { };
     }
     ///아이템 태그
     ///사용 함수 (루트 컨트롤 보내주세요
@@ -131,8 +139,6 @@ public abstract class ItemCtrl : MonoBehaviour, I_Pool
 
 
     public abstract bool checkUse(ItemCtrl nowItem);
-
-
 
 
 }

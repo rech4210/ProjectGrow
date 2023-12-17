@@ -11,9 +11,16 @@ public class Zombies : MonoBehaviour, I_Pool
     {
         disableAction += poolevent;
     }
-
+    public Action<I_Pool> oneDisableCall;
+    public void SetDisableOneEvent(Action<I_Pool> disableEvent)
+    {
+        oneDisableCall -= disableEvent;
+        oneDisableCall += disableEvent;
+    }
     public void disable()
     {
         disableAction?.Invoke(this);
+        oneDisableCall?.Invoke(this);
+        oneDisableCall = delegate { };
     }
 }
