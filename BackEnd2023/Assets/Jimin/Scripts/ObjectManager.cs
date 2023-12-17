@@ -96,7 +96,7 @@ public class ObjectManager : MonoBehaviour
     {
         if (bisPlaying)
         {
-            if (roundInfo.roundtimer > GameManager.instance.CurrentTime)
+            if (roundInfo.roundtimer < GameManager.instance.CurrentTime)
             {
                 GameManager.instance.stage++;
                 if (MonsterList.Length <= GameManager.instance.stage)
