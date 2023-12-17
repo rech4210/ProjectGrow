@@ -6,11 +6,12 @@ public class PlayerInputCtrl : InputCtrl
     private float reviveTime = 3f;
     private void Update()
     {
-        
+
         if (rootCtrl.stateCtrl.IsCanAction(rootCtrl.stateCtrl.stateEnum))
         {
-            horizontal = Input.GetAxis("Horizontal");
-            vertical = Input.GetAxis("Vertical");
+            Vector2 moveDic = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")).normalized;
+            horizontal = moveDic.x;
+            vertical = moveDic.y;
         }
         else
         {
@@ -57,8 +58,9 @@ public class PlayerInputCtrl : InputCtrl
     public override void initiallize()
     {
         base.initiallize();
-        rootCtrl.deadAction += () => {
-            if(rootCtrl.stateCtrl.IsCanAction(rootCtrl.stateCtrl.stateEnum) && Time.realtimeSinceStartup > 5f)
+        rootCtrl.deadAction += () =>
+        {
+            if (rootCtrl.stateCtrl.IsCanAction(rootCtrl.stateCtrl.stateEnum) && Time.realtimeSinceStartup > 5f)
             {
                 rootCtrl.stateCtrl.stateEnum = stateEnum.Stunned;
                 rootCtrl.stateCtrl.StunState();

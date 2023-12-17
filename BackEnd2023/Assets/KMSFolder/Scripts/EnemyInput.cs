@@ -5,6 +5,15 @@ public class EnemyInput : InputCtrl
 {
     bool isAttack = false;
     public List<PlantNameEnum> seedKindsList;
+    private I_Pool targetPool;
+
+    public void targetOff(I_Pool targetPool)
+    {
+        if (targetPool == this.targetPool)
+        {
+            rootCtrl.targetTran = null;
+        }
+    }
     private void Update()
     {
         //transform.position = targetPlayer.position;
@@ -12,6 +21,11 @@ public class EnemyInput : InputCtrl
         {
             rootCtrl.targetTran = GameManager.instance.ReturnClosesetObject(this.transform);
             rootCtrl.stateCtrl.IdleState();
+            if (rootCtrl.targetTran != null)
+            {
+                targetPool = rootCtrl.targetTran.GetComponent<I_Pool>();
+                targetPool.SetDisableOneEvent(targetOff);
+            }
         }
 
         if (rootCtrl.targetTran != null && rootCtrl.stateCtrl.IsCanAction(rootCtrl.stateCtrl.stateEnum))
@@ -77,7 +91,9 @@ public class EnemyInput : InputCtrl
         //Hp Ctrl aggro reference use
         rootCtrl.aggroAction += (attacker) =>
         {
-            rootCtrl.WeaponCtrl.targetTran = attacker.myTransform;
+            rootCtrl.targetTran = attacker.myTransform;
+            targetPool = rootCtrl.targetTran.GetComponent<I_Pool>();
+            targetPool.SetDisableOneEvent(targetOff);
         };
 
         rootCtrl.deadAction += () =>
@@ -96,18 +112,18 @@ public class EnemyInput : InputCtrl
     IEnumerator ExcuteDeadAction()
     {
         yield return new WaitForSeconds(0.5f);
-        var item =  ItemCtrl.newItem(ItemKind.Seed,GetRandomSeed().ToString());
+        var item = ItemCtrl.newItem(ItemKind.Seed, GetRandomSeed().ToString());
         item.gameObject.SetActive(true);
         item.gameObject.transform.position = this.gameObject.transform.position;
-        var obj =  ScriptableManager.instance.getTable(ScriptableManager.ScriptableTag).getPrefab<Scriptable_Object.PrefabInfo>("Drop Effect").Prefabs;
-        Instantiate(obj,this.transform.position,Quaternion.identity);
+        var obj = ScriptableManager.instance.getTable(ScriptableManager.ScriptableTag).getPrefab<Scriptable_Object.PrefabInfo>("Drop Effect").Prefabs;
+        Instantiate(obj, this.transform.position, Quaternion.identity);
 
         rootCtrl.disable();
     }
 
     private PlantNameEnum GetRandomSeed()
     {
-        var rd = Random.Range(0,seedKindsList.Count-1);
+        var rd = Random.Range(0, seedKindsList.Count - 1);
         return seedKindsList[rd];
     }
 }

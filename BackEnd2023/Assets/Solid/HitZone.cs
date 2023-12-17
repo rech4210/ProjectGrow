@@ -6,7 +6,7 @@ public class HitZone : MonoBehaviour, I_HitZone
 {
     public RootCtrl rootCtrl;
     public RootCtrl RootCtrl => rootCtrl;
-    public Faction Faction => rootCtrl.faction;
+    public Faction Faction => rootCtrl.Faction;
     public Collider2D hitBox;
     private void Start()
     {

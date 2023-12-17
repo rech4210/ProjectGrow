@@ -76,10 +76,18 @@ public class RootCtrl : MonoBehaviour, I_Attacker, I_Pool, I_Faction
     {
         disableAction += poolevent;
     }
+    public Action<I_Pool> oneDisableCall;
+    public void SetDisableOneEvent(Action<I_Pool> disableEvent)
+    {
+        oneDisableCall -= disableEvent;
+        oneDisableCall += disableEvent;
+    }
     public virtual void disable()
     {
         //풀링 회수 
         disableAction?.Invoke(this);
+        oneDisableCall?.Invoke(this);
+        oneDisableCall = delegate { };
     }
     /// </summary>
     /// 

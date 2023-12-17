@@ -6,6 +6,8 @@ using System;
 public interface I_Pool
 {
     void SetPoolEvent(Action<I_Pool> poolevent);
+
+    void SetDisableOneEvent(Action<I_Pool> disableEvent);
 }
 
 public class ObjectPooling<T> where T : Component, I_Pool
@@ -25,7 +27,8 @@ public class ObjectPooling<T> where T : Component, I_Pool
     private T CreateNewObject(T obj)
     {
         var newObj = GameObject.Instantiate(obj);
-        newObj.GetComponent<I_Pool>().SetPoolEvent((item) => {
+        newObj.GetComponent<I_Pool>().SetPoolEvent((item) =>
+        {
             itemPool.Enqueue(newObj);
             newObj.gameObject.SetActive(false);
             newObj.gameObject.transform.SetParent(null);

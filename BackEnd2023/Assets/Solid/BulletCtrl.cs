@@ -27,11 +27,18 @@ public class BulletCtrl : MonoBehaviour, I_Pool
     {
         disalbleAction += poolevent;
     }
-
+    public Action<I_Pool> oneDisableCall;
+    public void SetDisableOneEvent(Action<I_Pool> disableEvent)
+    {
+        oneDisableCall -= disableEvent;
+        oneDisableCall += disableEvent;
+    }
     public void disable()
     {
         disalbleAction?.Invoke(this);
         attacker = null;
+        oneDisableCall?.Invoke(this);
+        oneDisableCall = delegate { };
     }
     public void enable()
     {

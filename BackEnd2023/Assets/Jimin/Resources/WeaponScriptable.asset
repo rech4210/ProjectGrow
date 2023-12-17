@@ -19,7 +19,7 @@ MonoBehaviour:
     BulletCount: 6
     GaugeTime: 0
     HP: 0
-    AttackPoint: 10
+    AttackPoint: 40
     AttackSpeed: 0.2
     AttackDistance: 50
     SpecialOption: 0
@@ -49,9 +49,9 @@ MonoBehaviour:
     Type: 0
     EnergyType: 1
     BulletCount: 0
-    GaugeTime: 10
+    GaugeTime: 5
     HP: 0
-    AttackPoint: 3
+    AttackPoint: 0.35
     AttackSpeed: 0.1
     AttackDistance: 0.1
     SpecialOption: 0
@@ -85,7 +85,7 @@ MonoBehaviour:
     HP: 0
     AttackPoint: 0.5
     AttackSpeed: 0.1
-    AttackDistance: 10
+    AttackDistance: 2
     SpecialOption: 1
     AbilityObject: 2
     Ability: 2
