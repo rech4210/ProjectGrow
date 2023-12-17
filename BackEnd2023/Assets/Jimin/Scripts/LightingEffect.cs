@@ -30,6 +30,8 @@ public class LightingEffect : MonoBehaviour
         line = Instantiate(Lighting[Random.Range(0,Lighting.Count)]);
         line.SetWidth(0, 0);
 
+        GameManager.instance.soundManager.PlaySoundclip("Soundname"); //Soundname에 원하는 사운드 넣기
+
         var tmp = Instantiate(LightCircle, this.gameObject.transform);
         //tmp.SetActive(false);
         Circlelist.Add(tmp);

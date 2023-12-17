@@ -40,6 +40,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     UIManager uiManager;
 
+    [SerializeField]
+    public SoundManager soundManager;
+
     public List<I_Faction> Objectlist = new List<I_Faction>();
 
     public float CurrentTime = 0f;
