@@ -40,4 +40,25 @@ public class SoundManager : MonoBehaviour
 
         Debug.Log("해당 이름의 사운드 없음 ");
     }
+
+    public void SetVolume(string _name, float _vol)
+    {
+        foreach (var i in sounds)
+        {
+            if (i.name == _name)
+            {
+                AudioClip tmpclip = i.clip;
+
+                for (int j = 0; j < AudioPlayer.Length; j++)
+                {
+                    if (AudioPlayer[j].clip == tmpclip)
+                    {
+                        AudioPlayer[j].volume = _vol;
+                    }
+                }
+
+                return;
+            }
+        }
+    }
 }
