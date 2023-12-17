@@ -33,7 +33,7 @@ public class Item_Pot : ItemCtrl, I_Faction, I_Attacker
     public RootCtrl targetRoot;
 
 
-    Transform TargetTran => targetRoot.transform;
+    public Transform TargetTran => targetRoot.transform;
     public Faction Faction => Faction.None;
 
     void DeadEvent(I_Faction i_Faction)
@@ -44,11 +44,11 @@ public class Item_Pot : ItemCtrl, I_Faction, I_Attacker
     {
         SeedUpdate();
 
-        if (nowSeed != null && nowSeed.seedKind == SeedKind.Tower)
+        if (weapon != null && nowSeed.seedKind == SeedKind.Tower)
         {
             if (targetRoot == null)
             {
-                Collider2D[] hits = Physics2D.OverlapCircleAll(this.transform.position, 5f, LayerManager.Instance.HitZone);
+                Collider2D[] hits = Physics2D.OverlapCircleAll(this.transform.position, 15f, LayerManager.Instance.HitZone);
                 if (hits != null)
                 {
                     for (int i = 0; i < hits.Length; i++)
