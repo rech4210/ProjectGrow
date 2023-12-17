@@ -4,6 +4,19 @@ using UnityEngine;
 
 public class FieldCtrl : MonoBehaviour
 {
+    public Dictionary<string, ObjectPooling<EffectAuto>> poolDic = new Dictionary<string, ObjectPooling<EffectAuto>>();
+
+    public EffectAuto pool(Transform prefabTran)
+    {
+        EffectAuto prefab = prefabTran.GetComponent<EffectAuto>();
+        if (prefab == null) return null;
+
+        if (poolDic.ContainsKey(prefabTran.name) == false)
+        {
+            poolDic[prefabTran.name] = new ObjectPooling<EffectAuto>();
+        }
+        return poolDic[prefabTran.name].GetObject(prefab);
+    }
     private static FieldCtrl instance;
     public static FieldCtrl Instance { get { return instance; } }
     //화분을 관리함

@@ -115,8 +115,8 @@ public class EnemyInput : InputCtrl
         var item = ItemCtrl.newItem(ItemKind.Seed, GetRandomSeed().ToString());
         item.gameObject.SetActive(true);
         item.gameObject.transform.position = this.gameObject.transform.position;
-        var obj = ScriptableManager.instance.getTable(ScriptableManager.ScriptableTag).getPrefab<Scriptable_Object.PrefabInfo>("Drop Effect").Prefabs;
-        Instantiate(obj, this.transform.position, Quaternion.identity);
+        var obj = ScriptableManager.instance.getTable(ScriptableManager.ScriptableTag).getPrefab<Scriptable_Object.PrefabInfo>("Die Effect").Prefabs;
+        FieldCtrl.Instance.pool(obj.transform).transform.SetPositionAndRotation(this.transform.position, Quaternion.identity);
 
         rootCtrl.disable();
     }
