@@ -10,7 +10,6 @@ public class Sound
     public AudioClip clip;
 }
 
-
 public class SoundManager : MonoBehaviour
 {
     [SerializeField]
@@ -28,7 +27,7 @@ public class SoundManager : MonoBehaviour
                 for(int j = 0; j < AudioPlayer.Length; j++)
                 {
                     if(!AudioPlayer[j].isPlaying)
-                    {
+                    { 
                         AudioPlayer[j].clip = i.clip;
                         AudioPlayer[j].Play();
                         return;
