@@ -58,7 +58,7 @@ public class StateCtrl : MonoBehaviour, InitiallizeInterface
     private void Update()
     {
         time += Time.deltaTime;
-        if(time- stunnedTime > 3f && stateEnum == stateEnum.Stunned)
+        if (time - stunnedTime > 3f && stateEnum == stateEnum.Stunned)
         {
             IdleState();
         }
@@ -66,12 +66,12 @@ public class StateCtrl : MonoBehaviour, InitiallizeInterface
 
     public void HitedState()
     {
-        if (IsCanAction(stateEnum))
-        {
-            StateChange(stateEnum.hited);
-            rootCtrl.AnimationCtrl.HitedAnimation();
-            stunnedTime = time;
-        }
+        //if (IsCanAction(stateEnum))
+        //{
+        //StateChange(stateEnum.hited);
+        rootCtrl.AnimationCtrl.HitedAnimation();
+        //stunnedTime = time;
+        //}
     }
 
     #region 상태이상 변경
@@ -102,20 +102,22 @@ public class StateCtrl : MonoBehaviour, InitiallizeInterface
             rootCtrl.AnimationCtrl.IdleToMoveAniamtion(0);
         }
     }
-    public void WalkState(float pointX,float pointY)
+    public void WalkState(float pointX, float pointY)
     {
-        if(pointX <0)
-        {
-            pointX = -pointX;
-        }
-        if(pointY <0)
+        if (pointY < 0)
         {
             pointY = -pointY;
         }
+        Vector2 dic = new Vector2(-pointX, pointY);
+        //if (pointX < 0)
+        //{
+        //    pointX = -pointX;
+        //}
+
         if (IsCanAction(stateEnum))
         {
             StateChange(stateEnum.Move);
-            rootCtrl.AnimationCtrl.IdleToMoveAniamtion(pointX+pointY);
+            rootCtrl.AnimationCtrl.IdleToMoveAniamtion(dic.magnitude * dic.x);
         }
     }
     public void GrapState()
@@ -147,7 +149,7 @@ public class StateCtrl : MonoBehaviour, InitiallizeInterface
 
     public bool IsCanAction(stateEnum state)
     {
-        if(state != stateEnum.Stunned && state != stateEnum.Dead && state!= stateEnum.Attack)
+        if (state != stateEnum.Stunned && state != stateEnum.Dead && state != stateEnum.Attack)
         {
             return true;
         }

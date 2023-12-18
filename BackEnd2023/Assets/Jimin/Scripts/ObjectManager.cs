@@ -63,7 +63,7 @@ public class ObjectManager : MonoBehaviour
             spawndelay[mobList[i].Name] = 0f;
         }
 
-        StartSpawn();
+        Invoke("StartSpawn", 30f);
     }
 
     public void MakeMob(MonsterKind mob)
@@ -84,12 +84,14 @@ public class ObjectManager : MonoBehaviour
     {
         RootCtrl newzombie = zombiePool.GetObject(zombies);
         newzombie.transform.position = RandomVector[Random.Range(0, RandomVector.Count)].position;
+        newzombie.lifeAction?.Invoke();
     }
 
     public void MakeWildboar()
     {
         RootCtrl newwildboar = wildboarPool.GetObject(wildboar);
         newwildboar.transform.position = RandomVector[Random.Range(0, RandomVector.Count)].position;
+        newwildboar.lifeAction?.Invoke();
     }
 
     public void Update()

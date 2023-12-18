@@ -52,12 +52,12 @@ MonoBehaviour:
     Reusecount: 3
     SignIcon: 0
     PlantSillust: 0
-    prefab: {fileID: 5994676055889814354, guid: ecb4adb172932af4684ec4d4111592d1, type: 3}
+    prefab: {fileID: 5994676055889814354, guid: ca5e00480a66a194a9bdcc28ced4dd50, type: 3}
   - Name: 5
     Type: 1
-    GrowTime: 0
-    FruitCount: 0
-    Reusecount: 0
-    SignIcon: 0
-    PlantSillust: 0
-    prefab: {fileID: 5994676055889814354, guid: ecb4adb172932af4684ec4d4111592d1, type: 3}
+    GrowTime: 1
+    FruitCount: 1
+    Reusecount: 1
+    SignIcon: 1
+    PlantSillust: 1
+    prefab: {fileID: 5994676055889814354, guid: ca5e00480a66a194a9bdcc28ced4dd50, type: 3}

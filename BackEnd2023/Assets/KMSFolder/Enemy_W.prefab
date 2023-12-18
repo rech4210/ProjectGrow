@@ -513,7 +513,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59d1401b85b6beb4aa9da446df1fddc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  kind: 0
+  kind: 1
   scriptableMonster:
     Name: 0
     Type: 0
@@ -560,6 +560,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25e28881949928146aa5da6657855980, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hp: 0
   maxHp: 30
 --- !u!114 &1100556421001116617
 MonoBehaviour:

@@ -18,7 +18,7 @@ public class Item_Seed : ItemCtrl
     public SpriteRenderer model;
 
 
-    public float openTime = 1f;
+    private float openTime = 0.5f;
     public float openTemp;
 
     public void OnEnable()
@@ -77,6 +77,14 @@ public class Item_Seed : ItemCtrl
                         return true;
                     }
                 }
+                else
+                {
+                    PotSlot slot = nowItem as PotSlot;
+                    if (slot != null && slot.nowPot != null)
+                    {
+                        return true;
+                    }
+                }
                 break;
             case ItemKind.Pot:
                 Item_Pot pot = nowItem as Item_Pot;
@@ -84,6 +92,7 @@ public class Item_Seed : ItemCtrl
                 {
                     return true;
                 }
+
                 break;
         }
         return false;
@@ -103,6 +112,15 @@ public class Item_Seed : ItemCtrl
                         Item_Pot newPot = ItemCtrl.newItem(ItemKind.Pot, "Pot") as Item_Pot;
                         FieldCtrl.Instance.setSlot(newPot, slot);
                         this.disable();
+                    }
+                }
+                else
+                {
+                    PotSlot slot = nowItem as PotSlot;
+                    if (slot != null && slot.nowPot != null)
+                    {
+                        nowItem = slot.nowPot;
+                        goto case ItemKind.Pot;
                     }
                 }
                 break;
@@ -181,7 +199,7 @@ public class Item_Seed : ItemCtrl
             weapon.transform.position = this.transform.position;
             rootCtrl.interaction.interactionGrabOff();
             GameManager.instance.soundManager.PlaySoundclip("Snd_getItem");
-            
+
             this.disable();
             return;
         }

@@ -16,7 +16,8 @@ public class PotHpCtrl : MonoBehaviour, I_HitZone
     {
         if (nowHp < maxHp)
         {
-            nowHp += Time.deltaTime * 2f;
+            nowHp += Time.deltaTime * 5f;
+            myPot.ani.SetFloat("HPFill", nowHp / maxHp);
         }
     }
     private void Awake()
@@ -82,6 +83,10 @@ public class PotHpCtrl : MonoBehaviour, I_HitZone
                     break;
                 case Faction.Enemy:
                     nowHp -= damage;
+
+                    GameObject obj = ScriptableManager.instance.getTable(ScriptableManager.ScriptableTag).getPrefab<Scriptable_Object.PrefabInfo>("PotHit").Prefabs;
+                    FieldCtrl.Instance.pool(obj.transform).transform.SetPositionAndRotation(this.transform.position, Quaternion.identity);
+
                     myPot.ani.SetFloat("HPFill", nowHp / maxHp);
                     if (nowHp <= 0f)
                     {

@@ -16,9 +16,9 @@ MonoBehaviour:
   - Name: 0
     Type: 0
     HP: 30
-    Atk: 10
+    Atk: 2
     AttackSpeed: 35
-    MoveSpeed: 3
+    MoveSpeed: 2
     ActiveRange: 50
     SightRange: 10
     ChaseT_F: 1
@@ -30,7 +30,7 @@ MonoBehaviour:
     HP: 60
     Atk: 5
     AttackSpeed: 60
-    MoveSpeed: 2
+    MoveSpeed: 3
     ActiveRange: 50
     SightRange: 10
     ChaseT_F: 1
@@ -42,7 +42,7 @@ MonoBehaviour:
     HP: 60
     Atk: 5
     AttackSpeed: 60
-    MoveSpeed: 5
+    MoveSpeed: 6
     ActiveRange: 50
     SightRange: 10
     ChaseT_F: 1

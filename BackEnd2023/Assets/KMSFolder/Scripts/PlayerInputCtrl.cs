@@ -9,7 +9,7 @@ public class PlayerInputCtrl : InputCtrl
 
         if (rootCtrl.stateCtrl.IsCanAction(rootCtrl.stateCtrl.stateEnum))
         {
-            Vector2 moveDic = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")).normalized;
+            Vector2 moveDic = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
             horizontal = moveDic.x;
             vertical = moveDic.y;
         }

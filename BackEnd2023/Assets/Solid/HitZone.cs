@@ -6,7 +6,18 @@ public class HitZone : MonoBehaviour, I_HitZone
 {
     public RootCtrl rootCtrl;
     public RootCtrl RootCtrl => rootCtrl;
-    public Faction Faction => rootCtrl.Faction;
+    public Faction Faction
+    {
+        get
+        {
+            if (rootCtrl == null)
+            {
+                rootCtrl = GetComponentInParent<RootCtrl>();
+                hitBox = GetComponent<Collider2D>();
+            }
+            return rootCtrl.faction;
+        }
+    }
     public Collider2D hitBox;
     private void Start()
     {
@@ -16,12 +27,18 @@ public class HitZone : MonoBehaviour, I_HitZone
         RootCtrl.lifeAction += () =>
         {
             hitBox.enabled = true;
-            GameManager.instance.AddtoTransformlist(rootCtrl);
+            if (RootCtrl.Faction != Faction.Enemy)
+            {
+                GameManager.instance.AddtoTransformlist(rootCtrl);
+            }
         };
         RootCtrl.deadAction += () =>
         {
             hitBox.enabled = false;
-            GameManager.instance.DeleteTransformlist(rootCtrl);
+            if (RootCtrl.Faction != Faction.Enemy)
+            {
+                GameManager.instance.DeleteTransformlist(rootCtrl);
+            }
         };
     }
 

@@ -55,20 +55,13 @@ public class MoveCtrl : MonoBehaviour, InitiallizeInterface
                 }
             }
 
-            rootCtrl.stateCtrl.WalkState(rootCtrl.inputCtrl.horizontal, rootCtrl.inputCtrl.vertical);
+            rootCtrl.stateCtrl.WalkState(rootCtrl.inputCtrl.horizontal * (modelTran.localScale.x), rootCtrl.inputCtrl.vertical);
         }
         else
         {
             rootCtrl.stateCtrl.IdleState();
         }
 
-        if ((rootCtrl.stateCtrl.IsCanAction(rootCtrl.stateCtrl.stateEnum)))
-        {
-            rootCtrl.stateCtrl.WalkState(rootCtrl.inputCtrl.horizontal, rootCtrl.inputCtrl.vertical);
-        }
-        else
-        {
-            rootCtrl.stateCtrl.IdleState();
-        }
+
     }
 }

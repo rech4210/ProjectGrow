@@ -105,6 +105,7 @@ public class Item_Pot : ItemCtrl, I_Faction, I_Attacker
         ani = GetComponentInChildren<Animator>(true);
         hpCtrl = GetComponentInChildren<PotHpCtrl>(true);
         toworObj.SetActive(false);
+        sing.gameObject.SetActive(false);
         for (int i = 0; i < gunIconSprites.Length; i++)
         {
             gunIconSprites[i].transform.parent.gameObject.SetActive(false);
@@ -158,7 +159,7 @@ public class Item_Pot : ItemCtrl, I_Faction, I_Attacker
                 PotSlot slot = nowItem as PotSlot;
                 if (slot != null && slot.nowPot == null)
                 {
-                    FieldCtrl.Instance.setSlot(this, slot);
+                    //FieldCtrl.Instance.setSlot(this, slot);
                     return;
                 }
                 break;
@@ -284,6 +285,8 @@ public class Item_Pot : ItemCtrl, I_Faction, I_Attacker
         weapon = null;
         if (weaponUseCount <= 0)
         {
+            hpCtrl.nowHp = Mathf.Min(hpCtrl.nowHp, 40f);
+            hpCtrl.maxHp = 40f;
             nowSeed.disable();
             toworObj.gameObject.SetActive(false);
             sing.gameObject.SetActive(true);
@@ -321,10 +324,11 @@ public class Item_Pot : ItemCtrl, I_Faction, I_Attacker
                         case SeedKind.Water:
                             break;
                     }
-                    if (isWood)
+                    if (isWood && nowSeed.seedKind != SeedKind.Tower)
                     {
                         //¿­¸Å »ý¼º
                         //¾¾¾Ñ È¸¼ö
+                        sing.gameObject.SetActive(false);
 
                         ani.SetInteger("LeefType", 0);
                         ani.SetFloat("LeefFill", 0f);
@@ -417,7 +421,9 @@ public class Item_Pot : ItemCtrl, I_Faction, I_Attacker
                 {
                     gunIconSprites[i].transform.parent.gameObject.SetActive(false);
                 }
-                weaponUseCount = 3;// ScriptableManager.instance.getTable(ScriptableManager.PlantScriptableTag).getPrefab<ScriptablePlantInfo.PrefabInfo>(nowSeed.seedKind.ToString()).Reusecount;
+                hpCtrl.nowHp = 200f;
+                hpCtrl.maxHp = 200f;
+                weaponUseCount = 5;// ScriptableManager.instance.getTable(ScriptableManager.PlantScriptableTag).getPrefab<ScriptablePlantInfo.PrefabInfo>(nowSeed.seedKind.ToString()).Reusecount;
                 break;
         }
 
