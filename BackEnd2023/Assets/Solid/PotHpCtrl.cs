@@ -12,6 +12,13 @@ public class PotHpCtrl : MonoBehaviour, I_HitZone
     public float maxHp = 40f;
     public Collider2D hitBox;
 
+    private void Update()
+    {
+        if (nowHp < maxHp)
+        {
+            nowHp += Time.deltaTime * 2f;
+        }
+    }
     private void Awake()
     {
         myPot = GetComponentInParent<Item_Pot>();

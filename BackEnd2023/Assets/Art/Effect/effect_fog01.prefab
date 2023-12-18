@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7483142660832828769}
   - component: {fileID: 3988912718022555972}
   - component: {fileID: 3532055486892481172}
+  - component: {fileID: 5485900631318534875}
   m_Layer: 0
   m_Name: effect_fog01
   m_TagString: Untagged
@@ -105,3 +106,16 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &5485900631318534875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4285537887629190457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df91d6d779678ca4cb4f7e552bd3b470, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delay: 0.2

@@ -11,6 +11,7 @@ public interface I_HitZone
 }
 public class BulletCtrl : MonoBehaviour, I_Pool
 {
+    public string sound;
     public int hitCount = 1;
     public int hitTemp;
     public I_Attacker attacker;
@@ -45,6 +46,11 @@ public class BulletCtrl : MonoBehaviour, I_Pool
         temp = range / speed;
         hitTemp = hitCount;
         this.transform.eulerAngles = Vector3.zero;
+        if (string.IsNullOrEmpty(sound) == false)
+        {
+            GameManager.instance.soundManager.PlaySoundclip(sound);
+        }
+
     }
 
     private void Update()

@@ -49,7 +49,7 @@ MonoBehaviour:
     Type: 0
     EnergyType: 1
     BulletCount: 0
-    GaugeTime: 5
+    GaugeTime: 0.3
     HP: 0
     AttackPoint: 0.35
     AttackSpeed: 0.1
