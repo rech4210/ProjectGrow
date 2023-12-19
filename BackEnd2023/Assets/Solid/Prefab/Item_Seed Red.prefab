@@ -163,6 +163,8 @@ MonoBehaviour:
     SignIcon: 0
     PlantSillust: 0
     prefab: {fileID: 0}
+  bubbleColor: {r: 0.6627451, g: 0.94509804, b: 0.8, a: 1}
+  bubble: {fileID: 1455649694010497874}
   seedSprite:
   - {fileID: 21300000, guid: aa1394c7a854e034d8e303b8d1ebdacb, type: 3}
   - {fileID: 21300000, guid: 97d2cd51bed0e234ebde3d4d5fc02c5f, type: 3}

@@ -177,6 +177,7 @@ MonoBehaviour:
   weaponUseCount: 0
   weaponPivot: {fileID: 145307240234253547}
   targetRoot: {fileID: 0}
+  reloadTemp: 0
 --- !u!50 &901659959253262489
 Rigidbody2D:
   serializedVersion: 4
@@ -422,7 +423,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5906218547146184746
 Transform:
   m_ObjectHideFlags: 0

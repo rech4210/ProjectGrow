@@ -81,6 +81,22 @@ public class Item_Weapon : ItemCtrl
                 break;
         }
     }
+    public void reload()
+    {
+        switch (weaponInfo.EnergyType)
+        {
+            case EnergyTypeEnum.Bullet:
+                nowAmmo = weaponInfo.BulletCount;
+                break;
+            case EnergyTypeEnum.Gauge:
+                nowGuage = weaponInfo.GaugeTime;
+                break;
+            case EnergyTypeEnum.Null:
+                break;
+            default:
+                break;
+        }
+    }
     public override bool checkUse(ItemCtrl nowItem)
     {//무기는 화분에 사용할경우? 놉 내려놓을때 근처에 타워식물이 있으면 자동으로 장착, 줍기로 회수 
         switch (nowItem.itemKind)
@@ -192,7 +208,7 @@ public class Item_Weapon : ItemCtrl
                     {
                         //모두 소모함
                         endAmmo?.Invoke();
-                        this.disable();
+                        //this.disable();
                     }
                     break;
                 case EnergyTypeEnum.Gauge:
@@ -205,7 +221,7 @@ public class Item_Weapon : ItemCtrl
                     {
                         //모두 소모함
                         endAmmo?.Invoke();
-                        this.disable();
+                        //this.disable();
                     }
                     break;
                 case EnergyTypeEnum.Null:

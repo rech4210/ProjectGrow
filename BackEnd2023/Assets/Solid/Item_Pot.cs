@@ -42,10 +42,12 @@ public class Item_Pot : ItemCtrl, I_Faction, I_Attacker
     }
     public override void disable()
     {
+
         Invoke("potDisable", 2f);
     }
     public void potDisable()
     {
+
         FieldCtrl.Instance.removePot(this);
         base.disable();
     }
@@ -53,11 +55,17 @@ public class Item_Pot : ItemCtrl, I_Faction, I_Attacker
     {
         SeedUpdate();
 
+        if (reloadTemp > 0f && waterValue <= 0f)
+        {
+            reloadTemp -= Time.deltaTime;
+            ani.SetFloat("LeefFill", ((1f - (reloadTemp / reloadTime))));
+            return;
+        }
         if (weapon != null && nowSeed.seedKind == SeedKind.Tower)
         {
             if (targetRoot == null)
             {
-                Collider2D[] hits = Physics2D.OverlapCircleAll(this.transform.position, 15f, LayerManager.Instance.HitZone);
+                Collider2D[] hits = Physics2D.OverlapCircleAll(this.transform.position, 10f, LayerManager.Instance.HitZone);
                 if (hits != null)
                 {
                     for (int i = 0; i < hits.Length; i++)
@@ -71,7 +79,7 @@ public class Item_Pot : ItemCtrl, I_Faction, I_Attacker
                     }
                 }
             }
-            else
+            else if (Mathf.Max(5f, weapon.weaponInfo.AttackDistance * 0.5f) > Vector2.Distance(this.transform.position, TargetTran.position))
             {
                 weapon.UseCallAttack(this, UseState.Start, endAmmo);
             }
@@ -96,6 +104,12 @@ public class Item_Pot : ItemCtrl, I_Faction, I_Attacker
                 //게이지 표시
                 //nowSeed.nowWeight / nowSeed.maxWeight;//현재 성장율
                 //(nowSeed.nowWeight+waterValue) / nowSeed.maxWeight;//예상 성장률
+            }
+            else if (waterValue > 0f && nowSeed.seedKind == SeedKind.Tower && reloadTemp > 0f)
+            {
+                waterValue -= Time.deltaTime;
+                reloadTemp -= Time.deltaTime * 2f;
+                ani.SetFloat("LeefFill", ((1f - (reloadTemp / reloadTime))));
             }
         }
     }
@@ -175,6 +189,7 @@ public class Item_Pot : ItemCtrl, I_Faction, I_Attacker
             this.weapon = weapon;
             weapon.transform.SetParent(weaponPivot);
             weapon.transform.localPosition = Vector3.zero;
+            weapon.transform.localScale = Vector3.one;
             switch (weapon.weaponKind)
             {
                 case SeedKind.None:
@@ -279,18 +294,27 @@ public class Item_Pot : ItemCtrl, I_Faction, I_Attacker
             return this;
         }
     }
+    private float reloadTime = 15f;
+    public float reloadTemp;
     public void endAmmo()
     {
+        reloadTemp = reloadTime;
+        weapon.reload();
+        ani.SetFloat("LeefFill", 0f);
+
         --weaponUseCount;
-        weapon = null;
+
         if (weaponUseCount <= 0)
         {
-            hpCtrl.nowHp = Mathf.Min(hpCtrl.nowHp, 40f);
-            hpCtrl.maxHp = 40f;
-            nowSeed.disable();
-            toworObj.gameObject.SetActive(false);
-            sing.gameObject.SetActive(true);
-            isWood = false;
+            weapon.disable();
+            weapon = null;
+            //hpCtrl.nowHp = Mathf.Min(hpCtrl.nowHp, 40f);
+            //hpCtrl.maxHp = 40f;
+            //nowSeed.disable();
+            //nowSeed = null;
+            //toworObj.gameObject.SetActive(false);
+            //sing.gameObject.SetActive(false);
+            //isWood = false;
         }
     }
     public override void UseCall(RootCtrl rootCtrl, UseState useState)
@@ -421,9 +445,9 @@ public class Item_Pot : ItemCtrl, I_Faction, I_Attacker
                 {
                     gunIconSprites[i].transform.parent.gameObject.SetActive(false);
                 }
-                hpCtrl.nowHp = 200f;
-                hpCtrl.maxHp = 200f;
-                weaponUseCount = 5;// ScriptableManager.instance.getTable(ScriptableManager.PlantScriptableTag).getPrefab<ScriptablePlantInfo.PrefabInfo>(nowSeed.seedKind.ToString()).Reusecount;
+                hpCtrl.nowHp = 100f;
+                hpCtrl.maxHp = 100f;
+                weaponUseCount = 3;// ScriptableManager.instance.getTable(ScriptableManager.PlantScriptableTag).getPrefab<ScriptablePlantInfo.PrefabInfo>(nowSeed.seedKind.ToString()).Reusecount;
                 break;
         }
 

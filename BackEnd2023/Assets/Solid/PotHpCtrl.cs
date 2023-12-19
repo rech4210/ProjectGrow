@@ -16,7 +16,7 @@ public class PotHpCtrl : MonoBehaviour, I_HitZone
     {
         if (nowHp < maxHp)
         {
-            nowHp += Time.deltaTime * 5f;
+            nowHp += Time.deltaTime * 1f;
             myPot.ani.SetFloat("HPFill", nowHp / maxHp);
         }
     }
@@ -45,6 +45,10 @@ public class PotHpCtrl : MonoBehaviour, I_HitZone
                     case SeedKind.Electric:
                         return true;
                     case SeedKind.Water:
+                        if (myPot.nowSeed != null && myPot.nowSeed.seedKind == SeedKind.Tower && myPot.reloadTemp > 0f)
+                        {
+                            return false;
+                        }
                         return myPot.isWood;
                 }
             }
@@ -75,6 +79,7 @@ public class PotHpCtrl : MonoBehaviour, I_HitZone
                                 break;
                             case SeedKind.Water:
                                 myPot.waterValue = 5f;
+
                                 break;
                         }
                     }

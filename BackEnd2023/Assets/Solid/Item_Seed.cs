@@ -14,6 +14,9 @@ public class Item_Seed : ItemCtrl
     public SeedKind seedKind;
     public ScriptablePlantInfo.PrefabInfo seedInfo;
 
+    public Color bubbleColor;
+    public SpriteRenderer bubble;
+
     public Sprite[] seedSprite;
     public SpriteRenderer model;
 
@@ -30,28 +33,34 @@ public class Item_Seed : ItemCtrl
             case SeedKind.Revolver:
                 seedInfo = ScriptableManager.instance.getTable(ScriptableManager.PlantScriptableTag).getPrefab<ScriptablePlantInfo.PrefabInfo>(PlantNameEnum.Rovolver.ToString());
                 model.sprite = seedSprite[0];
+                bubble.color = Color.white;
                 break;
             case SeedKind.Minigun:
                 seedInfo = ScriptableManager.instance.getTable(ScriptableManager.PlantScriptableTag).getPrefab<ScriptablePlantInfo.PrefabInfo>(PlantNameEnum.Minigun.ToString());
                 model.sprite = seedSprite[1];
+                bubble.color = Color.white;
                 break;
             case SeedKind.Firebat:
                 seedInfo = ScriptableManager.instance.getTable(ScriptableManager.PlantScriptableTag).getPrefab<ScriptablePlantInfo.PrefabInfo>(PlantNameEnum.flame_thrower.ToString());
                 model.sprite = seedSprite[2];
+                bubble.color = Color.white;
                 break;
             case SeedKind.Electric:
                 seedInfo = ScriptableManager.instance.getTable(ScriptableManager.PlantScriptableTag).getPrefab<ScriptablePlantInfo.PrefabInfo>(PlantNameEnum.Lighting.ToString());
                 model.sprite = seedSprite[3];
+                bubble.color = Color.white;
                 break;
             case SeedKind.Tower:
                 seedInfo = ScriptableManager.instance.getTable(ScriptableManager.PlantScriptableTag).getPrefab<ScriptablePlantInfo.PrefabInfo>(PlantNameEnum.Dionaea.ToString());
                 model.sprite = seedSprite[4];
+                bubble.color = bubbleColor;
                 break;
             case SeedKind.Water:
                 break;
             case SeedKind.Pot:
                 seedInfo = ScriptableManager.instance.getTable(ScriptableManager.PlantScriptableTag).getPrefab<ScriptablePlantInfo.PrefabInfo>(PlantNameEnum.Pot.ToString());
                 model.sprite = seedSprite[5];
+                bubble.color = bubbleColor;
                 break;
         }
     }

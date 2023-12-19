@@ -117,7 +117,7 @@ public class StateCtrl : MonoBehaviour, InitiallizeInterface
         if (IsCanAction(stateEnum))
         {
             StateChange(stateEnum.Move);
-            rootCtrl.AnimationCtrl.IdleToMoveAniamtion(dic.magnitude * dic.x);
+            rootCtrl.AnimationCtrl.IdleToMoveAniamtion(dic.magnitude * (dic.x < 0 ? -1 : 1f));
         }
     }
     public void GrapState()
